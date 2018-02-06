@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="BFSDeliveries.Views.FormDetailPage" 
+    Title="{Binding Title}">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Cancel" Priority="0" Order="Primary" Clicked="Cancel_Clicked" />
+        <ToolbarItem Text="Submit" Priority="1" Order="Primary" Clicked="Submit_Clicked" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid Padding="15">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="80" />
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="80" />
+                        <RowDefinition Height="60" />
+                        <RowDefinition Height="60" />
+                        <RowDefinition Height="60" />
+                        <RowDefinition Height="60" />
+                        <RowDefinition Height="20" />
+                    </Grid.RowDefinitions>
+                    <Label Text="Pick Ticket Number(s)" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" />
+                    <Entry x:Name="pickTicketNumber" Placeholder="Required" Text="{Binding Delivery.PickTicketNumber}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" />
+                    <Label Text="Comments" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" />
+                    <Entry x:Name="comments" Text="{Binding Delivery.Comments}" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" />
+                    <Label Text="No super available to sign" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="4" />
+                    <Switch x:Name="noSuperSign" IsEnabled="true" IsToggled="{Binding Delivery.NoSuperSign}" Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="1" />
+                    <Label Text="Framer took small parts" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="4" />
+                    <Switch x:Name="framerSmallParts" IsEnabled="true" IsToggled="{Binding Delivery.FramerSmallParts}" Grid.Row="5" Grid.Column="3" />
+                    <Label Text="No return available" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="4" />
+                    <Switch x:Name="noReturnAvail" IsEnabled="true" IsToggled="{Binding Delivery.NoReturnAvail}" Grid.Row="6" Grid.Column="3" />
+                    <Label Text="Damaged products noted" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="4" />
+                    <Switch x:Name="damagedProductsNoted" IsEnabled="true" IsToggled="{Binding Delivery.DamagedProductsNoted}" Grid.Row="7" Grid.Column="3" />
+                    <Label Text="Photo Attachements" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="4" />
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                </Grid>
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
