@@ -109,6 +109,9 @@
     <Reference Include="Serilog">
       <HintPath>..\packages\Serilog.2.6.0\lib\netstandard1.3\Serilog.dll</HintPath>
     </Reference>
+    <Reference Include="ELCImagePicker">
+      <HintPath>..\Components\elcimagepicker-1.4\lib\ios-unified\ELCImagePicker.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
@@ -136,6 +139,12 @@
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
+  </ItemGroup>
+  <ItemGroup>
+    <XamarinComponentReference Include="elcimagepicker">
+      <Version>1.4</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
   </ItemGroup>
   <Import Project="..\BFSDeliveries\BFSDeliveries.projitems" Label="Shared" Condition="Exists('..\BFSDeliveries\BFSDeliveries.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

@@ -46,7 +46,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IPhotoCapture.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IMediaService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Photo.cs" />
   </ItemGroup>
   <ItemGroup>

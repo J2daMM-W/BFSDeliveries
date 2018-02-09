@@ -5,9 +5,10 @@ using BFSDeliveries.Models;
 
 namespace BFSDeliveries.Interfaces
 {
-    public interface IPhotoCapture
+    public interface IMediaService
     {
         Task<Photo> GetPhotosUsingCamera();
         Task<List<Photo>> GetMultiplePhotos();
+        Task OpenGallery();
     }
 }
