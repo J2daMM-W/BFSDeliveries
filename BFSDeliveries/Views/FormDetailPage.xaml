@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-    x:Class="BFSDeliveries.Views.FormDetailPage" 
-    Title="{Binding Title}">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="BFSDeliveries.Views.FormDetailPage" xmlns:vm="clr-namespace:BFSDeliveries.ViewModels" Title="{Binding Title}">
+    <ContentPage.BindingContext>
+        <vm:FormDetailViewModel />
+    </ContentPage.BindingContext>
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Cancel" Priority="0" Order="Primary" Clicked="Cancel_Clicked" />
         <ToolbarItem Text="Submit" Priority="1" Order="Primary" Clicked="Submit_Clicked" />
@@ -55,6 +55,12 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
+                    <StackLayout HorizontalOptions="StartAndExpand" Grid.Column="1">
+                    </StackLayout>
+                    <StackLayout HorizontalOptions="End" Grid.Column="3">
+                        <Button x:Name="getPhoto"  Image="" Text="Photo" Command="{Binding GetPhotoCommand}">
+                        </Button>
+                    </StackLayout>
                 </Grid>
             </Grid>
         </ScrollView>

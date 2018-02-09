@@ -15,7 +15,7 @@
                                     <Label Text="{Binding Name}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="18" />
                                     <Label Text="{Binding Description}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13" />
                                 </StackLayout>
-                                <Button Image="" Text="&gt;" Clicked="SelectForm_Clicked" />
+                                <!--<Button Image="" Text="&gt;" Clicked="SelectForm_Clicked" />-->
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

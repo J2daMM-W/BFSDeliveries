@@ -23,15 +23,18 @@ namespace BFSDeliveries.Views
             if (form == null)
                 return;
 
-            await Navigation.PushAsync(new FormDetailPage(new FormDetailViewModel(form)));
+            await Navigation.PushAsync(new FormDetailPage());
 
             // Manually deselect item
             FormsListView.SelectedItem = null;
         }
 
-        async void SelectForm_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new FormDetailPage());
-        }
+        //async void SelectForm_Clicked(object sender, EventArgs e)
+        //{
+        //    await Navigation.PushAsync(new FormDetailPage());
+
+        //    // Manually deselect item
+        //    FormsListView.SelectedItem = null;
+        //}
     }
 }
