@@ -1,15 +1,18 @@
 ﻿using System;
-
+using Prism.Ioc;
+using Prism.Unity;
 using Xamarin.Forms;
 
 namespace BFSDeliveries
 {
-    public partial class App : Application
+    public partial class App : PrismApplication
     {
         public static bool UseMockDataStore = true;
         public static string BackendUrl = "https://localhost:5000";
 
-        public App()
+        public App(Prism.IPlatformInitializer initializer = null) : base(initializer){}
+
+        protected override void OnInitialized() 
         {
             InitializeComponent();
 
@@ -22,6 +25,12 @@ namespace BFSDeliveries
                 MainPage = new MainPage();
             else
                 MainPage = new NavigationPage(new MainPage());
+        }
+
+        protected override void RegisterTypes(IContainerRegistry containerRegistry)
+        {
+            containerRegistry.RegisterForNavigation<NavigationPage>();
+            //containerRegistry.RegisterForNavigation<Views.MainPage>();
         }
     }
 }

@@ -34,8 +34,8 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Models\Form.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\FormsViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\FormDetailViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\FormsPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\FormDetailPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\FormsPage.xaml.cs">
       <DependentUpon>FormsPage.xaml</DependentUpon>
     </Compile>
@@ -48,6 +48,10 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IMediaService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Photo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\GalleryPage.xaml.cs">
+      <DependentUpon>GalleryPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Behaviors\BehaviorBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\AboutPage.xaml" />
@@ -67,8 +71,13 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\GalleryPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Interfaces\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Common\" />
   </ItemGroup>
 </Project>

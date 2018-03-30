@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="BFSDeliveries.Views.FormsPage" xmlns:vm="clr-namespace:BFSDeliveries.ViewModels" Title="{Binding Title}">
-    <ContentPage.BindingContext>
-        <vm:FormsViewModel />
-    </ContentPage.BindingContext>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="BFSDeliveries.Views.FormsPage" xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms" prism:ViewModelLocator.AutowireViewModel="True" Title="{Binding Title}">
     <ContentPage.Content>
         <StackLayout>
             <ListView x:Name="FormsListView" RowHeight="60" ItemsSource="{Binding Forms}" VerticalOptions="FillAndExpand" HasUnevenRows="true" RefreshCommand="{Binding LoadFormsCommand}" IsPullToRefreshEnabled="true" IsRefreshing="{Binding IsBusy, Mode=OneWay}" CachingStrategy="RecycleElement" ItemSelected="OnFormSelected">

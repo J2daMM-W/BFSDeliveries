@@ -7,6 +7,8 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using Prism.Ioc;
+using Prism;
 
 namespace BFSDeliveries.Droid
 {
@@ -22,12 +24,15 @@ namespace BFSDeliveries.Droid
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
 
-            LoadApplication(new App());
+            LoadApplication(new App(new AndroidInitializer()));
         }
 
-        protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
+        public class AndroidInitializer : IPlatformInitializer
         {
-            base.OnActivityResult(requestCode, resultCode, data);
+            public void RegisterTypes(IContainerRegistry containerRegistry)
+            {
+                throw new NotImplementedException();
+            }
         }
     }
 }

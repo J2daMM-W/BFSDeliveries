@@ -5,32 +5,63 @@ using System.Windows.Input;
 using BFSDeliveries.Interfaces;
 using BFSDeliveries.Models;
 using Prism.Services;
+using Prism.Commands;
+using Prism.Navigation;
 using Xamarin.Forms;
 
 namespace BFSDeliveries.ViewModels
 {
-    public class FormDetailViewModel
+    public class FormDetailPageViewModel
     {
         public Form form { get; set; }
         public Delivery delivery { get;  set;}
         public Photo photo;
 
+        INavigationService _navigationService;
+
         public IPageDialogService _pageDialogService;
         public DelegateCommand GetPhotoCommand { get; private set; }
+        public DelegateCommand CancelCommand { get; private set; }
+        public DelegateCommand SubmitCommand { get; private set; }
 
-        public FormDetailViewModel(IPageDialogService pageDialogService){
-            
+        public FormDetailPageViewModel(IPageDialogService pageDialogService, INavigationService navigationService)
+        {
+            _navigationService = navigationService;
             _pageDialogService = pageDialogService;
 
             GetPhotoCommand = new DelegateCommand(DisplayActionSheetButtons);
+            CancelCommand = new DelegateCommand(CancelFormSubmition);
+            SubmitCommand = new DelegateCommand(ExecuteFormSubmition);
         }
 
-        private async void DisplayActionSheetButtons(object obj)
+        private async void DisplayActionSheetButtons()
         {
-            var result = await _pageDialogService.DisplayActionSheetAsync("Get Photo From:", "Cancel", "Destroy", "Camera", "Photo Library");
+            var result = await _pageDialogService.DisplayActionSheetAsync("Get Photo From:", "Cancel", "Camera", "Photo Library");
+
+            if(result == "Camera"){
+                //send to camera
+                //await Xamarin.Forms.DependencyService.Get<IMediaService>().OpenGallery();
+            }
+            else if(result == "Photo Library")
+            {
+                // send to photo lib
+                await Xamarin.Forms.DependencyService.Get<IMediaService>().OpenGallery();
+            }
+
             Debug.WriteLine(result);
         }
 
+        private void CancelFormSubmition()
+        {
+            _navigationService.GoBackAsync();
+        }
+
+        private void ExecuteFormSubmition()
+        {
+            // Do form submit after verification 
+            // otherwise cancel
+            _navigationService.GoBackAsync();
+        }
         //public Photo PhotoLib
         //{
         //    get

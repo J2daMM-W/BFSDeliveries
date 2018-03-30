@@ -7,12 +7,12 @@ using Xamarin.Forms;
 
 namespace BFSDeliveries.ViewModels
 {
-    public class FormsViewModel: BaseViewModel
+    public class FormsPageViewModel: BaseViewModel
     {
         public ObservableCollection<Form> Forms { get; set; }
         public Command LoadFormsCommand { get; set; }
 
-        public FormsViewModel()
+        public FormsPageViewModel()
         {
             Title = "Forms";
             Forms = new ObservableCollection<Form>();

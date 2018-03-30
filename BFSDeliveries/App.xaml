@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Application xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="BFSDeliveries.App">
+<prism:PrismApplication xmlns="http://xamarin.com/schemas/2014/forms" 
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+                        x:Class="BFSDeliveries.App"
+                        xmlns:prism="clr-namespace:Prism.Unity;assembly=Prism.Unity.Forms">
 	<Application.Resources>
 		<ResourceDictionary>
 			<Color x:Key="Primary">#324C9F</Color>
@@ -15,4 +18,4 @@
 			</Style>
 		</ResourceDictionary>
 	</Application.Resources>
-</Application>
+</prism:PrismApplication>

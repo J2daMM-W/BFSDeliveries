@@ -8,13 +8,13 @@ namespace BFSDeliveries.Views
 {
     public partial class FormsPage : ContentPage
     {
-        FormsViewModel viewModel;
+        FormsPageViewModel viewModel;
 
         public FormsPage()
         {
             InitializeComponent();
 
-            BindingContext = viewModel = new FormsViewModel();
+            BindingContext = viewModel = new FormsPageViewModel();
         }
 
         async void OnFormSelected(object sender, SelectedItemChangedEventArgs args)

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using BFSDeliveries.Interfaces;
 using BFSDeliveries.ViewModels;
 using Xamarin.Forms;
 
@@ -8,29 +9,31 @@ namespace BFSDeliveries.Views
 {
     public partial class FormDetailPage : ContentPage
     {
-        private FormDetailViewModel formDetailViewModel;
+        //private FormDetailViewModel formDetailViewModel;
 
         public FormDetailPage()
         {
             InitializeComponent();
+
             //Disable default navigation back button
             NavigationPage.SetHasBackButton(this, false);
         }
 
-        public FormDetailPage(FormDetailViewModel formDetailViewModel)
-        {
-            this.formDetailViewModel = formDetailViewModel;
-        }
+        //public FormDetailPage(FormDetailViewModel formDetailViewModel)
+        //{
+        //    this.formDetailViewModel = formDetailViewModel;
 
-        async void Submit_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PopAsync();
-        }
+        //}
 
-        async void Cancel_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PopAsync();
-        }
+        //async void Submit_Clicked(object sender, EventArgs e)
+        //{
+        //    await Navigation.PopAsync();
+        //}
+
+        //async void Cancel_Clicked(object sender, EventArgs e)
+        //{
+        //    await Navigation.PopAsync();
+        //}
 
         //async void GetPhoto_Clicked(object sender, EventArgs e)
         //{
@@ -44,6 +47,7 @@ namespace BFSDeliveries.Views
         //    else if ((action != null) && action.Equals("Photo Library"))
         //    {
         //        // TODO - send to Photo Library
+        //        await Navigation.PushAsync(new GalleryPage());
         //    }
         //    else if ((action != null) && action.Equals("Cancel"))
         //    {
