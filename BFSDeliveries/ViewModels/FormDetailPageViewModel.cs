@@ -15,7 +15,7 @@ namespace BFSDeliveries.ViewModels
     {
         public Form form { get; set; }
         public Delivery delivery { get;  set;}
-        public Photo photo;
+        public Models.DeliveryImage image;
 
         INavigationService _navigationService;
 

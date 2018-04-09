@@ -10,6 +10,8 @@ namespace BFSDeliveries.Views
     public partial class FormDetailPage : ContentPage
     {
         //private FormDetailViewModel formDetailViewModel;
+        List<string> _images = new List<string>();
+
 
         public FormDetailPage()
         {
@@ -19,41 +21,22 @@ namespace BFSDeliveries.Views
             NavigationPage.SetHasBackButton(this, false);
         }
 
-        //public FormDetailPage(FormDetailViewModel formDetailViewModel)
-        //{
-        //    this.formDetailViewModel = formDetailViewModel;
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
 
-        //}
+            //MessagingCenter.Subscribe<App, List<string>>((App)Xamarin.Forms.Application.Current, "ImagesSelected", (s, images) =>
+            //{
+            //    ImagesSelected.FlowItemsSource = images;
+            //    _images = images;
+            //});
+        }
 
-        //async void Submit_Clicked(object sender, EventArgs e)
-        //{
-        //    await Navigation.PopAsync();
-        //}
-
-        //async void Cancel_Clicked(object sender, EventArgs e)
-        //{
-        //    await Navigation.PopAsync();
-        //}
-
-        //async void GetPhoto_Clicked(object sender, EventArgs e)
-        //{
-        //    var action = await DisplayActionSheet("Get Photo From:", "Cancel", null, "Camera","Photo Library");
-        //  await Task.Delay(100);
-
-        //    if ((action != null) && action.Equals("Camera"))
-        //    {
-        //        // TODO - send to camera
-        //    }
-        //    else if ((action != null) && action.Equals("Photo Library"))
-        //    {
-        //        // TODO - send to Photo Library
-        //        await Navigation.PushAsync(new GalleryPage());
-        //    }
-        //    else if ((action != null) && action.Equals("Cancel"))
-        //    {
-        //        // TODO - Cancel Actionsheet selection
-        //    }
-        //}
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            MessagingCenter.Unsubscribe<App, List<string>>(this, "ImagesSelected");
+        }
 
     }
 }

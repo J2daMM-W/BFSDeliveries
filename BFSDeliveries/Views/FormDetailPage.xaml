@@ -1,18 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-    x:Class="BFSDeliveries.Views.FormDetailPage"
-    xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
-    prism:ViewModelLocator.AutowireViewModel="True"
-    Title="{Binding Title}">
-    
-    <!--<ContentPage.BindingContext>
-        <vm:FormDetailViewModel />
-    </ContentPage.BindingContext>-->
-    
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="BFSDeliveries.Views.FormDetailPage" xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms" prism:ViewModelLocator.AutowireViewModel="True" Title="{Binding Title}" x:Name="" xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Cancel" Priority="0" Order="Primary" Command="{Binding CancelCommand}"/>
-        <ToolbarItem Text="Submit" Priority="1" Order="Primary" Command="{Binding SubmitCommand}"/>
+        <ToolbarItem Text="Cancel" Priority="0" Order="Primary" Command="{Binding CancelCommand}" />
+        <ToolbarItem Text="Submit" Priority="1" Order="Primary" Command="{Binding SubmitCommand}" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <ScrollView>
@@ -56,17 +46,18 @@
                 </Grid>
                 <Grid Grid.Row="1">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="60" />
+                        <RowDefinition Height="100" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <StackLayout HorizontalOptions="StartAndExpand" Grid.Column="1">
+                       <!--<flv:FlowListView x:Name="ImagesSelected" SeparatorVisibility="None" HasUnevenRows="false" RowHeight="100">                             <flv:FlowListView.FlowColumnTemplate>                                 <DataTemplate>                                     <ffimageloading:CachedImage DownsampleToViewSize="true" AbsoluteLayout.LayoutFlags="All" HeightRequest="100" AbsoluteLayout.LayoutBounds="0,0,1,1" Source="{Binding .}" Aspect="AspectFill" HorizontalOptions="FillAndExpand">                                     </ffimageloading:CachedImage>                                 </DataTemplate>                             </flv:FlowListView.FlowColumnTemplate>                         </flv:FlowListView>-->
                     </StackLayout>
                     <StackLayout HorizontalOptions="End" Grid.Column="3">
                         <!--<Button x:Name="getPhoto"  Image="" Text="Photo" Clicked="GetPhoto_Clicked">-->
-                        <Button x:Name="getPhoto"  Image="" Text="Photo" Command="{Binding GetPhotoCommand}">
+                        <Button x:Name="getPhoto" Image="" Text="Photo" Command="{Binding GetPhotoCommand}">
                         </Button>
                     </StackLayout>
                 </Grid>

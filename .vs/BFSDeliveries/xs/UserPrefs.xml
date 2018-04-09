@@ -1,13 +1,17 @@
 ﻿<Properties StartupConfiguration="{C035F152-F9BB-41A2-806F-48963DCA952A}|Default">
   <MonoDevelop.Ide.ItemProperties.BFSDeliveries.Droid AndroidDesignerPreferredTheme="Theme.DeviceDefault.NoActionBar.Fullscreen" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="BFSDeliveries/Views/FormsPage.xaml">
+  <MonoDevelop.Ide.Workbench ActiveDocument="BFSDeliveries/Models/Form.cs">
     <Files>
       <File FileName="BFSDeliveries/Views/FormsPage.xaml" Line="23" Column="15" />
-      <File FileName="BFSDeliveries/Views/FormDetailPage.xaml.cs" Line="45" Column="19" />
-      <File FileName="BFSDeliveries/Views/FormDetailPage.xaml" Line="76" Column="15" />
-      <File FileName="BFSDeliveries/ViewModels/FormDetailPageViewModel.cs" Line="43" Column="19" />
-      <File FileName="iOS/DependencyServices/MediaService.cs" Line="279" Column="1" />
-      <File FileName="BFSDeliveries/Interfaces/IMediaService.cs" Line="11" Column="11" />
+      <File FileName="BFSDeliveries/Views/FormsPage.xaml.cs" Line="9" Column="2" />
+      <File FileName="BFSDeliveries/Views/FormDetailPage.xaml.cs" Line="32" Column="18" />
+      <File FileName="BFSDeliveries/Views/FormDetailPage.xaml" Line="74" Column="15" />
+      <File FileName="BFSDeliveries/ViewModels/FormDetailPageViewModel.cs" Line="37" Column="27" />
+      <File FileName="iOS/DependencyServices/MediaService.cs" Line="106" Column="21" />
+      <File FileName="BFSDeliveries/Interfaces/IMediaService.cs" Line="15" Column="1" />
+      <File FileName="BFSDeliveries/Models/DeliveryImage.cs" Line="12" Column="9" />
+      <File FileName="BFSDeliveries/Controls/ImageGallery.cs" Line="5" Column="33" />
+      <File FileName="BFSDeliveries/Models/Form.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" />
@@ -15,10 +19,9 @@
     <BreakpointStore>
       <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/ViewModels/FormDetailViewModel.cs" relfile="BFSDeliveries/ViewModels/FormDetailViewModel.cs" line="27" column="1" />
       <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/ViewModels/FormDetailViewModel.cs" relfile="BFSDeliveries/ViewModels/FormDetailViewModel.cs" line="31" column="1" />
-      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/iOS/DependencyServices/MediaService.cs" relfile="iOS/DependencyServices/MediaService.cs" line="279" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.ItemProperties.BFSDeliveries.iOS PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.1F6B6721-CF16-4612-B605-E3CAB2874BEE" automaticSigning="False" />
+  <MonoDevelop.Ide.ItemProperties.BFSDeliveries.iOS PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.D11EC90A-B14E-4DCF-976A-E89B17448C7F" automaticSigning="False" />
   <MultiItemStartupConfigurations />
 </Properties>
