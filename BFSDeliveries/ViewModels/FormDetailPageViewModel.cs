@@ -7,15 +7,26 @@ using BFSDeliveries.Models;
 using Prism.Services;
 using Prism.Commands;
 using Prism.Navigation;
+using System.Collections.ObjectModel;
+using BFSDeliveries.Controls;
+
 using Xamarin.Forms;
+using System.Collections.Generic;
+using System.IO;
 
 namespace BFSDeliveries.ViewModels
 {
-    public class FormDetailPageViewModel
+    public class FormDetailPageViewModel : BaseViewModel
     {
         public Form form { get; set; }
         public Delivery delivery { get;  set;}
         public Models.DeliveryImage image;
+        public ObservableCollection<DeliveryImage> Items { get; set; }
+
+        //List<byte[]> _images;  //Store Bytes of image
+        //readonly StackLayout _imageStack;
+        //ObservableCollection<DeliveryImage> deliveryImages = new ObservableCollection<DeliveryImage>();
+
 
         INavigationService _navigationService;
 
@@ -24,14 +35,45 @@ namespace BFSDeliveries.ViewModels
         public DelegateCommand CancelCommand { get; private set; }
         public DelegateCommand SubmitCommand { get; private set; }
 
+        //public ObservableCollection<DeliveryImage> Images
+        //{
+        //    get { return deliveryImages; }
+        //}
+
         public FormDetailPageViewModel(IPageDialogService pageDialogService, INavigationService navigationService)
         {
+            //_imageStack = new StackLayout
+            //{
+            //    Orientation = StackOrientation.Horizontal
+            //};
+            Items = new ObservableCollection<DeliveryImage>();
+
             _navigationService = navigationService;
             _pageDialogService = pageDialogService;
 
-            GetPhotoCommand = new DelegateCommand(DisplayActionSheetButtons);
             CancelCommand = new DelegateCommand(CancelFormSubmition);
             SubmitCommand = new DelegateCommand(ExecuteFormSubmition);
+
+            GetPhotoCommand = new DelegateCommand(DisplayActionSheetButtons);
+
+
+            //_images = new List<byte[]>();
+            //Items = new ObservableCollection<Item>();
+
+            //Subscribe notification
+            MessagingCenter.Subscribe<App, List<byte[]>>((App)Xamarin.Forms.Application.Current, "ImagesSelected", (s, images) =>
+            {
+                foreach (byte[] selectedImage in images)
+                {
+                    //Image newImage = new Image();
+                    var newImage = ImageSource.FromStream(() => new MemoryStream(selectedImage));
+
+                    //_imageStack.Children.Add(newImage);  //Stacklayout that holds images
+                    //_images.Add(selectedImage);
+
+                    Items.Add(new DeliveryImage { Source = newImage, OrgImage = selectedImage });
+                }
+            });
         }
 
         private async void DisplayActionSheetButtons()
@@ -40,13 +82,14 @@ namespace BFSDeliveries.ViewModels
 
             if(result == "Camera"){
                 //send to camera
-                //await Xamarin.Forms.DependencyService.Get<IMediaService>().OpenGallery();
+                await Xamarin.Forms.DependencyService.Get<IMediaService>().GetPhotosUsingCamera();
             }
             else if(result == "Photo Library")
             {
                 // send to photo lib
-                await Xamarin.Forms.DependencyService.Get<IMediaService>().OpenGallery();
+                 Xamarin.Forms.DependencyService.Get<IMediaService>().OpenGallery();
             }
+
 
             Debug.WriteLine(result);
         }
@@ -62,67 +105,6 @@ namespace BFSDeliveries.ViewModels
             // otherwise cancel
             _navigationService.GoBackAsync();
         }
-        //public Photo PhotoLib
-        //{
-        //    get
-        //    {
-        //        return this.photo;
-        //    }
-        //    set
-        //    {
-        //        if (Equals(value, this.photo))
-        //        {
-        //            return;
-        //        }
-        //        this.photo = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
 
-        //public FormDetailViewModel(IMediaService mediaService)
-        //{
-        //    //GetPhotoCommand = new Command(async () => await ExecuteGetPhotoCommand());
-        //    //this.form = form;
-
-        //    if(mediaService == null)
-        //    {
-        //        throw new ArgumentNullException(nameof(mediaService));
-        //    }
-
-        //    //check if the device has a camera or photos are supported - if so present alert to chose camera or photo library
-        //    GetPhotoCommand = new Command(async () => await TakePictureAsync(), () => canExecuteGetPhotoCommand());
-        //}
-
-        //public bool canExecuteGetPhotoCommand()
-        //{
-        //    //if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported || !CrossMedia.Current.IsPickPhotoSupported)
-        //    //{
-        //    //  return false;
-        //    //}
-        //    //else
-        //    //{
-        //    return true;
-        //    //}
-        //}
-
-        //private async Task TakePictureAsync()
-        //{
-        //    //await photoCapture.GetPhotosUsingCamera();
-        //    var cameraResult = await mediaService.GetMultiplePhotos();
-
-        //    //if (cameraResult != null)
-        //    //{
-        //    //    PhotoLib.Image = cameraResult.Image;
-        //    //    PhotoLib.FilePath = cameraResult.FilePath;
-        //    //}
-        //}
-        //async Task ExecuteGetPhotoCommand()
-        //{
-        //    //await DependencyService.Get<IMediaService>().OpenGallery();
-        //    //DisplayActionSheetCommand = new Command() =>
-        //    //{
-                
-        //    //}
-        //}
     }
 }

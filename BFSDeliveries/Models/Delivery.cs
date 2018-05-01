@@ -12,6 +12,6 @@ namespace BFSDeliveries.Models
         public bool FramerSmallParts { get; set; }
         public bool NoReturnAvail { get; set; }
         public bool DamagedProductsNoted { get; set; }
-        //public class List<Image> PhotoGallery();//List of photos 
+        //public class List<Image> DeliveryPhotos();//List of photos 
     }
 }

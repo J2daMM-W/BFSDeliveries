@@ -1,16 +1,20 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 using BFSDeliveries.Interfaces;
 using BFSDeliveries.iOS.DependencyServices;
+using BFSDeliveries.iOS.Helpers;
 using BFSDeliveries.Models;
 using CoreGraphics;
 using ELCImagePicker;
 using Foundation;
 using UIKit;
 using Xamarin.Forms;
+using Xamarin.Forms.Platform.iOS;
 
 [assembly: Dependency(typeof(MediaService))]
 namespace BFSDeliveries.iOS.DependencyServices
@@ -18,8 +22,9 @@ namespace BFSDeliveries.iOS.DependencyServices
     public class MediaService : IMediaService
     {
         #region Fields
-
+        ObservableCollection<Photo> selectedPhotos { get; set; }
         private List<AssetResult> mResults = new List<AssetResult>();
+        //var selectedImages = new IList();
 
         #endregion
 
@@ -34,71 +39,12 @@ namespace BFSDeliveries.iOS.DependencyServices
             private set;
         }
 
-
-
-        //private void GotAccessToCamera()
-        //{
-        //  //create image picker object
-        //  var imagePickerC = new UIImagePickerController { SourceType = UIImagePickerControllerSourceType.Camera };
-
-        //  //Find the top most view controller to launch the camera
-        //  var window = UIApplication.SharedApplication.KeyWindow;
-        //  var vc = window.RootViewController;
-        //  while (vc.PresentedViewController != null)
-        //  {
-        //      vc = vc.PresentedViewController;
-        //  }
-
-        //  vc.PresentViewController(imagePickerC, true, null);
-
-        //  //Callback method for when picture user has finished
-        //  imagePickerC.FinishedPickingMedia += (sender, e) =>
-        //  {
-        //      //Grab the image
-        //      UIImage image = (UIImage)e.Info.ObjectForKey(new NSString("UIImagePickerControllerOriginalImage"));
-
-        //      //we will need to rotate image based on it's orientation - pics are side ways
-        //      UIImage rotateImage = RotateImage(image, image.Orientation);
-
-        //      //adjust the amount of compression
-        //      rotateImage = rotateImage.Scale(new CGSize(rotateImage.Size.Width, rotateImage.Size.Height), 0.5f);
-
-        //      var jpegImage = rotateImage.AsPNG();
-
-        //      //convert image to a byte array to be able to send to server via API
-        //      //also use byte array to populate image view
-        //      byte[] myByteArray = new byte[jpegImage.Length];
-        //      System.Runtime.InteropServices.Marshal.Copy(jpegImage.Bytes, myByteArray, 0, Convert.ToInt32(jpegImage.Length));
-
-        //      //Using messaging center to send byte array back up to the UI
-        //      MessagingCenter.Send<byte[]>(myByteArray, "ImageSelected");
-
-        //      //Dismiss the camera view controller on UI thread
-        //      Device.BeginInvokeOnMainThread(() =>
-        //      {
-        //          vc.DismissViewController(true, null);
-        //      });
-        //  };
-
-        //  //Callback method for when user cancels taking picture action
-        //  imagePickerC.Canceled += (sender, e) => vc.DismissViewController(true, null);
-
-        //}
-
-        public async Task OpenGallery()
+        public void OpenGallery()
         {
             var picker = ELCImagePickerViewController.Create(15);
             picker.MaximumImagesCount = 15;
 
-            var topController = UIApplication.SharedApplication.KeyWindow.RootViewController;
-
-            if (topController.PresentedViewController != null)
-            {
-                topController = topController.PresentedViewController;
-            }
-            topController.PresentViewController(picker, true, null);
-
-            await picker.Completion.ContinueWith(t =>
+            picker.Completion.ContinueWith(t =>
             {
                 picker.BeginInvokeOnMainThread(() =>
                 {
@@ -110,41 +56,48 @@ namespace BFSDeliveries.iOS.DependencyServices
                     }
                     else
                     {
-                        List<string> images = new List<string>();
+                        List<byte[]> images = new List<byte[]>();
 
                         var items = t.Result as List<AssetResult>;
                         foreach (var item in items)
                         {
-                            var path = Save(item.Image, item.Name);
-                            images.Add(path);
-                            //CleanPath(path);
+                            var path = ImageHelper.GetPathToImage(item.Image, item.Name);
+                            var imageBytes = ImageHelper.ImageToBinary(path);
+                            images.Add(imageBytes);
+                            CleanPath(path);
                         }
 
-                        //MessagingCenter.Send<App, List<string>>((App)Xamarin.Forms.Application.Current, "ImagesSelected", images);
+                        //Send images back
+                        MessagingCenter.Send<App, List<byte[]>>((App)Xamarin.Forms.Application.Current, "ImagesSelected", images);
                     }
                 });
             });
 
-            //return task 
+            var topController = UIApplication.SharedApplication.KeyWindow.RootViewController;
+            while (topController.PresentedViewController != null)
+            {
+                topController = topController.PresentedViewController;
+            }
+            topController.PresentViewController(picker, true, null);
         }
 
-        string Save(UIImage image, string name)
-        {
-            var documentsDirectory = Environment.GetFolderPath
-                                  (Environment.SpecialFolder.Personal);
-            string jpgFilename = Path.Combine(documentsDirectory, name); // hardcoded filename, overwritten each time
-            NSData imgData = image.AsJPEG();
-            NSError err = null;
-            if (imgData.Save(jpgFilename, false, out err))
-            {
-                return jpgFilename;
-            }
-            else
-            {
-                Console.WriteLine("NOT saved as " + jpgFilename + " because" + err.LocalizedDescription);
-                return null;
-            }
-        }
+        //string Save(UIImage image, string name)
+        //{
+        //    var documentsDirectory = Environment.GetFolderPath
+        //                          (Environment.SpecialFolder.Personal);
+        //    string jpgFilename = Path.Combine(documentsDirectory, name); // hardcoded filename, overwritten each time
+        //    NSData imgData = image.AsJPEG();
+        //    NSError err = null;
+        //    if (imgData.Save(jpgFilename, false, out err))
+        //    {
+        //        return jpgFilename;
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine("NOT saved as " + jpgFilename + " because" + err.LocalizedDescription);
+        //        return null;
+        //    }
+        //}
 
         //Method that will take in a photo and rotate it based on the orientation that the image was taken in
         double radians(double degrees) { return degrees * Math.PI / 180; }
@@ -175,5 +128,101 @@ namespace BFSDeliveries.iOS.DependencyServices
             UIGraphics.EndImageContext();
             return image;
         }
+
+        public Task<Photo> GetPhotosUsingCamera()
+        {
+            var tcs = new TaskCompletionSource<Photo>();
+
+            //create image picker object
+            var imagePicker = new UIImagePickerController { SourceType = UIImagePickerControllerSourceType.Camera };
+
+            //Find the top most view controller to launch the camera
+            var window = UIApplication.SharedApplication.KeyWindow;
+            var vc = window.RootViewController;
+            while (vc.PresentedViewController != null)
+            {
+                vc = vc.PresentedViewController;
+            }
+
+            //show the image gallery
+            vc.PresentViewController(imagePicker, true, null);
+
+
+            //Callback method for when picture user has finished
+            imagePicker.FinishedPickingMedia += async (sender, e) =>
+            {
+                //Grab the image
+                UIImage image = (UIImage)e.Info.ObjectForKey(new NSString("UIImagePickerControllerOriginalImage"));
+
+                //var photo = e.Info.ValueForKey(new NSString("UIImagePickerControllerOriginalImage")) as UIImage;
+
+                //we will need to rotate image based on it's orientation - pics are side ways
+                UIImage rotateImage = RotateImage(image, image.Orientation);
+
+                //adjust the amount of compression
+                rotateImage = rotateImage.Scale(new CGSize(rotateImage.Size.Width, rotateImage.Size.Height), 0.5f);
+
+                var jpegImage = rotateImage.AsPNG();
+
+                //get photo meta data 
+                var meta = e.Info.ValueForKey(new NSString("UIImagePickerControllerMediaMetadata")) as NSDictionary;
+
+                var documentsDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+                string jpgFilename = Path.Combine(documentsDirectory, Guid.NewGuid() + ".jpg");
+                NSData imgData = rotateImage.AsJPEG();
+                NSError err = null;
+
+                //NSData imgData = aItem.Image.AsJPEG();
+                var selImage = new StreamImagesourceHandler();
+
+                ImageSource albumImage = ImageSource.FromStream(imgData.AsStream);
+                UIImage cameraImage = await selImage.LoadImageAsync(albumImage);
+
+                if (imgData.Save(jpgFilename, false, out err))
+                {
+                    Photo result = new Photo();
+
+                    result.Image = cameraImage;
+                    result.Path = jpgFilename;
+
+                    try { tcs.TrySetResult(result); }
+                    catch (Exception exc) { tcs.SetException(exc); }
+                }
+                else
+                {
+                    tcs.TrySetException(new Exception(err.LocalizedDescription));
+                }
+
+                //convert image to a byte array to be able to send to server via API
+                //also use byte array to populate image view
+                byte[] myByteArray = new byte[jpegImage.Length];
+                System.Runtime.InteropServices.Marshal.Copy(jpegImage.Bytes, myByteArray, 0, Convert.ToInt32(jpegImage.Length));
+
+                //Using messaging center to send byte array back up to the UI
+                MessagingCenter.Send<byte[]>(myByteArray, "ImageSelected");
+
+                //Dismiss the camera view controller on UI thread
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    vc.DismissViewController(true, null);
+                });
+            };
+
+            //Callback method for when user cancels taking picture action
+            imagePicker.Canceled += (sender, e) => vc.DismissViewController(true, null);
+
+            return tcs.Task;
+        }
+
+        private void CleanPath(string file)
+        {
+            var documentsDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+            if (Directory.Exists(documentsDirectory))
+            {
+                File.Delete(file);
+            }
+        }
+
+
     }
 }

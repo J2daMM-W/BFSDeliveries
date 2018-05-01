@@ -8,11 +8,16 @@ namespace BFSDeliveries
     {
         public MainPage()
         {
-            Page formsPage = null;
+            Page formsPage, tasksPage = null;
 
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
+                    tasksPage = new NavigationPage(new TasksPage())
+                    {
+                        Title = "Tasks"
+                    };
+
                     formsPage = new NavigationPage(new FormsPage())
                     {
                         Title = "Forms"
@@ -28,12 +33,19 @@ namespace BFSDeliveries
                     //    Title = "About"
                     //};
 
+                    tasksPage.Icon = "tab_about.png";
                     formsPage.Icon = "tab_feed.png";
+
                     //itemsPage.Icon = "tab_feed.png";
                     //aboutPage.Icon = "tab_about.png";
                     break;
 
                 default:
+                    tasksPage = new TasksPage()
+                    {
+                        Title = "Tasks"
+                    };
+
                     formsPage = new FormsPage()
                     {
                         Title = "Forms"
@@ -52,8 +64,10 @@ namespace BFSDeliveries
                     break;
             }
 
+            Children.Add(tasksPage);
             Children.Add(formsPage);
             //Children.Add(itemsPage);
+
             //Children.Add(aboutPage);
 
             Title = Children[0].Title;

@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="BFSDeliveries.Views.FormDetailPage" xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms" prism:ViewModelLocator.AutowireViewModel="True" Title="{Binding Title}" x:Name="" xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="BFSDeliveries.Views.FormDetailPage" 
+             xmlns:custom="clr-namespace:BFSDeliveries.Controls" 
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms" prism:ViewModelLocator.AutowireViewModel="True" Title="{Binding Title}" x:Name="">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Cancel" Priority="0" Order="Primary" Command="{Binding CancelCommand}" />
         <ToolbarItem Text="Submit" Priority="1" Order="Primary" Command="{Binding SubmitCommand}" />
@@ -53,10 +57,19 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <StackLayout HorizontalOptions="StartAndExpand" Grid.Column="1">
-                       <!--<flv:FlowListView x:Name="ImagesSelected" SeparatorVisibility="None" HasUnevenRows="false" RowHeight="100">                             <flv:FlowListView.FlowColumnTemplate>                                 <DataTemplate>                                     <ffimageloading:CachedImage DownsampleToViewSize="true" AbsoluteLayout.LayoutFlags="All" HeightRequest="100" AbsoluteLayout.LayoutBounds="0,0,1,1" Source="{Binding .}" Aspect="AspectFill" HorizontalOptions="FillAndExpand">                                     </ffimageloading:CachedImage>                                 </DataTemplate>                             </flv:FlowListView.FlowColumnTemplate>                         </flv:FlowListView>-->
+                        <custom:ImagesScrollView ItemsSource="{Binding Items}" Orientation="Horizontal"  Grid.Row="1">
+                            <custom:ImagesScrollView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout Padding="5">
+                                            <custom:ImageCircle Source="{Binding Source}" HeightRequest="80" WidthRequest="80" />
+                                        </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </custom:ImagesScrollView.ItemTemplate>
+                        </custom:ImagesScrollView>
                     </StackLayout>
                     <StackLayout HorizontalOptions="End" Grid.Column="3">
-                        <!--<Button x:Name="getPhoto"  Image="" Text="Photo" Clicked="GetPhoto_Clicked">-->
                         <Button x:Name="getPhoto" Image="" Text="Photo" Command="{Binding GetPhotoCommand}">
                         </Button>
                     </StackLayout>

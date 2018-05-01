@@ -53,6 +53,13 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Behaviors\BehaviorBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\ImageGallery.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Photo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\TasksPage.xaml.cs">
+      <DependentUpon>TasksPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\ImagesScrollView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\ImageCircle.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ImageItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\AboutPage.xaml" />
@@ -73,6 +80,10 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\GalleryPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\TasksPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
