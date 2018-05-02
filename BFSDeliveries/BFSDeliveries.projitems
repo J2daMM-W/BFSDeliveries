@@ -52,13 +52,11 @@
       <DependentUpon>GalleryPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Behaviors\BehaviorBase.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\ImageGallery.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Photo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\TasksPage.xaml.cs">
       <DependentUpon>TasksPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Controls\ImagesScrollView.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\ImageCircle.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\ImageItem.cs" />
   </ItemGroup>
   <ItemGroup>

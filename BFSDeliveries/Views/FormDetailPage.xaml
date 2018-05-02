@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             x:Class="BFSDeliveries.Views.FormDetailPage" 
-             xmlns:custom="clr-namespace:BFSDeliveries.Controls" 
-             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms" prism:ViewModelLocator.AutowireViewModel="True" Title="{Binding Title}" x:Name="">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="BFSDeliveries.Views.FormDetailPage" xmlns:custom="clr-namespace:BFSDeliveries.Controls" xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms" prism:ViewModelLocator.AutowireViewModel="True" Title="{Binding Title}" x:Name="">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Cancel" Priority="0" Order="Primary" Command="{Binding CancelCommand}" />
         <ToolbarItem Text="Submit" Priority="1" Order="Primary" Command="{Binding SubmitCommand}" />
@@ -56,14 +52,13 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <StackLayout HorizontalOptions="StartAndExpand" Grid.Column="1">
-                        <custom:ImagesScrollView ItemsSource="{Binding Items}" Orientation="Horizontal"  Grid.Row="1">
+                    <StackLayout HorizontalOptions="StartAndExpand" Grid.Column="0" Grid.ColumnSpan="3">
+                        <custom:ImagesScrollView ItemsSource="{Binding Items}" Orientation="Horizontal" Grid.Row="1">
                             <custom:ImagesScrollView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
-                                        <StackLayout Padding="5">
-                                            <custom:ImageCircle Source="{Binding Source}" HeightRequest="80" WidthRequest="80" />
-                                        </StackLayout>
+                                        <Image Source="{Binding Source}" Aspect="AspectFit">
+                                        </Image>
                                     </ViewCell>
                                 </DataTemplate>
                             </custom:ImagesScrollView.ItemTemplate>

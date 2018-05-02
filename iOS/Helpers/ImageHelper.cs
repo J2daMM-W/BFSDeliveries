@@ -23,7 +23,7 @@ namespace BFSDeliveries.iOS.Helpers
             var documentsDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
             string jpgFilename = System.IO.Path.Combine(documentsDirectory, name); // hardcoded filename, overwritten each time
 
-            //calculate new size
+            //calculate new size - user can determine the quality of images they want  
             //var width = (image.CGImage.Width * LocalStorage.ImageQualityPercent);
             //var height = (image.CGImage.Height * LocalStorage.ImageQualityPercent);
             var width = (image.CGImage.Width);
