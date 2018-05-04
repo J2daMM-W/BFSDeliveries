@@ -52,7 +52,6 @@
       <DependentUpon>GalleryPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Behaviors\BehaviorBase.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Photo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\TasksPage.xaml.cs">
       <DependentUpon>TasksPage.xaml</DependentUpon>
     </Compile>

@@ -7,7 +7,7 @@
 	<key>CFBundleName</key>
 	<string>BFSDeliveries</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.bldr.BFSDeliveries</string>
+	<string>com.bldr.BFSDeliveriesApp</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
@@ -48,5 +48,7 @@
 	<false/>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>This app needs access to photos. </string>
+	<key>NSCameraUsageDescription</key>
+	<string>This app needs access to Camera</string>
 </dict>
 </plist>

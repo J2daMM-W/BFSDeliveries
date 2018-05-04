@@ -57,10 +57,15 @@ namespace BFSDeliveries.ViewModels
             GetPhotoCommand = new DelegateCommand(DisplayActionSheetButtons);
 
 
-            //_images = new List<byte[]>();
-            //Items = new ObservableCollection<Item>();
+            //Subscribe notification for camera choice
+            MessagingCenter.Subscribe<App, byte[]>((App)Xamarin.Forms.Application.Current, "CameraImage", (s, imageAsBytes) =>
+            {
+                var imageSource = ImageSource.FromStream(() => new MemoryStream(imageAsBytes));
 
-            //Subscribe notification
+                Items.Add(new DeliveryImage { Source = imageSource, OrgImage = imageAsBytes });
+            });
+
+            //Subscribe notification for photo library choice
             MessagingCenter.Subscribe<App, List<byte[]>>((App)Xamarin.Forms.Application.Current, "ImagesSelected", (s, images) =>
             {
                 foreach (byte[] selectedImage in images)
@@ -82,12 +87,12 @@ namespace BFSDeliveries.ViewModels
 
             if(result == "Camera"){
                 //send to camera
-                await Xamarin.Forms.DependencyService.Get<IMediaService>().GetPhotosUsingCamera();
+                await Xamarin.Forms.DependencyService.Get<IMediaService>().UseCamera();
             }
             else if(result == "Photo Library")
             {
                 // send to photo lib
-                 Xamarin.Forms.DependencyService.Get<IMediaService>().OpenGallery();
+                Xamarin.Forms.DependencyService.Get<IMediaService>().UsePhotoGallery();
             }
 
 

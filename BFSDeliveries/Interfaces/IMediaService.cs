@@ -7,9 +7,10 @@ namespace BFSDeliveries.Interfaces
 {
     public interface IMediaService
     {
-        Task<Photo> GetPhotosUsingCamera();
-        //Task<List<Photo>> GetMultiplePhotos();
-        //Task<List<Photo>> OpenGallery();
-        void OpenGallery();
+        //Task<Photo> GetPhotosUsingCamera();
+        //Task PhotosUsingCamera();
+        Task UseCamera();
+        void UsePhotoGallery();
+        //void OpenGallery();
     }
 }
