@@ -19,6 +19,7 @@ namespace BFSDeliveries.ViewModels
 
             //var _form = form as Form;
 
+            //need to change this to be dynamic - so we can always add different forms
             Forms.Add(new Form{
                 Name = "Delivery Photos",
                 Description = "Submit delivery photos"

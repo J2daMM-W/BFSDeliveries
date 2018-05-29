@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-
+using BFSDeliveries.Models;
 using Xamarin.Forms;
 
 namespace BFSDeliveries
@@ -10,6 +10,7 @@ namespace BFSDeliveries
     public class BaseViewModel : INotifyPropertyChanged
     {
         public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>() ?? new MockDataStore();
+		//public IDataStore<DeliveryOrder> Data => DependencyService.Get<IDataStore<DeliveryOrder>>() ?? new MockData();
 
         bool isBusy = false;
         public bool IsBusy

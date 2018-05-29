@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Reflection;
@@ -39,20 +38,20 @@ namespace BFSDeliveries.Controls
             var isOldObservable = oldValue?.GetType().GetTypeInfo().ImplementedInterfaces.Any(i => i == typeof(INotifyCollectionChanged));
             var isNewObservable = newValue?.GetType().GetTypeInfo().ImplementedInterfaces.Any(i => i == typeof(INotifyCollectionChanged));
 
-            var tl = (ImagesScrollView)bindable;
+            var scrollView = (ImagesScrollView)bindable;
             if (isOldObservable.GetValueOrDefault(false))
             {
-                ((INotifyCollectionChanged)oldValue).CollectionChanged -= tl.HandleCollectionChanged;
+				((INotifyCollectionChanged)oldValue).CollectionChanged -= scrollView.HandleCollectionChanged;
             }
 
             if (isNewObservable.GetValueOrDefault(false))
             {
-                ((INotifyCollectionChanged)newValue).CollectionChanged += tl.HandleCollectionChanged;
+				((INotifyCollectionChanged)newValue).CollectionChanged += scrollView.HandleCollectionChanged;
             }
 
             if (oldValue != newValue)
             {
-                tl.Render();
+				scrollView.Render();
             }
         }
 

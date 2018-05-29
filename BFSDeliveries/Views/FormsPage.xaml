@@ -2,12 +2,12 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="BFSDeliveries.Views.FormsPage" xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms" prism:ViewModelLocator.AutowireViewModel="True" Title="{Binding Title}">
     <ContentPage.Content>
         <StackLayout>
-            <ListView x:Name="FormsListView" RowHeight="60" ItemsSource="{Binding Forms}" VerticalOptions="FillAndExpand" HasUnevenRows="false" RefreshCommand="{Binding LoadFormsCommand}" IsPullToRefreshEnabled="true" IsRefreshing="{Binding IsBusy, Mode=OneWay}" CachingStrategy="RecycleElement" ItemSelected="OnFormSelected">
+            <ListView x:Name="FormsListView" RowHeight="60" ItemsSource="{Binding Forms}" VerticalOptions="FillAndExpand" HasUnevenRows="false" SeparatorVisibility="Default" RefreshCommand="{Binding LoadFormsCommand}" IsPullToRefreshEnabled="true" IsRefreshing="{Binding IsBusy, Mode=OneWay}" CachingStrategy="RecycleElement" ItemSelected="OnFormSelected">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Padding="10" Orientation="Horizontal" HorizontalOptions="Fill">
-                                <Image Source="{Binding Image}" HorizontalOptions="Start" />
+                                <Image Source="{Binding ImageUrl}" HorizontalOptions="Start" />
                                 <StackLayout Orientation="Vertical">
                                     <Label Text="{Binding Name}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="18" />
                                     <Label Text="{Binding Description}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13" />

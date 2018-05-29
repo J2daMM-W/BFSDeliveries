@@ -57,6 +57,11 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Controls\ImagesScrollView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\ImageItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\ItemsPicker.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\DeliveryOrder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\DeliveryPhotosPage.xaml.cs">
+      <DependentUpon>DeliveryPhotosPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\AboutPage.xaml" />
@@ -81,6 +86,10 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\TasksPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\DeliveryPhotosPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

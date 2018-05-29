@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BFSDeliveries.Models;
 
 namespace BFSDeliveries
 {
@@ -12,6 +13,7 @@ namespace BFSDeliveries
         public MockDataStore()
         {
             items = new List<Item>();
+
             var mockItems = new List<Item>
             {
                 new Item { Id = Guid.NewGuid().ToString(), Text = "First item", Description="This is an item description." },
@@ -26,6 +28,7 @@ namespace BFSDeliveries
             {
                 items.Add(item);
             }
+
         }
 
         public async Task<bool> AddItemAsync(Item item)
