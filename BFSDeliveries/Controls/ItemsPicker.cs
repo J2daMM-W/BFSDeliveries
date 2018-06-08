@@ -5,14 +5,14 @@ using System.Linq;
 using System.Reflection;
 using Xamarin.Forms;
 
-namespace BFSDeliveries.Controls
+namespace BFSDeliveries
 {
     public class ItemsPicker : Picker
     {
-        public ItemsPicker()
-        {
-            base.SelectedIndexChanged += OnSelectedIndexChanged;
-        }
+        //public ItemsPicker()
+        //{
+        //    base.SelectedIndexChanged += OnSelectedIndexChanged;
+        //}
 
         #region Fields
 
@@ -25,8 +25,15 @@ namespace BFSDeliveries.Controls
         //Bindable property for the selected item
         public static readonly new BindableProperty SelectedItemProperty =
             BindableProperty.Create(nameof(SelectedItem), typeof(object), typeof(ItemsPicker), null,
-                                    BindingMode.TwoWay, null, new BindableProperty.BindingPropertyChangedDelegate(OnSelectedItemChanged),
-                                    null, null, null);
+                                    //BindingMode.TwoWay, null, new BindableProperty.BindingPropertyChangedDelegate(OnSelectedItemChanged),
+                                    //null, null, null);
+                                    BindingMode.TwoWay, null);
+
+        public static readonly BindableProperty SelectedItemsProperty =
+            BindableProperty.Create(nameof(SelectedItems), typeof(IList<object>), typeof(ItemsPicker),
+                                    null, BindingMode.TwoWay, null, new BindableProperty.BindingPropertyChangedDelegate(OnSelectedItemsChanged)
+                                    ,null, null, null);
+        
 
         //Bindable property for the display property
         public static readonly BindableProperty DisplayPropertyProperty =
@@ -85,6 +92,12 @@ namespace BFSDeliveries.Controls
             }
         }
 
+        public IList<object> SelectedItems
+        {
+            get { return (IList<object>)GetValue(SelectedItemsProperty); }
+            set { SetValue(SelectedItemsProperty, value); }
+        }
+
         /// <summary>
         /// Gets or sets the Display Property.
         /// </summary>
@@ -122,7 +135,7 @@ namespace BFSDeliveries.Controls
         /// Called when [selected item property changed].
         /// </summary>
         /// <param name="bindable">The bindable.</param>
-        /// <param name="value">The value.</param>
+        /// <param name="oldValue">The value.</param>
         /// <param name="newValue">The new value.</param>
         private static void OnSelectedItemChanged(BindableObject bindable, object oldValue, object newValue)
         {
@@ -141,6 +154,7 @@ namespace BFSDeliveries.Controls
                     count++;
                 }
             }
+
         }
 
         private static void OnDisplayPropertyChanged(BindableObject bindable, object oldValue, object newValue)
@@ -154,7 +168,7 @@ namespace BFSDeliveries.Controls
         /// Called when [items source property changed].
         /// </summary>
         /// <param name="bindable">The bindable.</param>
-        /// <param name="value">The value.</param>
+        /// <param name="oldValue">The value.</param>
         /// <param name="newValue">The new value.</param>
         private static void OnItemsSourceChanged(BindableObject bindable, object oldValue, object newValue)
         {
@@ -201,6 +215,11 @@ namespace BFSDeliveries.Controls
                     count++;
                 }
             }
+        }
+
+        private static void OnSelectedItemsChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            throw new NotImplementedException();
         }
         #endregion
     }

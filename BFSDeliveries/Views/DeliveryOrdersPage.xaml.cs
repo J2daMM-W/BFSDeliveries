@@ -5,9 +5,9 @@ using Xamarin.Forms;
 
 namespace BFSDeliveries.Views
 {
-    public partial class DeliveryPhotosPage : ContentPage
+    public partial class DeliveryOrdersPage : ContentPage
     {
-        public DeliveryPhotosPage()
+        public DeliveryOrdersPage()
         {
             InitializeComponent();
         }

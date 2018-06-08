@@ -59,9 +59,15 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\ImageItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\ItemsPicker.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\DeliveryOrder.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\DeliveryPhotosPage.xaml.cs">
-      <DependentUpon>DeliveryPhotosPage.xaml</DependentUpon>
+    <Compile Include="$(MSBuildThisFileDirectory)Behaviors\PickerSelectedItemBehavior.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\SelectableItemWrapper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\SelectedIndexChangedEventArgsToSelectedIndexConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Behaviors\EntryCommandBehavior.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\DeliveryOrdersPage.xaml.cs">
+      <DependentUpon>DeliveryOrdersPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\DeliveryOrdersViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\SelectableCell.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\AboutPage.xaml" />
@@ -89,14 +95,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\DeliveryPhotosPage.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\DeliveryOrdersPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Interfaces\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Common\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Converters\" />
     <Folder Include="$(MSBuildThisFileDirectory)Controls\" />
   </ItemGroup>
 </Project>

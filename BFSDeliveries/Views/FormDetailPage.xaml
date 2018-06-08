@@ -2,13 +2,20 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="BFSDeliveries.Views.FormDetailPage" 
-             xmlns:controls="clr-namespace:BFSDeliveries.Controls" 
+             xmlns:controls="clr-namespace:BFSDeliveries" 
+             xmlns:local="clr-namespace:BFSDeliveries"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms" 
-             prism:ViewModelLocator.AutowireViewModel="True" Title="{Binding Title}" x:Name="">
+             prism:ViewModelLocator.AutowireViewModel="True" 
+             Title="{Binding Title}" x:Name="">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Cancel" Priority="0" Order="Primary" Command="{Binding CancelCommand}" />
         <ToolbarItem Text="Submit" Priority="1" Order="Primary" Command="{Binding SubmitCommand}" />
     </ContentPage.ToolbarItems>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:SelectedIndexChangedEventArgsToSelectedIndexConverter x:Key="SelectedIndexConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <ScrollView>
             <Grid Padding="15">
@@ -36,26 +43,30 @@
                         <RowDefinition Height="60" />
                         <RowDefinition Height="20" />
                     </Grid.RowDefinitions>
-                    <Label Text="Select Pick Ticket Number(s)" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" />
-                    <controls:ItemsPicker x:Name="pickTicketPicker" ItemsSource="{Binding DeliveryOrders}" DisplayProperty="PickTicketNumber" SelectedItem="{Binding SelectedItem}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4">
-                        <!--<controls:ItemsPicker.Editor x:Name="pickTicketNumbers" Text="{Binding Source}">
-                            
-                        </controls:ItemsPicker.Editor>-->
-                    </controls:ItemsPicker>
-                    <!--<Entry x:Name="pickTicketNumber" Placeholder="Required" Text="{Binding Delivery.PickTicketNumber}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" />-->
-                   
-                    <Label Text="Comments" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" />
-                    <Entry x:Name="comments" Text="{Binding Delivery.Comments}" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" />
+                    <Label Text="Select Pick Ticket Number(s) (REQUIRED)" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" />
+                    <!--<<controls:ItemsPicker x:Name="pickTicketPicker" ItemsSource="{Binding DeliveryOrders}" DisplayProperty="PickTicketNumber" SelectedItem="{Binding SelectedItem}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4">
+                        controls:ItemsPicker.Behaviors>
+                            <local:PickerSelectedItemBehavior Command="{Binding UpdateSelectedItemsCommand}" Converter="{StaticResource SelectedIndexConverter}" />
+                            <local:PickerSelectedItemBehavior Command="{Binding UpdateSelectedItemsCommand}" Converter="{StaticResource SelectedIndexConverter}" />
+                        </controls:ItemsPicker.Behaviors>
+                    </controls:ItemsPicker>-->
+                    <Entry Placeholder="Required" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" >
+                        <Entry.Behaviors>
+                            <local:EntryCommandBehavior Command="{Binding SelectDeliveriesCommand}"/>
+                        </Entry.Behaviors>
+                    </Entry>
+                    <Label Text="Comments" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="5" />
+                    <Entry x:Name="comments" Text="{Binding Delivery.Comments}" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5" />
                     <Label Text="No super available to sign" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="4" />
-                    <Switch x:Name="noSuperSign" IsEnabled="true" IsToggled="{Binding Delivery.NoSuperSign}" Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="1" />
+                    <Switch x:Name="noSuperSign" IsEnabled="true" IsToggled="{Binding Delivery.NoSuperSign}" Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="1" />
                     <Label Text="Framer took small parts" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="4" />
-                    <Switch x:Name="framerSmallParts" IsEnabled="true" IsToggled="{Binding Delivery.FramerSmallParts}" Grid.Row="5" Grid.Column="3" />
+                    <Switch x:Name="framerSmallParts" IsEnabled="true" IsToggled="{Binding Delivery.FramerSmallParts}" Grid.Row="5" Grid.Column="4" />
                     <Label Text="No return available" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="4" />
-                    <Switch x:Name="noReturnAvail" IsEnabled="true" IsToggled="{Binding Delivery.NoReturnAvail}" Grid.Row="6" Grid.Column="3" />
+                    <Switch x:Name="noReturnAvail" IsEnabled="true" IsToggled="{Binding Delivery.NoReturnAvail}" Grid.Row="6" Grid.Column="4" />
                     <Label Text="Damaged products noted" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="4" />
-                    <Switch x:Name="damagedProductsNoted" IsEnabled="true" IsToggled="{Binding Delivery.DamagedProductsNoted}" Grid.Row="7" Grid.Column="3" />
-                    <Label Text="Delete submitted photos" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="4" />
-                    <Switch x:Name="deleteAttchedPhotos" IsEnabled="true" IsToggled="{Binding Delivery.DeleteAttachedPhotos}" Grid.Row="8" Grid.Column="3" />
+                    <Switch x:Name="damagedProductsNoted" IsEnabled="true" IsToggled="{Binding Delivery.DamagedProductsNoted}" Grid.Row="7" Grid.Column="4" />
+                    <Label Text="Delete attached photos from gallery(After submission)" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="4" />
+                    <Switch x:Name="deleteAttchedPhotos" IsEnabled="true" IsToggled="{Binding Delivery.DeleteAttachedPhotos}" Grid.Row="8" Grid.Column="4" />
                     <Label Text="Photo Attachements" Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="4" />
                 </Grid>
                 <Grid Grid.Row="1">

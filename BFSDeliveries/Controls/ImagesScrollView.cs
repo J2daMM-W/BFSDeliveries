@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reflection;
 using Xamarin.Forms;
 
-namespace BFSDeliveries.Controls
+namespace BFSDeliveries
 {
     public class ImagesScrollView : ScrollView
     {

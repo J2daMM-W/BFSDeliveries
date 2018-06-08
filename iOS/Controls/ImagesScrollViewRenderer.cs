@@ -1,5 +1,5 @@
 ﻿using System;
-using BFSDeliveries.Controls;
+using BFSDeliveries;
 using BFSDeliveries.iOS.Controls;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;

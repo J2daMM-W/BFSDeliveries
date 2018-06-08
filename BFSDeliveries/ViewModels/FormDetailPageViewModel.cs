@@ -8,6 +8,10 @@ using System.Collections.ObjectModel;
 using Xamarin.Forms;
 using System.Collections.Generic;
 using System.IO;
+using System;
+using System.Windows.Input;
+using BFSDeliveries.Views;
+using System.Threading.Tasks;
 
 namespace BFSDeliveries.ViewModels
 {
@@ -15,28 +19,25 @@ namespace BFSDeliveries.ViewModels
 	{
 		public Form form { get; set; }
 		public Delivery delivery { get; set; }
-		public ObservableCollection<DeliveryOrder> DeliveryOrders { get; set; } // To populate PickTicket Numbers DropDown
-		public ObservableCollection<DeliveryImage> Items { get; set; }
+		public ObservableCollection<DeliveryOrder> DeliveryOrders { get; set; } // Drivers delivery orders to populate PickTicket Numbers DropDown
+		public ObservableCollection<DeliveryImage> Items { get; set; } // Selected Images 
+        public ObservableCollection<DeliveryOrder> SelectedOrders { get; set; } //Orders to be submitted with a given form
 
 		INavigationService _navigationService;
+        INavigation Navigation { get; set; }
 
 		public IPageDialogService _pageDialogService;
 		public DelegateCommand GetPhotoCommand { get; private set; }
 		public DelegateCommand CancelCommand { get; private set; }
 		public DelegateCommand SubmitCommand { get; private set; }
+        public ICommand SelectDeliveriesCommand { get; private set; }
 
 
 		public FormDetailPageViewModel(IPageDialogService pageDialogService, INavigationService navigationService)
 		{
-			DeliveryOrders = new ObservableCollection<DeliveryOrder>();
+            //RetrieveDeliveryOrders();
+			
             Items = new ObservableCollection<DeliveryImage>();
-
-			string[] mockPickTickets = { "123456", "654321", "098765", "109283", "657483", "109283", "384756", "209384", "5682038", "797451" };
-
-			foreach (var pickTicket in mockPickTickets)
-			{
-				DeliveryOrders.Add(new DeliveryOrder { PickTicketNumber = pickTicket });
-			}
 
 			_navigationService = navigationService;
 			_pageDialogService = pageDialogService;
@@ -45,6 +46,8 @@ namespace BFSDeliveries.ViewModels
 			SubmitCommand = new DelegateCommand(ExecuteFormSubmition);
 
 			GetPhotoCommand = new DelegateCommand(DisplayActionSheetButtons);
+
+            SelectDeliveriesCommand = new Command(async () => await UpdateSelectedItemsAsync());
 
 			//Subscribe notification for camera choice
 			MessagingCenter.Subscribe<App, byte[]>((App)Xamarin.Forms.Application.Current, "CameraImage", (s, imageAsBytes) =>
@@ -66,7 +69,23 @@ namespace BFSDeliveries.ViewModels
 			});
 		}
 
-		private async void DisplayActionSheetButtons()
+        private async Task UpdateSelectedItemsAsync()
+        {
+            await Navigation.PushAsync(new DeliveryOrdersPage());
+        }
+
+        //private void RetrieveDeliveryOrders()
+        //{
+        //    DeliveryOrders = new ObservableCollection<DeliveryOrder>();
+        //    string[] mockPickTickets = { "123456", "654321", "098765", "109283", "657483", "109283", "384756", "209384", "5682038", "797451" };
+
+        //    foreach (var pickTicket in mockPickTickets)
+        //    {
+        //        DeliveryOrders.Add(new DeliveryOrder { PickTicketNumber = pickTicket });
+        //    }
+        //}
+
+        private async void DisplayActionSheetButtons()
 		{
 			var result = await _pageDialogService.DisplayActionSheetAsync("Get Photo From:", "Cancel", "Camera", "Photo Library");
 
