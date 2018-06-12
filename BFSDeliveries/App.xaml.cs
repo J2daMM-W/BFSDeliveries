@@ -30,6 +30,7 @@ namespace BFSDeliveries
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterForNavigation<NavigationPage>();
+            containerRegistry.RegisterForNavigation<Views.DeliveryOrdersPage>();
             //containerRegistry.RegisterForNavigation<Views.MainPage>();
         }
     }

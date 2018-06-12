@@ -4,10 +4,10 @@ using Xamarin.Forms;
 
 namespace BFSDeliveries
 {
-    public class EntryCommandBehavior : BehaviorBase<Entry>
+    public class EntryToCommandBehavior : BehaviorBase<Entry>
     {
         public static readonly BindableProperty CommandProperty =
-            BindableProperty.Create(nameof(Command), typeof(ICommand), typeof(EntryCommandBehavior), null);
+            BindableProperty.Create(nameof(Command), typeof(ICommand), typeof(EntryToCommandBehavior), null);
 
         public ICommand Command
         {
@@ -38,6 +38,9 @@ namespace BFSDeliveries
 
         void Bindable_TextChanged(object sender, TextChangedEventArgs e)
         {
+            if (Command == null)
+                return;
+            
             Command?.Execute(e.NewTextValue);
         }
 

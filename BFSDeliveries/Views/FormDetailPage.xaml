@@ -52,7 +52,7 @@
                     </controls:ItemsPicker>-->
                     <Entry Placeholder="Required" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" >
                         <Entry.Behaviors>
-                            <local:EntryCommandBehavior Command="{Binding SelectDeliveriesCommand}"/>
+                            <local:EntryToCommandBehavior Command="{Binding SelectDeliveriesCommand}"/>
                         </Entry.Behaviors>
                     </Entry>
                     <Label Text="Comments" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="5" />

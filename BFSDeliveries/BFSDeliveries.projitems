@@ -62,7 +62,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Behaviors\PickerSelectedItemBehavior.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\SelectableItemWrapper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\SelectedIndexChangedEventArgsToSelectedIndexConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Behaviors\EntryCommandBehavior.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Behaviors\EntryToCommandBehavior.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\DeliveryOrdersPage.xaml.cs">
       <DependentUpon>DeliveryOrdersPage.xaml</DependentUpon>
     </Compile>

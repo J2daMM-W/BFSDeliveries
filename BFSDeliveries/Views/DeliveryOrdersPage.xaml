@@ -2,17 +2,18 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:controls="clr-namespace:BFSDeliveries"
-             x:Class="BFSDeliveries.Views.DeliveryOrdersPage">
+             x:Class="BFSDeliveries.Views.DeliveryOrdersPage" 
+             Title="{Binding Title}" x:Name="">
     <ContentPage.ToolbarItems>
         <!--<ToolbarItem Text="Cancel" Priority="0" Order="Primary" Command="{Binding CancelCommand}" />-->
         <ToolbarItem Text="Done" Priority="1" Order="Primary" Command="{Binding DoneCommand}" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <ListView ItemsSource="{Binding DeliveryOrders}">
+        <ListView ItemsSource="{Binding Items}">
             <ListView.ItemTemplate>
-                <DataTemplate>
-                    <controls:SelectableCell />>
-                </DataTemplate>
+                <!--<DataTemplate>
+                    <controls:SelectableCell />
+                </DataTemplate>-->
             </ListView.ItemTemplate>
         </ListView>
     </ContentPage.Content>

@@ -47,7 +47,7 @@ namespace BFSDeliveries.ViewModels
 
 			GetPhotoCommand = new DelegateCommand(DisplayActionSheetButtons);
 
-            SelectDeliveriesCommand = new Command(async () => await UpdateSelectedItemsAsync());
+            SelectDeliveriesCommand = new DelegateCommand(async() => await NavigateToDeliveryOrdersPageAsync());
 
 			//Subscribe notification for camera choice
 			MessagingCenter.Subscribe<App, byte[]>((App)Xamarin.Forms.Application.Current, "CameraImage", (s, imageAsBytes) =>
@@ -69,9 +69,13 @@ namespace BFSDeliveries.ViewModels
 			});
 		}
 
-        private async Task UpdateSelectedItemsAsync()
+        public async Task NavigateToDeliveryOrdersPageAsync()
         {
-            await Navigation.PushAsync(new DeliveryOrdersPage());
+            string path = "DeliveryOrdersPage";
+            await _navigationService.NavigateAsync(path);
+            //var navigateTo = typeof(DeliveryOrdersPage);
+            //var message = new NavigationMessage(NavigationTo = navigateTo);
+            //MessagingCenter.Send(this, message);
         }
 
         //private void RetrieveDeliveryOrders()
