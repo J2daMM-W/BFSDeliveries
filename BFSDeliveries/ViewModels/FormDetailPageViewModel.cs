@@ -19,12 +19,10 @@ namespace BFSDeliveries.ViewModels
 	{
 		public Form form { get; set; }
 		public Delivery delivery { get; set; }
-		public ObservableCollection<DeliveryOrder> DeliveryOrders { get; set; } // Drivers delivery orders to populate PickTicket Numbers DropDown
 		public ObservableCollection<DeliveryImage> Items { get; set; } // Selected Images 
         public ObservableCollection<DeliveryOrder> SelectedOrders { get; set; } //Orders to be submitted with a given form
 
 		INavigationService _navigationService;
-        INavigation Navigation { get; set; }
 
 		public IPageDialogService _pageDialogService;
 		public DelegateCommand GetPhotoCommand { get; private set; }
@@ -77,17 +75,6 @@ namespace BFSDeliveries.ViewModels
             //var message = new NavigationMessage(NavigationTo = navigateTo);
             //MessagingCenter.Send(this, message);
         }
-
-        //private void RetrieveDeliveryOrders()
-        //{
-        //    DeliveryOrders = new ObservableCollection<DeliveryOrder>();
-        //    string[] mockPickTickets = { "123456", "654321", "098765", "109283", "657483", "109283", "384756", "209384", "5682038", "797451" };
-
-        //    foreach (var pickTicket in mockPickTickets)
-        //    {
-        //        DeliveryOrders.Add(new DeliveryOrder { PickTicketNumber = pickTicket });
-        //    }
-        //}
 
         private async void DisplayActionSheetButtons()
 		{

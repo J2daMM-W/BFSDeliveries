@@ -1,54 +1,60 @@
 ﻿<Properties StartupConfiguration="{C035F152-F9BB-41A2-806F-48963DCA952A}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="BFSDeliveries/Views/DeliveryOrdersPage.xaml">
+  <MonoDevelop.Ide.Workbench ActiveDocument="BFSDeliveries/ViewModels/DeliveryOrdersViewModel.cs">
     <Files>
-      <File FileName="BFSDeliveries/Views/FormDetailPage.xaml" Line="81" Column="79" />
-      <File FileName="BFSDeliveries/ViewModels/FormDetailPageViewModel.cs" Line="73" Column="1" />
+      <File FileName="BFSDeliveries/Views/FormDetailPage.xaml" Line="47" Column="146" />
+      <File FileName="BFSDeliveries/ViewModels/FormDetailPageViewModel.cs" Line="106" Column="4" />
       <File FileName="BFSDeliveries/ViewModels/ItemsViewModel.cs" Line="8" Column="24" />
       <File FileName="BFSDeliveries/Controls/ImagesScrollView.cs" Line="8" Column="24" />
-      <File FileName="BFSDeliveries/ViewModels/FormsPageViewModel.cs" Line="10" Column="47" />
-      <File FileName="BFSDeliveries/ViewModels/BaseViewModel.cs" Line="22" Column="1" />
       <File FileName="iOS/DependencyServices/MediaService.cs" Line="4" Column="30" />
       <File FileName="BFSDeliveries/Behaviors/EntryToCommandBehavior.cs" Line="40" Column="1" />
-      <File FileName="BFSDeliveries/Views/DeliveryOrdersPage.xaml" Line="15" Column="55" />
-      <File FileName="BFSDeliveries/Views/DeliveryOrdersPage.xaml.cs" Line="16" Column="1" />
-      <File FileName="BFSDeliveries/ViewModels/DeliveryOrdersViewModel.cs" Line="31" Column="1" />
-      <File FileName="BFSDeliveries/Controls/SelectableCell.cs" Line="26" Column="1" />
-      <File FileName="BFSDeliveries/ViewModels/ItemDetailViewModel.cs" Line="7" Column="39" />
+      <File FileName="BFSDeliveries/Views/DeliveryOrdersPage.xaml" Line="27" Column="64" />
+      <File FileName="BFSDeliveries/Views/DeliveryOrdersPage.xaml.cs" Line="17" Column="1" />
+      <File FileName="BFSDeliveries/ViewModels/DeliveryOrdersViewModel.cs" Line="65" Column="44" />
+      <File FileName="BFSDeliveries/Controls/SelectableViewCell.cs" Line="20" Column="70" />
+      <File FileName="BFSDeliveries/Controls/SelectableItem.cs" Line="48" Column="1" />
+      <File FileName="BFSDeliveries/Controls/MultiSelectListView.cs" Line="32" Column="1" />
+      <File FileName="BFSDeliveries/Controls/SelectableObservableCollection.cs" Line="25" Column="1" />
+      <File FileName="BFSDeliveries/Models/Item.cs" Line="1" Column="1" />
       <File FileName="BFSDeliveries/Views/ItemsPage.xaml" Line="24" Column="1" />
-      <File FileName="iOS/obj/iPhoneSimulator/Debug/Views/DeliveryOrdersPage.xaml.g.cs" Line="23" Column="1" />
-      <File FileName="BFSDeliveries/Views/ItemsPage.xaml.cs" Line="27" Column="1" />
-      <File FileName="BFSDeliveries/App.xaml.cs" Line="33" Column="81" />
-      <File FileName="iOS/Main.cs" Line="17" Column="1" />
+      <File FileName="BFSDeliveries/ViewModels/BaseViewModel.cs" Line="22" Column="1" />
+      <File FileName="BFSDeliveries/Models/DeliveryOrder.cs" Line="9" Column="37" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Behaviors/PickerEditorBehavior.cs" relfile="BFSDeliveries/Behaviors/PickerEditorBehavior.cs" line="40" column="1" />
-      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Behaviors/PickerEditorBehavior.cs" relfile="BFSDeliveries/Behaviors/PickerEditorBehavior.cs" line="45" column="1" />
-      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Controls/ItemsPicker.cs" relfile="BFSDeliveries/Controls/ItemsPicker.cs" line="130" column="1" />
-      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Controls/ItemsPicker.cs" relfile="BFSDeliveries/Controls/ItemsPicker.cs" line="96" column="1" />
-      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Controls/ItemsPicker.cs" relfile="BFSDeliveries/Controls/ItemsPicker.cs" line="79" column="1" />
-      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Behaviors/PickerEditorBehavior.cs" relfile="BFSDeliveries/Behaviors/PickerEditorBehavior.cs" line="50" column="1" />
-      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Controls/ItemsPicker.cs" relfile="BFSDeliveries/Controls/ItemsPicker.cs" line="181" column="1" />
-      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Controls/ItemsPicker.cs" relfile="BFSDeliveries/Controls/ItemsPicker.cs" line="185" column="1" />
-      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Behaviors/PickerToggledBehavior.cs" relfile="BFSDeliveries/Behaviors/PickerToggledBehavior.cs" line="16" column="1" />
-      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Behaviors/PickerToggledBehavior.cs" relfile="BFSDeliveries/Behaviors/PickerToggledBehavior.cs" line="38" column="1" />
-      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Behaviors/PickerToggledBehavior.cs" relfile="BFSDeliveries/Behaviors/PickerToggledBehavior.cs" line="28" column="1" />
-      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Behaviors/PickerSelectedItemBehavior.cs" relfile="BFSDeliveries/Behaviors/PickerSelectedItemBehavior.cs" line="47" column="1" />
-      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Converters/SelectedItemEventArgsToSelectedItemConverter.cs" relfile="BFSDeliveries/Converters/SelectedItemEventArgsToSelectedItemConverter.cs" line="10" column="1" />
-      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Behaviors/PickerSelectedItemBehavior.cs" relfile="BFSDeliveries/Behaviors/PickerSelectedItemBehavior.cs" line="54" column="1" />
-      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/ViewModels/DeliveryOrdersViewModel.cs" relfile="BFSDeliveries/ViewModels/DeliveryOrdersViewModel.cs" line="16" column="10" />
-      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Controls/SelectableCell.cs" relfile="BFSDeliveries/Controls/SelectableCell.cs" line="7" column="1" />
-      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Behaviors/PickerSelectedItemBehavior.cs" relfile="BFSDeliveries/Behaviors/PickerSelectedItemBehavior.cs" line="20" column="1" />
-      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Behaviors/EntryCommandBehavior.cs" relfile="BFSDeliveries/Behaviors/EntryCommandBehavior.cs" line="40" column="10" />
-      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Behaviors/EntryCommandBehavior.cs" relfile="BFSDeliveries/Behaviors/EntryCommandBehavior.cs" line="19" column="1" />
-      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/ViewModels/DeliveryOrdersViewModel.cs" relfile="BFSDeliveries/ViewModels/DeliveryOrdersViewModel.cs" line="9" column="1" />
-      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Views/DeliveryOrdersPage.xaml.cs" relfile="BFSDeliveries/Views/DeliveryOrdersPage.xaml.cs" line="10" column="1" />
-      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/ViewModels/DeliveryOrdersViewModel.cs" relfile="BFSDeliveries/ViewModels/DeliveryOrdersViewModel.cs" line="31" column="1" />
-      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Behaviors/EntryToCommandBehavior.cs" relfile="BFSDeliveries/Behaviors/EntryToCommandBehavior.cs" line="40" column="1" />
-      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/ViewModels/FormDetailPageViewModel.cs" relfile="BFSDeliveries/ViewModels/FormDetailPageViewModel.cs" line="73" column="1" />
-      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Controls/SelectableCell.cs" relfile="BFSDeliveries/Controls/SelectableCell.cs" line="26" column="1" />
+      <Breakpoint enabled="false" file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Behaviors/PickerEditorBehavior.cs" relfile="BFSDeliveries/Behaviors/PickerEditorBehavior.cs" line="40" column="1" />
+      <Breakpoint enabled="false" file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Behaviors/PickerEditorBehavior.cs" relfile="BFSDeliveries/Behaviors/PickerEditorBehavior.cs" line="45" column="1" />
+      <Breakpoint enabled="false" file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Controls/ItemsPicker.cs" relfile="BFSDeliveries/Controls/ItemsPicker.cs" line="130" column="1" />
+      <Breakpoint enabled="false" file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Controls/ItemsPicker.cs" relfile="BFSDeliveries/Controls/ItemsPicker.cs" line="96" column="1" />
+      <Breakpoint enabled="false" file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Controls/ItemsPicker.cs" relfile="BFSDeliveries/Controls/ItemsPicker.cs" line="79" column="1" />
+      <Breakpoint enabled="false" file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Behaviors/PickerEditorBehavior.cs" relfile="BFSDeliveries/Behaviors/PickerEditorBehavior.cs" line="50" column="1" />
+      <Breakpoint enabled="false" file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Controls/ItemsPicker.cs" relfile="BFSDeliveries/Controls/ItemsPicker.cs" line="181" column="1" />
+      <Breakpoint enabled="false" file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Controls/ItemsPicker.cs" relfile="BFSDeliveries/Controls/ItemsPicker.cs" line="185" column="1" />
+      <Breakpoint enabled="false" file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Behaviors/PickerToggledBehavior.cs" relfile="BFSDeliveries/Behaviors/PickerToggledBehavior.cs" line="16" column="1" />
+      <Breakpoint enabled="false" file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Behaviors/PickerToggledBehavior.cs" relfile="BFSDeliveries/Behaviors/PickerToggledBehavior.cs" line="38" column="1" />
+      <Breakpoint enabled="false" file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Behaviors/PickerToggledBehavior.cs" relfile="BFSDeliveries/Behaviors/PickerToggledBehavior.cs" line="28" column="1" />
+      <Breakpoint enabled="false" file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Behaviors/PickerSelectedItemBehavior.cs" relfile="BFSDeliveries/Behaviors/PickerSelectedItemBehavior.cs" line="47" column="1" />
+      <Breakpoint enabled="false" file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Converters/SelectedItemEventArgsToSelectedItemConverter.cs" relfile="BFSDeliveries/Converters/SelectedItemEventArgsToSelectedItemConverter.cs" line="10" column="1" />
+      <Breakpoint enabled="false" file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Behaviors/PickerSelectedItemBehavior.cs" relfile="BFSDeliveries/Behaviors/PickerSelectedItemBehavior.cs" line="54" column="1" />
+      <Breakpoint enabled="false" file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Controls/SelectableCell.cs" relfile="BFSDeliveries/Controls/SelectableCell.cs" line="7" column="1" />
+      <Breakpoint enabled="false" file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Behaviors/PickerSelectedItemBehavior.cs" relfile="BFSDeliveries/Behaviors/PickerSelectedItemBehavior.cs" line="20" column="1" />
+      <Breakpoint enabled="false" file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Behaviors/EntryCommandBehavior.cs" relfile="BFSDeliveries/Behaviors/EntryCommandBehavior.cs" line="40" column="10" />
+      <Breakpoint enabled="false" file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Behaviors/EntryCommandBehavior.cs" relfile="BFSDeliveries/Behaviors/EntryCommandBehavior.cs" line="19" column="1" />
+      <Breakpoint enabled="false" file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/ViewModels/DeliveryOrdersViewModel.cs" relfile="BFSDeliveries/ViewModels/DeliveryOrdersViewModel.cs" line="44" column="1" />
+      <Breakpoint enabled="false" file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Behaviors/EntryToCommandBehavior.cs" relfile="BFSDeliveries/Behaviors/EntryToCommandBehavior.cs" line="40" column="1" />
+      <Breakpoint enabled="false" file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Controls/SelectableCell.cs" relfile="BFSDeliveries/Controls/SelectableCell.cs" line="26" column="1" />
+      <Breakpoint enabled="false" file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Controls/SelectableObservableCollection.cs" relfile="BFSDeliveries/Controls/SelectableObservableCollection.cs" line="12" column="1" />
+      <Breakpoint enabled="false" file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Controls/SelectableObservableCollection.cs" relfile="BFSDeliveries/Controls/SelectableObservableCollection.cs" line="17" column="1" />
+      <Breakpoint enabled="false" file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Controls/SelectableViewCell.cs" relfile="BFSDeliveries/Controls/SelectableViewCell.cs" line="74" column="1" />
+      <Breakpoint enabled="false" file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Controls/SelectableViewCell.cs" relfile="BFSDeliveries/Controls/SelectableViewCell.cs" line="81" column="1" />
+      <Breakpoint enabled="false" file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Controls/MultiSelectListView.cs" relfile="BFSDeliveries/Controls/MultiSelectListView.cs" line="16" column="1" />
+      <Breakpoint enabled="false" file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Controls/MultiSelectListView.cs" relfile="BFSDeliveries/Controls/MultiSelectListView.cs" line="32" column="1" />
+      <Breakpoint enabled="false" file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Controls/SelectableItem.cs" relfile="BFSDeliveries/Controls/SelectableItem.cs" line="15" column="1" />
+      <Breakpoint enabled="false" file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Controls/SelectableItem.cs" relfile="BFSDeliveries/Controls/SelectableItem.cs" line="39" column="1" />
+      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Views/DeliveryOrdersPage.xaml.cs" relfile="BFSDeliveries/Views/DeliveryOrdersPage.xaml.cs" line="17" column="1" />
+      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/ViewModels/DeliveryOrdersViewModel.cs" relfile="BFSDeliveries/ViewModels/DeliveryOrdersViewModel.cs" line="57" column="1" />
+      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/ViewModels/DeliveryOrdersViewModel.cs" relfile="BFSDeliveries/ViewModels/DeliveryOrdersViewModel.cs" line="61" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

@@ -48,26 +48,23 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IMediaService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\DeliveryImage.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\GalleryPage.xaml.cs">
-      <DependentUpon>GalleryPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Behaviors\BehaviorBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\TasksPage.xaml.cs">
       <DependentUpon>TasksPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Controls\ImagesScrollView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\ImageItem.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\ItemsPicker.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\DeliveryOrder.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Behaviors\PickerSelectedItemBehavior.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\SelectableItemWrapper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\SelectedIndexChangedEventArgsToSelectedIndexConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Behaviors\EntryToCommandBehavior.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\DeliveryOrdersPage.xaml.cs">
       <DependentUpon>DeliveryOrdersPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\DeliveryOrdersViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\SelectableCell.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\SelectableViewCell.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\SelectableItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\MultiSelectListView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\SelectableObservableCollection.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\AboutPage.xaml" />
@@ -84,10 +81,6 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\LoginPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\GalleryPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

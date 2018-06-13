@@ -9,11 +9,25 @@
         <ToolbarItem Text="Done" Priority="1" Order="Primary" Command="{Binding DoneCommand}" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <ListView ItemsSource="{Binding Items}">
+        <ListView ItemsSource="{Binding Items}" 
+                  controls:MultiSelectListView.IsMultiSelect="True"
+                  Grid.Row="2" Grid.ColumnSpan="3">
             <ListView.ItemTemplate>
-                <!--<DataTemplate>
-                    <controls:SelectableCell />
-                </DataTemplate>-->
+                <DataTemplate>
+                    <controls:SelectableViewCell>
+
+                        <!-- set the selected indicator (optional) -->
+                        <!--<controls:SelectableViewCell.CheckView>
+                            <BoxView Color="Red" WidthRequest="12" HeightRequest="12" />
+                        </controls:SelectableViewCell.CheckView>-->
+
+                        <!-- set the content (optional) -->
+                        <controls:SelectableViewCell.DataView>
+                            <Label Text="{Binding PickTicketNumber}" />
+                        </controls:SelectableViewCell.DataView>
+
+                    </controls:SelectableViewCell>
+                </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
     </ContentPage.Content>
