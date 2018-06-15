@@ -33,9 +33,8 @@ namespace BFSDeliveries.ViewModels
 
 		public FormDetailPageViewModel(IPageDialogService pageDialogService, INavigationService navigationService)
 		{
-            //RetrieveDeliveryOrders();
-			
             Items = new ObservableCollection<DeliveryImage>();
+            SelectedOrders = new ObservableCollection<DeliveryOrder>();
 
 			_navigationService = navigationService;
 			_pageDialogService = pageDialogService;
@@ -45,7 +44,7 @@ namespace BFSDeliveries.ViewModels
 
 			GetPhotoCommand = new DelegateCommand(DisplayActionSheetButtons);
 
-            SelectDeliveriesCommand = new DelegateCommand(async() => await NavigateToDeliveryOrdersPageAsync());
+            SelectDeliveriesCommand = new DelegateCommand(SelectDeliveryOrders);
 
 			//Subscribe notification for camera choice
 			MessagingCenter.Subscribe<App, byte[]>((App)Xamarin.Forms.Application.Current, "CameraImage", (s, imageAsBytes) =>
@@ -65,15 +64,25 @@ namespace BFSDeliveries.ViewModels
                     Items.Add(new DeliveryImage { Source = newImage, OrgImage = selectedImage });
 				}
 			});
+
+            MessagingCenter.Subscribe<App, List<DeliveryOrder>>((App)Xamarin.Forms.Application.Current, "SelectedOrders", (s, selectedOrders) =>
+            {
+                foreach (var selectedOrder in selectedOrders)
+                {
+                    SelectedOrders.Add(selectedOrder);
+                }
+            });
 		}
 
-        public async Task NavigateToDeliveryOrdersPageAsync()
+        private async void SelectDeliveryOrders()
         {
             string path = "DeliveryOrdersPage";
+            //var parameters = new NavigationParameters
+            //{
+            //    {"deliveryOrder", deliveryOrder}
+            //};
             await _navigationService.NavigateAsync(path);
-            //var navigateTo = typeof(DeliveryOrdersPage);
-            //var message = new NavigationMessage(NavigationTo = navigateTo);
-            //MessagingCenter.Send(this, message);
+            //await _navigationService.NavigateAsync(path, parameters);
         }
 
         private async void DisplayActionSheetButtons()

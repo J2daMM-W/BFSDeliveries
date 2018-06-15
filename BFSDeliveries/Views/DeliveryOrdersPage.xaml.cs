@@ -7,13 +7,16 @@ namespace BFSDeliveries.Views
 {
     public partial class DeliveryOrdersPage : ContentPage
     {
-        DeliveryOrdersViewModel viewModel;
+        //DeliveryOrdersViewModel viewModel;
 
         public DeliveryOrdersPage()
         {
             InitializeComponent();
 
-            BindingContext = viewModel = new DeliveryOrdersViewModel();
+            //Disable default navigation back button
+            NavigationPage.SetHasBackButton(this, false);
+
+            //BindingContext = viewModel = new DeliveryOrdersViewModel();
         }
 
         protected override void OnAppearing()

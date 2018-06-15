@@ -1,4 +1,5 @@
 ﻿using System;
+using BFSDeliveries.Views;
 using Prism.Ioc;
 using Prism.Unity;
 using Xamarin.Forms;
@@ -30,7 +31,7 @@ namespace BFSDeliveries
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterForNavigation<NavigationPage>();
-            containerRegistry.RegisterForNavigation<Views.DeliveryOrdersPage>();
+            containerRegistry.RegisterForNavigation<DeliveryOrdersPage>();
             //containerRegistry.RegisterForNavigation<Views.MainPage>();
         }
     }

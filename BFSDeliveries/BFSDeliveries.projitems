@@ -60,7 +60,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\DeliveryOrdersPage.xaml.cs">
       <DependentUpon>DeliveryOrdersPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\DeliveryOrdersViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\DeliveryOrdersPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\SelectableViewCell.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\SelectableItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\MultiSelectListView.cs" />

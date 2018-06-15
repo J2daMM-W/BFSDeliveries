@@ -11,11 +11,6 @@
         <ToolbarItem Text="Cancel" Priority="0" Order="Primary" Command="{Binding CancelCommand}" />
         <ToolbarItem Text="Submit" Priority="1" Order="Primary" Command="{Binding SubmitCommand}" />
     </ContentPage.ToolbarItems>
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <local:SelectedIndexChangedEventArgsToSelectedIndexConverter x:Key="SelectedIndexConverter" />
-        </ResourceDictionary>
-    </ContentPage.Resources>
     <ContentPage.Content>
         <ScrollView>
             <Grid Padding="15">
