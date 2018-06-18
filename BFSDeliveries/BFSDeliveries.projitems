@@ -55,8 +55,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Controls\ImagesScrollView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\ImageItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\DeliveryOrder.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Converters\SelectedIndexChangedEventArgsToSelectedIndexConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Behaviors\EntryToCommandBehavior.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\SelectedItemChangedEventArgsToSelectedItemConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Behaviors\EditorToCommandBehavior.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\DeliveryOrdersPage.xaml.cs">
       <DependentUpon>DeliveryOrdersPage.xaml</DependentUpon>
     </Compile>
@@ -65,7 +65,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Controls\SelectableItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\MultiSelectListView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\SelectableObservableCollection.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\ExtendedEntry.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\ExtendedEditor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\FormEditor.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\AboutPage.xaml" />

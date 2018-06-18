@@ -11,6 +11,11 @@
         <ToolbarItem Text="Cancel" Priority="0" Order="Primary" Command="{Binding CancelCommand}" />
         <ToolbarItem Text="Submit" Priority="1" Order="Primary" Command="{Binding SubmitCommand}" />
     </ContentPage.ToolbarItems>
+    <!--<ContentPage.Resources>
+        <ResourceDictionary>
+            <local:SelectedItemChangedEventArgsToSelectedItemConverter x:Key="SelectedItemConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>-->
     <ContentPage.Content>
         <ScrollView>
             <Grid Padding="15">
@@ -39,16 +44,16 @@
                         <RowDefinition Height="20" />
                     </Grid.RowDefinitions>
                     <Label Text="Select Pick Ticket Number(s) (REQUIRED)" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" />
-                    <controls:ExtendedEntry Text="{Binding Source=}" Placeholder="Required" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" >
-                        <controls:ExtendedEntry.Behaviors>
-                            <local:EntryToCommandBehavior Command="{Binding SelectDeliveriesCommand}"/>
-                        </controls:ExtendedEntry.Behaviors>
-                    </controls:ExtendedEntry>
-                    <!--<Entry Placeholder="Required" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" >
-                        <Entry.Behaviors>
-                            <local:EntryToCommandBehavior Command="{Binding SelectDeliveriesCommand}"/>
-                        </Entry.Behaviors>
-                    </Entry>-->
+                    <controls:ExtendedEditor HeightRequest="90" Text="{Binding Source}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" >
+                        <controls:ExtendedEditor.Behaviors>
+                            <local:EditorToCommandBehavior Command="{Binding SelectDeliveriesCommand}"/>
+                        </controls:ExtendedEditor.Behaviors>
+                    </controls:ExtendedEditor>
+                    <!--<Editor x:Name="pickTicketEntry" Text="{Binding }" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" >
+                        <Editor.Behaviors>
+                            <local:EditorToCommandBehavior Command="{Binding SelectDeliveriesCommand}"/>
+                        </Editor.Behaviors>
+                    </Editor>-->
                     <Label Text="Comments" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="5" />
                     <Entry x:Name="comments" Text="{Binding Delivery.Comments}" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5" />
                     <Label Text="No super available to sign" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="4" />

@@ -611,7 +611,8 @@
     <Compile Include="Main.cs" />
     <Compile Include="DependencyServices\MediaService.cs" />
     <Compile Include="Helpers\ImageHelper.cs" />
-    <Compile Include="Renderers\ImagesScrollViewRenderer.cs" />
+    <Compile Include="CustomRenderers\ImagesScrollViewRenderer.cs" />
+    <Compile Include="CustomRenderers\FormEditorRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Entitlements.plist" />
@@ -629,7 +630,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DependencyServices\" />
-    <Folder Include="Renderers\" />
+    <Folder Include="CustomRenderers\" />
     <Folder Include="Helpers\" />
     <Folder Include="Controls\" />
   </ItemGroup>

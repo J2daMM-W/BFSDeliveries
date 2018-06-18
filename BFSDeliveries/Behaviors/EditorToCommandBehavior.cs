@@ -4,10 +4,10 @@ using Xamarin.Forms;
 
 namespace BFSDeliveries
 {
-    public class EntryToCommandBehavior : BehaviorBase<ExtendedEntry>
+    public class EditorToCommandBehavior : BehaviorBase<FormEditor>
     {
         public static readonly BindableProperty CommandProperty =
-            BindableProperty.Create(nameof(Command), typeof(ICommand), typeof(EntryToCommandBehavior), null);
+            BindableProperty.Create(nameof(Command), typeof(ICommand), typeof(EditorToCommandBehavior), null);
 
         public ICommand Command
         {
@@ -15,7 +15,7 @@ namespace BFSDeliveries
             set { SetValue(CommandProperty, value); }
         }
 
-        protected override void OnAttachedTo(ExtendedEntry bindable)
+        protected override void OnAttachedTo(FormEditor bindable)
         {
             base.OnAttachedTo(bindable);
 
@@ -27,7 +27,7 @@ namespace BFSDeliveries
             bindable.TextChanged += Bindable_TextChanged;
         }
 
-        protected override void OnDetachingFrom(ExtendedEntry bindable)
+        protected override void OnDetachingFrom(FormEditor bindable)
         {
             base.OnDetachingFrom(bindable);
 
