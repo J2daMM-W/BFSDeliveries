@@ -611,7 +611,7 @@
     <Compile Include="Main.cs" />
     <Compile Include="DependencyServices\MediaService.cs" />
     <Compile Include="Helpers\ImageHelper.cs" />
-    <Compile Include="Controls\ImagesScrollViewRenderer.cs" />
+    <Compile Include="Renderers\ImagesScrollViewRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Entitlements.plist" />

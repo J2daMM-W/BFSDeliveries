@@ -39,17 +39,16 @@
                         <RowDefinition Height="20" />
                     </Grid.RowDefinitions>
                     <Label Text="Select Pick Ticket Number(s) (REQUIRED)" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" />
-                    <!--<<controls:ItemsPicker x:Name="pickTicketPicker" ItemsSource="{Binding DeliveryOrders}" DisplayProperty="PickTicketNumber" SelectedItem="{Binding SelectedItem}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4">
-                        controls:ItemsPicker.Behaviors>
-                            <local:PickerSelectedItemBehavior Command="{Binding UpdateSelectedItemsCommand}" Converter="{StaticResource SelectedIndexConverter}" />
-                            <local:PickerSelectedItemBehavior Command="{Binding UpdateSelectedItemsCommand}" Converter="{StaticResource SelectedIndexConverter}" />
-                        </controls:ItemsPicker.Behaviors>
-                    </controls:ItemsPicker>-->
-                    <Entry Placeholder="Required" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" >
+                    <controls:ExtendedEntry Text="{Binding Source=}" Placeholder="Required" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" >
+                        <controls:ExtendedEntry.Behaviors>
+                            <local:EntryToCommandBehavior Command="{Binding SelectDeliveriesCommand}"/>
+                        </controls:ExtendedEntry.Behaviors>
+                    </controls:ExtendedEntry>
+                    <!--<Entry Placeholder="Required" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" >
                         <Entry.Behaviors>
                             <local:EntryToCommandBehavior Command="{Binding SelectDeliveriesCommand}"/>
                         </Entry.Behaviors>
-                    </Entry>
+                    </Entry>-->
                     <Label Text="Comments" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="5" />
                     <Entry x:Name="comments" Text="{Binding Delivery.Comments}" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5" />
                     <Label Text="No super available to sign" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="4" />

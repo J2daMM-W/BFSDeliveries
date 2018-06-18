@@ -65,6 +65,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Controls\SelectableItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\MultiSelectListView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\SelectableObservableCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\ExtendedEntry.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\AboutPage.xaml" />

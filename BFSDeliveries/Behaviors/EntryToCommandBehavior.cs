@@ -4,7 +4,7 @@ using Xamarin.Forms;
 
 namespace BFSDeliveries
 {
-    public class EntryToCommandBehavior : BehaviorBase<Entry>
+    public class EntryToCommandBehavior : BehaviorBase<ExtendedEntry>
     {
         public static readonly BindableProperty CommandProperty =
             BindableProperty.Create(nameof(Command), typeof(ICommand), typeof(EntryToCommandBehavior), null);
@@ -15,7 +15,7 @@ namespace BFSDeliveries
             set { SetValue(CommandProperty, value); }
         }
 
-        protected override void OnAttachedTo(Entry bindable)
+        protected override void OnAttachedTo(ExtendedEntry bindable)
         {
             base.OnAttachedTo(bindable);
 
@@ -27,7 +27,7 @@ namespace BFSDeliveries
             bindable.TextChanged += Bindable_TextChanged;
         }
 
-        protected override void OnDetachingFrom(Entry bindable)
+        protected override void OnDetachingFrom(ExtendedEntry bindable)
         {
             base.OnDetachingFrom(bindable);
 

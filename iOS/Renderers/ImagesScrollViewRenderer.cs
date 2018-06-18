@@ -1,11 +1,11 @@
 ﻿using System;
 using BFSDeliveries;
-using BFSDeliveries.iOS.Controls;
+using BFSDeliveries.iOS;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
 [assembly: ExportRenderer(typeof(ImagesScrollView), typeof(ImagesScrollViewRenderer))]
-namespace BFSDeliveries.iOS.Controls
+namespace BFSDeliveries.iOS
 {
     public class ImagesScrollViewRenderer: ScrollViewRenderer
     {

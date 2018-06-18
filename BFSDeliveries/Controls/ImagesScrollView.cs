@@ -13,11 +13,6 @@ namespace BFSDeliveries
             BindableProperty.Create(nameof(ItemsSource), typeof(IEnumerable), typeof(ImagesScrollView), default(IEnumerable),
                                     BindingMode.Default, null, propertyChanged: OnItemsSourceChanged);
 
-        private static void OnItemsSourceChanged(BindableObject bindable, object value)
-        {
-            throw new NotImplementedException();
-        }
-
         public IEnumerable ItemsSource
         {
             get { return (IList)GetValue(ItemsSourceProperty); }
