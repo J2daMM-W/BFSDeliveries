@@ -24,7 +24,7 @@ namespace BFSDeliveries.Views
             if (form == null)
                 return;
 
-            await Navigation.PushAsync(new FormDetailPage());
+            await Navigation.PushAsync(new DeliveryPhotosPage());
 
             // Manually deselect item
             FormsListView.SelectedItem = null;

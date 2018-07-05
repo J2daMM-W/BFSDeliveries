@@ -1,5 +1,4 @@
-﻿
-using BFSDeliveries.Interfaces;
+﻿using BFSDeliveries.Interfaces;
 using BFSDeliveries.Models;
 using Prism.Services;
 using Prism.Commands;
@@ -8,16 +7,13 @@ using System.Collections.ObjectModel;
 using Xamarin.Forms;
 using System.Collections.Generic;
 using System.IO;
-using System;
 using System.Windows.Input;
-using BFSDeliveries.Views;
 using System.Threading.Tasks;
-using System.Collections.Specialized;
 using MvvmValidation;
 
 namespace BFSDeliveries.ViewModels
 {
-    public class FormDetailPageViewModel : BaseViewModel
+    public class DeliveryPhotosPageViewModel : BaseViewModel
     {
         public Form form { get; set; }
         public DeliveryForm delivery { get; set; }
@@ -25,24 +21,24 @@ namespace BFSDeliveries.ViewModels
         public ObservableCollection<DeliveryOrder> SelectedOrders { get; set; } // Orders to be submitted with a given form
 
         string text;
-        public string PickTicketNumbers
-        {
-            get => text;
-            set => SetProperty(ref text, value);
-        }
-
         //public string PickTicketNumbers
         //{
-        //    get { return text; }
-        //    set
-        //    {
-        //        if (text != value)
-        //        {
-        //            text = value;
-        //            OnPropertyChanged("PickTicketNumbers");
-        //        }
-        //    }
+        //    get => text;
+        //    set => SetProperty(ref text, value);
         //}
+
+        public string PickTicketNumbers
+        {
+            get { return text; }
+            set
+            {
+                if (text != value)
+                {
+                    text = value;
+                    OnPropertyChanged("PickTicketNumbers");
+                }
+            }
+        }
 
         INavigationService _navigationService;
         IPageDialogService _pageDialogService;
@@ -51,9 +47,21 @@ namespace BFSDeliveries.ViewModels
         public DelegateCommand SubmitCommand { get; private set; }
         public ICommand GetSelectedOrdersCommand { get; private set; }
 
+        private bool _deletePhotosSelected;
+
+        public bool DeleteAttachedPhotos
+        {
+            get { return _deletePhotosSelected;  }
+            set 
+            {
+                _deletePhotosSelected = value;
+                OnPropertyChanged("DeleteAttachedPhotos");
+            }
+        }
+
         protected ValidationHelper Validator { get; private set; }
 
-        public FormDetailPageViewModel(IPageDialogService pageDialogService, INavigationService navigationService)
+        public DeliveryPhotosPageViewModel(IPageDialogService pageDialogService, INavigationService navigationService)
         {
             Title = "Delivery Photos";
             SelectedImages = new ObservableCollection<DeliveryImage>();
@@ -72,7 +80,7 @@ namespace BFSDeliveries.ViewModels
 
             Validator = new ValidationHelper();
 
-            //Subscribe notification for camera choice
+            //Subscribe notification for camera choice - remember to UnSubscribe
             MessagingCenter.Subscribe<App, byte[]>((App)Application.Current, "CameraImage", (s, imageAsBytes) =>
             {
                 var imageSource = ImageSource.FromStream(() => new MemoryStream(imageAsBytes));
@@ -80,7 +88,7 @@ namespace BFSDeliveries.ViewModels
                 SelectedImages.Add(new DeliveryImage { Source = imageSource, OrgImage = imageAsBytes });
             });
 
-            //Subscribe notification for photo library choice
+            //Subscribe notification for photo library choice - remember to UnSubscribe
             MessagingCenter.Subscribe<App, List<byte[]>>((App)Application.Current, "ImagesSelected", (s, images) =>
             {
                 foreach (byte[] selectedImage in images)
@@ -91,38 +99,12 @@ namespace BFSDeliveries.ViewModels
                 }
             });
 
-            //Subscribe notification for Selected Orders Pickticket Numbers
+            //Subscribe notification for Selected Orders Pickticket Numbers - remember to UnSubscribe
             MessagingCenter.Subscribe<App, string>((App)Application.Current, "SelectedOrders", (s, pickTicketNumbers) =>
-           {
-               PickTicketNumbers = pickTicketNumbers;
-           });
+            {
+                PickTicketNumbers = pickTicketNumbers;
+            });
         }
-
-        private bool _deletePhotos;
-        public bool DeleteAttachedPhotos
-        {
-            get { return _deletePhotos; }
-            set { SetProperty(ref _deletePhotos, value); }
-        }
-
-        //ObservableCollection<DeliveryOrder> GetSelectedOrders()
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //private string UpdateEntryWithSelectedOrders()
-        //{
-        //    List<string> _selectedOrders = new List<string>();
-        //    string _selectedResult;
-
-        //    //updated the Editor with selected orders
-        //    foreach (var selectedOrder in SelectedOrders)
-        //    {
-        //        _selectedOrders.Add(selectedOrder.PickTicketNumber);
-        //    }
-
-        //    return _selectedResult = string.Join(",", _selectedOrders);
-        //}
 
         async Task SelectDeliveryOrders()
         {
@@ -163,6 +145,17 @@ namespace BFSDeliveries.ViewModels
         void ExecuteFormSubmission()
         {
             // Do form submit after verification - will show alert if verification failure
+
+            //check if delete attched photos has been selected 
+            if(DeleteAttachedPhotos)
+            {
+                // get photos to delete
+                //var photosToDelete; 
+
+                //call delete function
+                //Xamarin.Forms.DependencyService.Get<IFileManager>().DeleteFile();
+                
+            }
 
             _navigationService.GoBackAsync();
         }

@@ -4,7 +4,7 @@ using BFSDeliveries.iOS;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
-[assembly: ExportRenderer(typeof(FormEditor), typeof(FormEditorRenderer))]
+[assembly: ExportRenderer(typeof(Editor), typeof(FormEditorRenderer))]
 namespace BFSDeliveries.iOS
 {
     public class FormEditorRenderer : EditorRenderer
@@ -19,7 +19,6 @@ namespace BFSDeliveries.iOS
                 Control.Layer.BorderColor = Color.LightGray.ToCGColor();
                 Control.Layer.BorderWidth = 1;
             }
-
         }
     }
 }

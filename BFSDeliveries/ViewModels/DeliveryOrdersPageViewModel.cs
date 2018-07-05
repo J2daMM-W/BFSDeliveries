@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Windows.Input;
 using BFSDeliveries.Controls;
@@ -13,13 +14,33 @@ namespace BFSDeliveries.ViewModels
 	public class DeliveryOrdersPageViewModel : BaseViewModel
     {
         //public ObservableCollection<DeliveryOrder> SelectedOrders { get; set; } //Orders to be submitted with a given form
-        public SelectableObservableCollection<DeliveryOrder> Items { get; set; } // Drivers delivery orders - (DeliveryOrders) - PickTicket Number List
+        public SelectableObservableCollection<DeliveryOrder> Orders { get; set; } // Drivers delivery orders - (DeliveryOrders) - PickTicket Number List
 
+        //private ObservableCollection<DeliveryOrder> _selectedOrders;
+        public ObservableCollection<DeliveryOrder> SelectedOrders{ get; set; }
+        //{
+        //    get { return _selectedOrders; }
+        //    set
+        //    {
+        //        if (Equals(value, _selectedOrders)) return;
+        //        if (_selectedOrders != null)
+        //            _selectedOrders.CollectionChanged -= SelectedItemsCollectionChanged;
+        //        _selectedOrders = value;
+        //        if (value != null)
+        //            _selectedOrders.CollectionChanged += SelectedItemsCollectionChanged;
+        //        OnPropertyChanged(nameof(SelectedOrders));
+        //    }
+        //}
+
+        //private void SelectedItemsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        //{
+        //    OnPropertyChanged(nameof(SelectedOrders));
+        //}
 
         public ICommand DoneCommand { get; private set; }
         public ICommand RemoveSelectedCommand { get; }
         public ICommand ToggleSelectionCommand { get; }
-        private bool enableMultiSelect;
+        //private bool enableMultiSelect;
 
         INavigationService _navigationService { get; }
 
@@ -28,7 +49,7 @@ namespace BFSDeliveries.ViewModels
             _navigationService = navigationService;
 
             Title = "Select PickTicket No.(s)";
-            enableMultiSelect = true;
+            //enableMultiSelect = true;
             DoneCommand = new Command(OnDoneSelected);
             //RemoveSelectedCommand = new Command(OnRemoveSelected);
             //ToggleSelectionCommand = new Command(OnToggleSelection);
@@ -38,57 +59,62 @@ namespace BFSDeliveries.ViewModels
 
         private void RetrieveDeliveryOrders()
         {
-            Items = new SelectableObservableCollection<DeliveryOrder>();
+            Orders = new SelectableObservableCollection<DeliveryOrder>();
             //SelectedOrders = new ObservableCollection<DeliveryOrder>();
 
             string[] mockPickTickets = { "123456", "654321", "098765", "109283", "657483", "109283", "384756", "209384", "5682038", "797451" };
 
             foreach (var pickTicket in mockPickTickets)
             {
-                Items.Add(new DeliveryOrder { PickTicketNumber = pickTicket });
+                Orders.Add(new DeliveryOrder { PickTicketNumber = pickTicket });
             }
         }
 
-        public bool EnableMultiSelect
-        {
-            get { return enableMultiSelect; }
-            set
-            {
-                enableMultiSelect = value;
-                OnPropertyChanged();
-            }
-        }
+        //public bool EnableMultiSelect
+        //{
+        //    get { return enableMultiSelect; }
+        //    set
+        //    {
+        //        enableMultiSelect = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
         private void OnDoneSelected()
         {
-            List<DeliveryOrder> selectedOrders = new List<DeliveryOrder>();
-            var selectedItems = Items.SelectedItems.ToArray();
+            //List<DeliveryOrder> selectedOrders = new List<DeliveryOrder>();
+            SelectedOrders = new ObservableCollection<DeliveryOrder>();
+            var selectedItems = Orders.SelectedItems.ToArray();
 
             foreach (var item in selectedItems)
             {
-                selectedOrders.Add(item);
+                SelectedOrders.Add(item);
             }
 
+            //SelectedOrders = new ObservableCollection<DeliveryOrder>(new[] { selectedOrders[0] });
+                
+            string PickTicketsNumbers = GetPickTicketsFromSelectedOrders();
+
             //Send selected PickTickets  back
-            MessagingCenter.Send<App, List<DeliveryOrder>>((App)Xamarin.Forms.Application.Current,"SelectedOrders", selectedOrders);
+            MessagingCenter.Send<App, string>((App)Application.Current,"SelectedOrders", PickTicketsNumbers);
 
             _navigationService.GoBackAsync();
         }
 
-        //public void OnNavigatedFrom(NavigationParameters parameters)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        private string GetPickTicketsFromSelectedOrders()
+        {
+            List<string> _selectedOrders = new List<string>();
+            string _selectedResult;
 
-        //public void OnNavigatedTo(NavigationParameters parameters)
-        //{
-        //    throw new NotImplementedException();
-        //}
+            //updated the Editor with selected orders
+            foreach (var selectedOrder in SelectedOrders)
+            {
+                _selectedOrders.Add(selectedOrder.PickTicketNumber);
+            }
 
-        //public void OnNavigatingTo(NavigationParameters parameters)
-        //{
-        //    throw new NotImplementedException();
-        //}
+            return _selectedResult = string.Join(",", _selectedOrders);
+        }
+
 
         //private void OnRemoveSelected()
         //{
@@ -96,14 +122,6 @@ namespace BFSDeliveries.ViewModels
         //    foreach (var item in selectedItems)
         //    {
         //        Items.Remove(item);
-        //    }
-        //}
-
-        //private void OnToggleSelection()
-        //{
-        //    foreach (var item in Items)
-        //    {
-        //        item.IsSelected = !item.IsSelected;
         //    }
         //}
     }

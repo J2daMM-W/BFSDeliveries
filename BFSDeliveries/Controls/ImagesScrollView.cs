@@ -11,7 +11,7 @@ namespace BFSDeliveries
     {
         public static readonly BindableProperty ItemsSourceProperty =
             BindableProperty.Create(nameof(ItemsSource), typeof(IEnumerable), typeof(ImagesScrollView), default(IEnumerable),
-                                    BindingMode.Default, null, propertyChanged: OnItemsSourceChanged);
+                                    BindingMode.Default, null, OnItemsSourceChanged);
 
         public IEnumerable ItemsSource
         {

@@ -4,7 +4,7 @@ using Xamarin.Forms;
 
 namespace BFSDeliveries
 {
-    public class ExtendedEditor : FormEditor
+    public class ExtendedEditor : CustomEditor
     {
         public static readonly BindableProperty SelectedOrdersProperty =
             BindableProperty.Create(nameof(SelectedOrders), typeof(IEnumerable), typeof(ExtendedEditor), default(IEnumerable),

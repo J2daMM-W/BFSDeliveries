@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             x:Class="BFSDeliveries.Views.FormDetailPage" 
+             x:Class="BFSDeliveries.Views.DeliveryPhotosPage" 
              xmlns:controls="clr-namespace:BFSDeliveries" 
              xmlns:converter="clr-namespace:BFSDeliveries" 
              xmlns:local="clr-namespace:BFSDeliveries" 
@@ -71,8 +71,8 @@
                     <Label Text="Damaged products noted" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="4" />
                     <Switch x:Name="damagedProductsNoted" IsEnabled="true" IsToggled="{Binding DamagedProductsNoted}" Grid.Row="7" Grid.Column="4" />
                     <Label Text="Delete attached photos from gallery(After submission)" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="4" />
-                    <Switch x:Name="deleteAttchedPhotos" IsEnabled="true" Grid.Row="8" Grid.Column="4" />
-                    <!--<Switch x:Name="deleteAttchedPhotos" IsEnabled="true" IsToggled="{Binding DeleteAttachedPhotos Mode=TwoWay}" Grid.Row="8" Grid.Column="4" />-->
+                    <!--<Switch x:Name="deleteAttchedPhotos" IsEnabled="true" Grid.Row="8" Grid.Column="4" />-->
+                    <Switch x:Name="deleteAttchedPhotos" IsEnabled="true" IsToggled="{Binding DeleteAttachedPhotos}" Grid.Row="8" Grid.Column="4" />
                     <Label Text="Photo Attachements" Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="4" />
                 </Grid>
                 <Grid Grid.Row="1">

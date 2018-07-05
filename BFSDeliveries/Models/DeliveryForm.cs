@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace BFSDeliveries.Models
 {
-    public class Delivery
+    public class DeliveryForm
     {
-        public List<DeliveryOrder> PickTicketNumber = new List<DeliveryOrder>();
+        public List<DeliveryOrder> PickTicketNumbers = new List<DeliveryOrder>();
         public string Name { get; set; }
         public string Description { get; set; }
         public string Location { get; set; }
@@ -14,6 +14,7 @@ namespace BFSDeliveries.Models
         public bool FramerSmallParts { get; set; }
         public bool NoReturnAvail { get; set; }
         public bool DamagedProductsNoted { get; set; }
-		public List<DeliveryImage> DeliveryImages = new List<DeliveryImage>();
+        public bool DeleteAttachedPhotos { get; set; }
+		public List<DeliveryImage> SelectedImages = new List<DeliveryImage>();
     }
 }

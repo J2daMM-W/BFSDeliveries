@@ -4,7 +4,7 @@ using Xamarin.Forms;
 
 namespace BFSDeliveries
 {
-    public class EditorToCommandBehavior : BehaviorBase<FormEditor>
+    public class EditorToCommandBehavior : BehaviorBase<Editor>
     {
         public static readonly BindableProperty CommandProperty =
             BindableProperty.Create(nameof(Command), typeof(ICommand), typeof(EditorToCommandBehavior), null);
@@ -15,7 +15,7 @@ namespace BFSDeliveries
             set { SetValue(CommandProperty, value); }
         }
 
-        protected override void OnAttachedTo(FormEditor bindable)
+        protected override void OnAttachedTo(Editor bindable)
         {
             base.OnAttachedTo(bindable);
 
@@ -23,26 +23,45 @@ namespace BFSDeliveries
                 BindingContext = bindable.BindingContext;
 
             bindable.BindingContextChanged += Bindable_BindingContextChanged;
-
-            bindable.TextChanged += Bindable_TextChanged;
+            bindable.Focused += Bindable_Focused;
+            //bindable.TextChanged += Bindable_TextChanged;
         }
 
-        protected override void OnDetachingFrom(FormEditor bindable)
+        protected override void OnDetachingFrom(Editor bindable)
         {
             base.OnDetachingFrom(bindable);
 
             bindable.BindingContextChanged -= Bindable_BindingContextChanged;
-
-            bindable.TextChanged -= Bindable_TextChanged;
+            bindable.Focused -= Bindable_Focused;
+            //bindable.TextChanged -= Bindable_TextChanged;
         }
 
-        void Bindable_TextChanged(object sender, TextChangedEventArgs e)
+        void Bindable_Focused(object sender, FocusEventArgs e)
         {
-            if (Command == null)
-                return;
-            
-            Command?.Execute(e.NewTextValue);
+            Editor editor = sender as Editor;
+
+            Command?.Execute(editor);
         }
+
+        //void Bindable_UnFocused(object sender, FocusEventArgs e)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //void Bindable_TextChanged(object sender, TextChangedEventArgs e)
+        //{
+        //    Editor editor = sender as Editor;
+        //    string text ;
+
+        //    if(e.OldTextValue != null)
+        //    {
+        //        text = string.Join(",", e.NewTextValue);
+        //    }
+        //    if (Command == null)
+        //        return;
+            
+        //    Command?.Execute(e.NewTextValue);
+        //}
 
         void Bindable_BindingContextChanged(object sender, EventArgs e)
         {

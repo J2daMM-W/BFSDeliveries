@@ -5,12 +5,12 @@
              x:Class="BFSDeliveries.Views.DeliveryOrdersPage"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms" 
              prism:ViewModelLocator.AutowireViewModel="True" 
-             Title="{Binding Title}" x:Name="">
+             Title="{Binding Title}">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Done" Priority="1" Order="Primary" Command="{Binding DoneCommand}" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <ListView ItemsSource="{Binding Items}" 
+        <ListView ItemsSource="{Binding Orders}" 
                   controls:MultiSelectListView.IsMultiSelect="True"
                   Grid.Row="2" Grid.ColumnSpan="3">
             <ListView.ItemTemplate>

@@ -2,18 +2,15 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
-using AVFoundation;
 using BFSDeliveries.Interfaces;
 using BFSDeliveries.iOS.DependencyServices;
 using BFSDeliveries.iOS.Helpers;
-using BFSDeliveries.Models;
 using CoreGraphics;
 using ELCImagePicker;
 using Foundation;
 using Plugin.Media;
 using UIKit;
 using Xamarin.Forms;
-using Xamarin.Forms.Platform.iOS;
 
 [assembly: Dependency(typeof(MediaService))]
 namespace BFSDeliveries.iOS.DependencyServices
@@ -24,7 +21,7 @@ namespace BFSDeliveries.iOS.DependencyServices
         //ObservableCollection<Photo> selectedPhotos { get; set; }
         private List<AssetResult> mResults = new List<AssetResult>();
         //var selectedImages = new IList();
-        public DeliveryImage cameraImage { get; set; }
+        //public DeliveryImage cameraImage { get; set; }
 
         #endregion
 
@@ -44,7 +41,7 @@ namespace BFSDeliveries.iOS.DependencyServices
 
         public async Task UseCamera()
         {
-            cameraImage = new DeliveryImage();
+            //cameraImage = new DeliveryImage();
             var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions { PhotoSize = Plugin.Media.Abstractions.PhotoSize.Small });
 
             if (file == null)
@@ -112,6 +109,7 @@ namespace BFSDeliveries.iOS.DependencyServices
 
         }
 
+        //Get photos from album/gallery
         public void UsePhotoGallery()
         {
             var picker = ELCImagePickerViewController.Create(15);

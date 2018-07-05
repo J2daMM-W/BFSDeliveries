@@ -1,28 +1,28 @@
-﻿<Properties StartupConfiguration="{C035F152-F9BB-41A2-806F-48963DCA952A}|Default">
-  <MonoDevelop.Ide.ItemProperties.BFSDeliveries.Droid AndroidDesignerPreferredTheme="Theme.DeviceDefault.NoActionBar.Fullscreen" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="BFSDeliveries/Controls/ExtendedEditor.cs">
+﻿<Properties StartupConfiguration="{DBF6694A-2D54-4796-8E71-022796FB6F72}|Default">
+  <MonoDevelop.Ide.ItemProperties.BFSDeliveries.Droid PreferredExecutionTarget="Android.Android_Accelerated_Nougat" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Log">
     <Files>
-      <File FileName="BFSDeliveries/Views/FormDetailPage.xaml" Line="44" Column="16" />
-      <File FileName="BFSDeliveries/ViewModels/FormDetailPageViewModel.cs" Line="74" Column="1" />
-      <File FileName="BFSDeliveries/Controls/ImagesScrollView.cs" Line="15" Column="9" />
-      <File FileName="iOS/DependencyServices/MediaService.cs" Line="139" Column="35" />
-      <File FileName="BFSDeliveries/Behaviors/EditorToCommandBehavior.cs" Line="7" Column="41" />
-      <File FileName="BFSDeliveries/Views/DeliveryOrdersPage.xaml" Line="16" Column="16" />
-      <File FileName="BFSDeliveries/ViewModels/DeliveryOrdersPageViewModel.cs" Line="63" Column="1" />
-      <File FileName="BFSDeliveries/Controls/SelectableViewCell.cs" Line="20" Column="70" />
-      <File FileName="BFSDeliveries/Controls/SelectableItem.cs" Line="48" Column="1" />
-      <File FileName="BFSDeliveries/Controls/MultiSelectListView.cs" Line="32" Column="1" />
-      <File FileName="BFSDeliveries/Controls/SelectableObservableCollection.cs" Line="25" Column="1" />
-      <File FileName="BFSDeliveries/Views/DeliveryOrdersPage.xaml.cs" Line="30" Column="1" />
-      <File FileName="iOS/CustomRenderers/ImagesScrollViewRenderer.cs" Line="7" Column="2" />
-      <File FileName="BFSDeliveries/Controls/ExtendedEditor.cs" Line="7" Column="45" />
-      <File FileName="BFSDeliveries/Behaviors/BehaviorBase.cs" Line="15" Column="1" />
-      <File FileName="iOS/Main.cs" Line="12" Column="60" />
-      <File FileName="iOS/CustomRenderers/FormEditorRenderer.cs" Line="4" Column="21" />
-      <File FileName="BFSDeliveries/Controls/FormEditor.cs" Line="6" Column="28" />
+      <File FileName="BFSDeliveries/Views/DeliveryPhotosPage.xaml" Line="106" Column="15" />
+      <File FileName="BFSDeliveries/ViewModels/DeliveryPhotosPageViewModel.cs" Line="99" Column="1" />
+      <File FileName="BFSDeliveries/Controls/ImagesScrollView.cs" Line="16" Column="39" />
+      <File FileName="iOS/DependencyServices/MediaService.cs" Line="112" Column="40" />
+      <File FileName="BFSDeliveries/Behaviors/EditorToCommandBehavior.cs" Line="40" Column="1" />
+      <File FileName="BFSDeliveries/Views/DeliveryOrdersPage.xaml" Line="36" Column="1" />
+      <File FileName="BFSDeliveries/ViewModels/DeliveryOrdersPageViewModel.cs" Line="101" Column="1" />
+      <File FileName="BFSDeliveries/Controls/SelectableViewCell.cs" Line="38" Column="1" />
+      <File FileName="BFSDeliveries/Controls/SelectableItem.cs" Line="46" Column="1" />
+      <File FileName="BFSDeliveries/Views/MainPage.cs" Line="69" Column="15" />
+      <File FileName="BFSDeliveries/ViewModels/ItemsViewModel.cs" Line="25" Column="38" />
+      <File FileName="BFSDeliveries/Controls/CustomEditor.cs" Line="6" Column="39" />
+      <File FileName="BFSDeliveries/Controls/DeliveryForm.cs" Line="22" Column="13" />
+      <File FileName="iOS/DependencyServices/FileManager.cs" Line="1" Column="1" />
+      <File FileName="BFSDeliveries/Models/DeliveryImage.cs" Line="6" Column="18" />
+      <File FileName="iOS/Helpers/ImageHelper.cs" Line="6" Column="1" />
+      <File FileName="Droid/MainActivity.cs" Line="34" Column="17" />
+      <File FileName="Log" />
     </Files>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint enabled="false" file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Behaviors/PickerEditorBehavior.cs" relfile="BFSDeliveries/Behaviors/PickerEditorBehavior.cs" line="40" column="1" />
@@ -55,7 +55,6 @@
       <Breakpoint enabled="false" file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Controls/SelectableItem.cs" relfile="BFSDeliveries/Controls/SelectableItem.cs" line="39" column="1" />
       <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/ViewModels/DeliveryOrdersViewModel.cs" relfile="BFSDeliveries/ViewModels/DeliveryOrdersViewModel.cs" line="75" column="1" />
       <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/ViewModels/DeliveryOrdersViewModel.cs" relfile="BFSDeliveries/ViewModels/DeliveryOrdersViewModel.cs" line="70" column="1" />
-      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/ViewModels/FormDetailPageViewModel.cs" relfile="BFSDeliveries/ViewModels/FormDetailPageViewModel.cs" line="74" column="1" />
       <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Behaviors/EntryToCommandBehavior.cs" relfile="BFSDeliveries/Behaviors/EntryToCommandBehavior.cs" line="40" column="1" />
       <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/ViewModels/DeliveryOrdersViewModel.cs" relfile="BFSDeliveries/ViewModels/DeliveryOrdersViewModel.cs" line="27" column="1" />
       <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Controls/ExtendedEntry.cs" relfile="BFSDeliveries/Controls/ExtendedEntry.cs" line="8" column="1" />
@@ -63,18 +62,45 @@
       <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Behaviors/EntryToCommandBehavior.cs" relfile="BFSDeliveries/Behaviors/EntryToCommandBehavior.cs" line="31" column="1" />
       <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Behaviors/EntryToCommandBehavior.cs" relfile="BFSDeliveries/Behaviors/EntryToCommandBehavior.cs" line="19" column="1" />
       <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Behaviors/EntryToCommandBehavior.cs" relfile="BFSDeliveries/Behaviors/EntryToCommandBehavior.cs" line="48" column="1" />
-      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/ViewModels/DeliveryOrdersPageViewModel.cs" relfile="BFSDeliveries/ViewModels/DeliveryOrdersPageViewModel.cs" line="63" column="1" />
+      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/ViewModels/DeliveryOrdersPageViewModel.cs" relfile="BFSDeliveries/ViewModels/DeliveryOrdersPageViewModel.cs" line="84" column="1" />
       <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Behaviors/EntryToCommandBehavior.cs" relfile="BFSDeliveries/Behaviors/EntryToCommandBehavior.cs" line="22" column="1" />
       <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Behaviors/EntryToCommandBehavior.cs" relfile="BFSDeliveries/Behaviors/EntryToCommandBehavior.cs" line="51" column="1" />
       <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Behaviors/EntryToCommandBehavior.cs" relfile="BFSDeliveries/Behaviors/EntryToCommandBehavior.cs" line="27" column="1" />
       <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Behaviors/EntryToCommandBehavior.cs" relfile="BFSDeliveries/Behaviors/EntryToCommandBehavior.cs" line="36" column="1" />
       <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Converters/SelectedItemChangedEventArgsToSelectedItemConverter.cs" relfile="BFSDeliveries/Converters/SelectedItemChangedEventArgsToSelectedItemConverter.cs" line="10" column="1" />
       <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Converters/SelectedItemChangedEventArgsToSelectedItemConverter.cs" relfile="BFSDeliveries/Converters/SelectedItemChangedEventArgsToSelectedItemConverter.cs" line="16" column="1" />
+      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Controls/ExtendedEditor.cs" relfile="BFSDeliveries/Controls/ExtendedEditor.cs" line="20" column="1" />
+      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Behaviors/EditorToCommandBehavior.cs" relfile="BFSDeliveries/Behaviors/EditorToCommandBehavior.cs" line="19" column="1" />
+      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Behaviors/EditorToCommandBehavior.cs" relfile="BFSDeliveries/Behaviors/EditorToCommandBehavior.cs" line="31" column="1" />
+      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/ViewModels/DeliveryOrdersPageViewModel.cs" relfile="BFSDeliveries/ViewModels/DeliveryOrdersPageViewModel.cs" line="101" column="1" />
+      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Controls/FormEditor.cs" relfile="BFSDeliveries/Controls/FormEditor.cs" line="7" column="1" />
+      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Converters/JoinListConverter.cs" relfile="BFSDeliveries/Converters/JoinListConverter.cs" line="13" column="1" />
+      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/ViewModels/FormDetailPageViewModel.cs" relfile="BFSDeliveries/ViewModels/FormDetailPageViewModel.cs" line="159" column="1" />
+      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Behaviors/EditorToCommandBehavior.cs" relfile="BFSDeliveries/Behaviors/EditorToCommandBehavior.cs" line="73" column="1" />
+      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Behaviors/EditorToCommandBehavior.cs" relfile="BFSDeliveries/Behaviors/EditorToCommandBehavior.cs" line="64" column="1" />
+      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Controls/FormEditor.cs" relfile="BFSDeliveries/Controls/FormEditor.cs" line="13" column="1" />
+      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Controls/FormEditor.cs" relfile="BFSDeliveries/Controls/FormEditor.cs" line="25" column="1" />
+      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Controls/FormEditor.cs" relfile="BFSDeliveries/Controls/FormEditor.cs" line="37" column="1" />
+      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Controls/CustomEditor.cs" relfile="BFSDeliveries/Controls/CustomEditor.cs" line="25" column="1" />
+      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Controls/CustomEditor.cs" relfile="BFSDeliveries/Controls/CustomEditor.cs" line="13" column="1" />
+      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Converters/SelectedItemsListConverter.cs" relfile="BFSDeliveries/Converters/SelectedItemsListConverter.cs" line="13" column="1" />
+      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/iOS/DependencyServices/FileManager.cs" relfile="iOS/DependencyServices/FileManager.cs" line="14" column="1" />
+      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Controls/DeliveryForms.cs" relfile="BFSDeliveries/Controls/DeliveryForms.cs" line="37" column="1" />
+      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Controls/DeliveryForm.cs" relfile="BFSDeliveries/Controls/DeliveryForm.cs" line="15" column="1" />
+      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Controls/DeliveryForm.cs" relfile="BFSDeliveries/Controls/DeliveryForm.cs" line="21" column="1" />
+      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/ViewModels/FormDetailPageViewModel.cs" relfile="BFSDeliveries/ViewModels/FormDetailPageViewModel.cs" line="96" column="1" />
+      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/ViewModels/DeliveryOrdersPageViewModel.cs" relfile="BFSDeliveries/ViewModels/DeliveryOrdersPageViewModel.cs" line="99" column="1" />
+      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Behaviors/EditorToCommandBehavior.cs" relfile="BFSDeliveries/Behaviors/EditorToCommandBehavior.cs" line="52" column="1" />
+      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Behaviors/EditorToCommandBehavior.cs" relfile="BFSDeliveries/Behaviors/EditorToCommandBehavior.cs" line="40" column="1" />
+      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Behaviors/EditorToCommandBehavior.cs" relfile="BFSDeliveries/Behaviors/EditorToCommandBehavior.cs" line="47" column="1" />
+      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Behaviors/EditorToCommandBehavior.cs" relfile="BFSDeliveries/Behaviors/EditorToCommandBehavior.cs" line="56" column="1" />
+      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/ViewModels/DeliveryPhotosPageViewModel.cs" relfile="BFSDeliveries/ViewModels/DeliveryPhotosPageViewModel.cs" line="36" column="1" />
+      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/ViewModels/DeliveryPhotosPageViewModel.cs" relfile="BFSDeliveries/ViewModels/DeliveryPhotosPageViewModel.cs" line="151" column="1" />
+      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Models/DeliveryImage.cs" relfile="BFSDeliveries/Models/DeliveryImage.cs" line="20" column="1" />
+      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/ViewModels/DeliveryPhotosPageViewModel.cs" relfile="BFSDeliveries/ViewModels/DeliveryPhotosPageViewModel.cs" line="99" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.ItemProperties.BFSDeliveries.iOS PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.36CBFB2E-89F9-49BC-8340-3A290228078D" automaticSigning="True">
-    <MonoDevelop.MacDev.AppleDevelopmentTeam DeveloperId="SZBWYNRKP2" TeamId="43VVK6HC2E" />
-  </MonoDevelop.Ide.ItemProperties.BFSDeliveries.iOS>
+  <MonoDevelop.Ide.ItemProperties.BFSDeliveries.iOS PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.36CBFB2E-89F9-49BC-8340-3A290228078D" />
   <MultiItemStartupConfigurations />
 </Properties>
