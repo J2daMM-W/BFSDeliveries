@@ -49,7 +49,7 @@
                         <RowDefinition Height="60" />
                         <RowDefinition Height="20" />
                     </Grid.RowDefinitions>
-                    <Label Text="Select Pick Ticket Number(s) (REQUIRED)" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" />
+                    <Label Text="Select Pick Ticket Number(s)(REQUIRED)" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" />
                     <!--<controls:CustomEditor Text="{Binding SelectedOrdersText}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5">
                         <controls:CustomEditor.Behaviors>
                             <local:EditorToCommandBehavior Command="{Binding SelectDeliveriesCommand}"  Converter="{StaticResource SelectedItemsListConverter}" />

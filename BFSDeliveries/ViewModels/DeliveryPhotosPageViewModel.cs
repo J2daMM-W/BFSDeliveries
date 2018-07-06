@@ -110,13 +110,7 @@ namespace BFSDeliveries.ViewModels
         {
             string path = "DeliveryOrdersPage";
 
-            //var parameters = new NavigationParameters
-            //{
-            //    {"deliveryOrder", deliveryOrder}
-            //};
             await _navigationService.NavigateAsync(path);
-            //await _navigationService.NavigateAsync(path, parameters);
-
         }
 
         async void DisplayActionSheetButtons()

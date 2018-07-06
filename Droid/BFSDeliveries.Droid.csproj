@@ -191,6 +191,9 @@
     <AndroidResource Include="Resources\layout\Tabbar.axml" />
     <AndroidResource Include="Resources\layout\Toolbar.axml" />
     <AndroidResource Include="Resources\values\styles.xml" />
+    <AndroidResource Include="Resources\drawable\camera_icon.png" />
+    <AndroidResource Include="Resources\drawable\icon_bfs.png" />
+    <AndroidResource Include="Resources\drawable\logobfs.png" />
   </ItemGroup>
   <Import Project="..\BFSDeliveries\BFSDeliveries.projitems" Label="Shared" Condition="Exists('..\BFSDeliveries\BFSDeliveries.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
