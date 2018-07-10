@@ -21,12 +21,6 @@ namespace BFSDeliveries.ViewModels
         public ObservableCollection<DeliveryOrder> SelectedOrders { get; set; } // Orders to be submitted with a given form
 
         string text;
-        //public string PickTicketNumbers
-        //{
-        //    get => text;
-        //    set => SetProperty(ref text, value);
-        //}
-
         public string PickTicketNumbers
         {
             get { return text; }

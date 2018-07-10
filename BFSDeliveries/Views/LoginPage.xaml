@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="BFSDeliveries.Views.LoginPage" Title="LoginPage" BackgroundColor="#324C9F">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="BFSDeliveries.Views.LoginPage" 
+             BackgroundColor="#191970">
     <ContentPage.Resources>
         <ResourceDictionary>
             <OnPlatform x:Key="LogoImage" x:TypeArguments="ImageSource">
@@ -10,12 +13,12 @@
     </ContentPage.Resources>
     <StackLayout Spacing="15">
         <StackLayout.Padding>
-            <OnPlatform x:TypeArguments="Thickness" iOS="20,200,20, 0" Android="20,200, 20, 0" WinPhone="20, 0, 0, 0" />
+            <OnPlatform x:TypeArguments="Thickness" iOS="20,200,20, 0" Android="20,125, 20, 0" WinPhone="20, 0, 0, 0" />
         </StackLayout.Padding>
-        <StackLayout VerticalOptions="StartAndExpand" HeightRequest="370" BackgroundColor="Silver">
+        <StackLayout VerticalOptions="StartAndExpand" HeightRequest="370" >
             <Image Margin="10" BackgroundColor="#191970" Source="{StaticResource LogoImage}" VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand" />
 
-            <Label Text="BFS Deliveries" TextColor="Black" FontSize="32" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+            <Label Text="BFS Deliveries" TextColor="Silver" FontSize="40" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
 
             <Entry Margin="10" x:Name="userName"      Placeholder ="Username" />
             <Entry Margin="10" x:Name="userPassword"  Placeholder ="Password" IsPassword="True"/>

@@ -4,7 +4,7 @@
              x:Class="BFSDeliveries.Views.TasksPage" 
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms" 
              prism:ViewModelLocator.AutowireViewModel="True" 
-             Title="Tasks">
+             Title="{Binding Title}">
     <ContentPage.Content>
     </ContentPage.Content>
 </ContentPage>

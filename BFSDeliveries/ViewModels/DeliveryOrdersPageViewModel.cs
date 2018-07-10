@@ -13,29 +13,9 @@ namespace BFSDeliveries.ViewModels
 {
 	public class DeliveryOrdersPageViewModel : BaseViewModel
     {
-        //public ObservableCollection<DeliveryOrder> SelectedOrders { get; set; } //Orders to be submitted with a given form
         public SelectableObservableCollection<DeliveryOrder> Orders { get; set; } // Drivers delivery orders - (DeliveryOrders) - PickTicket Number List
+        public ObservableCollection<DeliveryOrder> SelectedOrders{ get; set; } //Orders to be submitted with a given form
 
-        //private ObservableCollection<DeliveryOrder> _selectedOrders;
-        public ObservableCollection<DeliveryOrder> SelectedOrders{ get; set; }
-        //{
-        //    get { return _selectedOrders; }
-        //    set
-        //    {
-        //        if (Equals(value, _selectedOrders)) return;
-        //        if (_selectedOrders != null)
-        //            _selectedOrders.CollectionChanged -= SelectedItemsCollectionChanged;
-        //        _selectedOrders = value;
-        //        if (value != null)
-        //            _selectedOrders.CollectionChanged += SelectedItemsCollectionChanged;
-        //        OnPropertyChanged(nameof(SelectedOrders));
-        //    }
-        //}
-
-        //private void SelectedItemsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        //{
-        //    OnPropertyChanged(nameof(SelectedOrders));
-        //}
 
         public ICommand DoneCommand { get; private set; }
         public ICommand RemoveSelectedCommand { get; }
@@ -49,10 +29,7 @@ namespace BFSDeliveries.ViewModels
             _navigationService = navigationService;
 
             Title = "Select PickTicket No.(s)";
-            //enableMultiSelect = true;
             DoneCommand = new Command(OnDoneSelected);
-            //RemoveSelectedCommand = new Command(OnRemoveSelected);
-            //ToggleSelectionCommand = new Command(OnToggleSelection);
 
             RetrieveDeliveryOrders();
         }
@@ -60,7 +37,6 @@ namespace BFSDeliveries.ViewModels
         private void RetrieveDeliveryOrders()
         {
             Orders = new SelectableObservableCollection<DeliveryOrder>();
-            //SelectedOrders = new ObservableCollection<DeliveryOrder>();
 
             string[] mockPickTickets = { "123456", "654321", "098765", "109283", "657483", "109283", "384756", "209384", "5682038", "797451" };
 
@@ -69,16 +45,6 @@ namespace BFSDeliveries.ViewModels
                 Orders.Add(new DeliveryOrder { PickTicketNumber = pickTicket });
             }
         }
-
-        //public bool EnableMultiSelect
-        //{
-        //    get { return enableMultiSelect; }
-        //    set
-        //    {
-        //        enableMultiSelect = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
 
         private void OnDoneSelected()
         {
@@ -106,7 +72,7 @@ namespace BFSDeliveries.ViewModels
             List<string> _selectedOrders = new List<string>();
             string _selectedResult;
 
-            //updated the Editor with selected orders
+            //update the Editor with selected orders
             foreach (var selectedOrder in SelectedOrders)
             {
                 _selectedOrders.Add(selectedOrder.PickTicketNumber);
@@ -114,15 +80,5 @@ namespace BFSDeliveries.ViewModels
 
             return _selectedResult = string.Join(",", _selectedOrders);
         }
-
-
-        //private void OnRemoveSelected()
-        //{
-        //    var selectedItems = Items.SelectedItems.ToArray();
-        //    foreach (var item in selectedItems)
-        //    {
-        //        Items.Remove(item);
-        //    }
-        //}
     }
 }

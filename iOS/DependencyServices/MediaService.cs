@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using BFSDeliveries.Interfaces;
 using BFSDeliveries.iOS.DependencyServices;
@@ -79,20 +80,18 @@ namespace BFSDeliveries.iOS.DependencyServices
             imagePickerC.FinishedPickingMedia += (sender, e) =>
             {
                 //Grab the image
-                UIImage image = (UIImage)e.Info.ObjectForKey(new NSString("UIImagePickerControllerOriginalImage"));
+                var image = (UIImage)e.Info.ObjectForKey(new NSString("UIImagePickerControllerOriginalImage"));
 
                 //we will need to rotate image based on it's orientation - pics are side ways
-                UIImage rotateImage = RotateImage(image, image.Orientation);
+                image = RotateImage(image, image.Orientation);
 
-                //adjust the amount of compression
-                rotateImage = rotateImage.Scale(new CGSize(rotateImage.Size.Width, rotateImage.Size.Height), 0.5f);
-
-                var jpegImage = rotateImage.AsPNG();
+                //adjust the amount of compression and convert to PNG
+                var jpegImage = image.Scale(image.Size, 0.5f).AsPNG();
 
                 //convert image to a byte array to be able to send to server via API
                 //also use byte array to populate image view
-                byte[] myByteArray = new byte[jpegImage.Length];
-                System.Runtime.InteropServices.Marshal.Copy(jpegImage.Bytes, myByteArray, 0, Convert.ToInt32(jpegImage.Length));
+                var myByteArray = new byte[jpegImage.Length];
+                Marshal.Copy(jpegImage.Bytes, myByteArray, 0, Convert.ToInt32(jpegImage.Length));
 
                 //Using messaging center to send byte array back up to the UI
                 MessagingCenter.Send<byte[]>(myByteArray, "ImageSelected");
@@ -124,13 +123,15 @@ namespace BFSDeliveries.iOS.DependencyServices
 
                     if (t.IsCanceled || t.Exception != null)
                     {
+                        //To do
                     }
                     else
                     {
-                        List<byte[]> images = new List<byte[]>();
+                        var images = new List<byte[]>();
 
-                        var items = t.Result as List<AssetResult>;
-                        foreach (var item in items)
+                        //t.Result
+
+                        foreach (var item in t.Result)
                         {
                             var path = ImageHelper.GetPathToImage(item.Image, item.Name);
                             var imageBytes = ImageHelper.ImageToBinary(path);
@@ -139,7 +140,7 @@ namespace BFSDeliveries.iOS.DependencyServices
                         }
 
                         //Send images back
-                        MessagingCenter.Send<App, List<byte[]>>((App)Xamarin.Forms.Application.Current, "ImagesSelected", images);
+                        MessagingCenter.Send((App)Xamarin.Forms.Application.Current, "ImagesSelected", images);
                     }
                 });
             });

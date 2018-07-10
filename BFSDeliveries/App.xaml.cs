@@ -12,6 +12,7 @@ namespace BFSDeliveries
         public static string BackendUrl = "https://localhost:5000";
 
         public App(Prism.IPlatformInitializer initializer = null) : base(initializer){}
+        //private static ILogger logger = DependencyService.Get<ILogManager>().GetLog();
 
         protected override void OnInitialized() 
         {
@@ -31,8 +32,9 @@ namespace BFSDeliveries
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterForNavigation<NavigationPage>();
+            containerRegistry.RegisterForNavigation<DeliveryPhotosPage>();
             containerRegistry.RegisterForNavigation<DeliveryOrdersPage>();
-            //containerRegistry.RegisterForNavigation<Views.MainPage>();
+            containerRegistry.RegisterForNavigation<MainPage>();
         }
     }
 }

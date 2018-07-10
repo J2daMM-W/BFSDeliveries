@@ -3,11 +3,11 @@ using Xamarin.Forms;
 
 namespace BFSDeliveries
 {
-    public class TasksPageViewModel
+    public class TasksPageViewModel: BaseViewModel
     {
         public TasksPageViewModel()
         {
-            //Title = "Tasks";
+            Title = "Tasks";
         }
     }
 }
