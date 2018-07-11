@@ -119,7 +119,7 @@ namespace BFSDeliveries.ViewModels
             else if (result == "Photo Library")
             {
                 // send to photo lib
-                Xamarin.Forms.DependencyService.Get<IMediaService>().UsePhotoGallery();
+                await Xamarin.Forms.DependencyService.Get<IMediaService>().UsePhotoGalleryAsync();
             }
 
             //Debug.WriteLine(result);

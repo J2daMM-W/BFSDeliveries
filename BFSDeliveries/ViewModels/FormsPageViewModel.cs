@@ -12,20 +12,6 @@ namespace BFSDeliveries.ViewModels
         public Command LoadFormsCommand { get; set; }
         public Command SelectedItemCommand { get; private set; }
 
-        //Form selectedForm;
-        //public Form SelectedForm
-        //{
-        //    get { return selectedForm; }
-        //    set
-        //    {
-        //        if (selectedForm != value)
-        //        {
-        //            selectedForm = value;
-        //            OnPropertyChanged("SelectedForm");
-        //        }
-        //    }
-        //}
-
         INavigationService _navigationService;
 
         public FormsPageViewModel(INavigationService navigationService)
@@ -34,8 +20,6 @@ namespace BFSDeliveries.ViewModels
 
             Title = "Forms";
             Forms = new ObservableCollection<Form>();
-
-            //var _form = form as Form;
 
             //TODO : need to change this to be dynamic - so we can always add different forms
             Forms.Add(new Form{

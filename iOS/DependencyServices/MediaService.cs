@@ -57,7 +57,7 @@ namespace BFSDeliveries.iOS.DependencyServices
             }
 
             //Send images back
-            MessagingCenter.Send<App, byte[]>((App)Xamarin.Forms.Application.Current, "CameraImage", imageAsBytes);
+            MessagingCenter.Send<byte[]>(imageAsBytes, "CameraImage");
 
         }
 
@@ -109,12 +109,12 @@ namespace BFSDeliveries.iOS.DependencyServices
         }
 
         //Get photos from album/gallery
-        public void UsePhotoGallery()
+        public async Task UsePhotoGalleryAsync()
         {
             var picker = ELCImagePickerViewController.Create(15);
             picker.MaximumImagesCount = 15;
 
-            picker.Completion.ContinueWith(t =>
+            await picker.Completion.ContinueWith(t =>
             {
                 picker.BeginInvokeOnMainThread(() =>
                 {
