@@ -44,7 +44,7 @@ namespace BFSDeliveries.Droid
 
             if (requestCode == OPENGALLERYCODE && resultCode == Result.Ok)
             {
-                List<string> images = new List<string>();
+                var images = new List<byte[]>();
 
                 if (data != null)
                 {
@@ -62,7 +62,9 @@ namespace BFSDeliveries.Droid
                                 //Rotate Image
                                 var imageRotated = ImageHelpers.RotateImage(path);
                                 var newPath = ImageHelpers.SaveFile("TmpPictures", imageRotated, System.DateTime.Now.ToString("yyyyMMddHHmmssfff"));
-                                images.Add(newPath);
+                                //images.Add(newPath);
+                                var imageBytes = ImageHelpers.ImageToBinary(path);
+                                images.Add(imageBytes);
                             }
                         }
                     }
@@ -76,57 +78,65 @@ namespace BFSDeliveries.Droid
                             //Rotate Image
                             var imageRotated = ImageHelpers.RotateImage(path);
                             var newPath = ImageHelpers.SaveFile("TmpPictures", imageRotated, System.DateTime.Now.ToString("yyyyMMddHHmmssfff"));
-                            images.Add(newPath);
+                            //images.Add(newPath);
+                            var imageBytes = ImageHelpers.ImageToBinary(path);
+                            images.Add(imageBytes);
                         }
                     }
 
-                    MessagingCenter.Send<App, List<string>>((App)Xamarin.Forms.Application.Current, "ImagesSelected", images);
+                    //MessagingCenter.Send<App, List<string>>((App)Xamarin.Forms.Application.Current, "ImagesSelected", images);
+                    //Send images back
+                    MessagingCenter.Send((App)Xamarin.Forms.Application.Current, "ImagesSelected", images);
                 }
             }
         }
 
-
-
         public String GetRealPathFromURI(Android.Net.Uri contentURI)
         {
-            try
+            Context context;
+
+            if (MainApplication.CurrentContext != null)
             {
-                ICursor imageCursor = null;
-                string fullPathToImage = "";
+                context = MainApplication.CurrentContext;
 
-                imageCursor = ContentResolver.Query(contentURI, null, null, null, null);
-                imageCursor.MoveToFirst();
-                int idx = imageCursor.GetColumnIndex(MediaStore.Images.ImageColumns.Data);
-
-                if (idx != -1)
+                try
                 {
-                    fullPathToImage = imageCursor.GetString(idx);
-                }
-                else
-                {
-                    ICursor cursor = null;
-                    var docID = DocumentsContract.GetDocumentId(contentURI);
-                    var id = docID.Split(':')[1];
-                    var whereSelect = MediaStore.Images.ImageColumns.Id + "=?";
-                    var projections = new string[] { MediaStore.Images.ImageColumns.Data };
+                    ICursor imageCursor = null;
+                    string fullPathToImage = "";
 
-                    cursor = ContentResolver.Query(MediaStore.Images.Media.InternalContentUri, projections, whereSelect, new string[] { id }, null);
-                    if (cursor.Count == 0)
+                    imageCursor = ContentResolver.Query(contentURI, null, null, null, null);
+                    imageCursor.MoveToFirst();
+                    int idx = imageCursor.GetColumnIndex(MediaStore.Images.ImageColumns.Data);
+
+                    if (idx != -1)
                     {
-                        cursor = ContentResolver.Query(MediaStore.Images.Media.ExternalContentUri, projections, whereSelect, new string[] { id }, null);
+                        fullPathToImage = imageCursor.GetString(idx);
                     }
-                    var colData = cursor.GetColumnIndexOrThrow(MediaStore.Images.ImageColumns.Data);
-                    cursor.MoveToFirst();
-                    fullPathToImage = cursor.GetString(colData);
+                    else
+                    {
+                        ICursor cursor = null;
+                        var docID = DocumentsContract.GetDocumentId(contentURI);
+                        var id = docID.Split(':')[1];
+                        var whereSelect = MediaStore.Images.ImageColumns.Id + "=?";
+                        var projections = new string[] { MediaStore.Images.ImageColumns.Data };
+
+                        cursor = ContentResolver.Query(MediaStore.Images.Media.InternalContentUri, projections, whereSelect, new string[] { id }, null);
+                        if (cursor.Count == 0)
+                        {
+                            cursor = ContentResolver.Query(MediaStore.Images.Media.ExternalContentUri, projections, whereSelect, new string[] { id }, null);
+                        }
+                        var colData = cursor.GetColumnIndexOrThrow(MediaStore.Images.ImageColumns.Data);
+                        cursor.MoveToFirst();
+                        fullPathToImage = cursor.GetString(colData);
+                    }
+                    return fullPathToImage;
                 }
-                return fullPathToImage;
-            }
-            catch (Exception ex)
-            {
-                Toast.MakeText(Forms.Context, "Unable to get path", ToastLength.Long).Show();
+                catch (Exception ex)
+                {
+                    Toast.MakeText(context, "Unable to get path", ToastLength.Long).Show();
+                }
 
             }
-
             return null;
         }
     }
