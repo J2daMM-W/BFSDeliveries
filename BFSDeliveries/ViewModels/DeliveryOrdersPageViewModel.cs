@@ -18,10 +18,6 @@ namespace BFSDeliveries.ViewModels
 
 
         public ICommand DoneCommand { get; private set; }
-        public ICommand RemoveSelectedCommand { get; }
-        public ICommand ToggleSelectionCommand { get; }
-        //private bool enableMultiSelect;
-
         INavigationService _navigationService { get; }
 
         public DeliveryOrdersPageViewModel(INavigationService navigationService)
@@ -48,7 +44,6 @@ namespace BFSDeliveries.ViewModels
 
         private void OnDoneSelected()
         {
-            //List<DeliveryOrder> selectedOrders = new List<DeliveryOrder>();
             SelectedOrders = new ObservableCollection<DeliveryOrder>();
             var selectedItems = Orders.SelectedItems.ToArray();
 
@@ -56,13 +51,11 @@ namespace BFSDeliveries.ViewModels
             {
                 SelectedOrders.Add(item);
             }
-
-            //SelectedOrders = new ObservableCollection<DeliveryOrder>(new[] { selectedOrders[0] });
                 
             string PickTicketsNumbers = GetPickTicketsFromSelectedOrders();
 
             //Send selected PickTickets  back
-            MessagingCenter.Send<App, string>((App)Application.Current,"SelectedOrders", PickTicketsNumbers);
+            MessagingCenter.Send((App)Application.Current,"SelectedOrders", PickTicketsNumbers);
 
             _navigationService.GoBackAsync();
         }

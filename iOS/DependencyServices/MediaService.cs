@@ -26,21 +26,21 @@ namespace BFSDeliveries.iOS.DependencyServices
 
         #endregion
 
-        public MediaService()
-        {
-            IsCameraAvailable = UIImagePickerController.IsSourceTypeAvailable(UIImagePickerControllerSourceType.Camera);
-        }
+        //public MediaService()
+        //{
+        //    IsCameraAvailable = UIImagePickerController.IsSourceTypeAvailable(UIImagePickerControllerSourceType.Camera);
+        //}
 
-        public bool IsCameraAvailable
-        {
-            get;
-            private set;
-        }
+        //public bool IsCameraAvailable
+        //{
+        //    get;
+        //    private set;
+        //}
 
         //TaskCompletionSource<Stream> taskCompletionSource;
         //UIImagePickerController imagePicker;
 
-        public async Task UseCamera()
+        public async Task UseCameraAsync()
         {
             //cameraImage = new DeliveryImage();
             var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions { PhotoSize = Plugin.Media.Abstractions.PhotoSize.Small });
@@ -114,6 +114,13 @@ namespace BFSDeliveries.iOS.DependencyServices
             var picker = ELCImagePickerViewController.Create(15);
             picker.MaximumImagesCount = 15;
 
+            var topController = UIApplication.SharedApplication.KeyWindow.RootViewController;
+            while (topController.PresentedViewController != null)
+            {
+                topController = topController.PresentedViewController;
+            }
+            topController.PresentViewController(picker, true, null);
+
             await picker.Completion.ContinueWith(t =>
             {
                 picker.BeginInvokeOnMainThread(() =>
@@ -144,13 +151,6 @@ namespace BFSDeliveries.iOS.DependencyServices
                     }
                 });
             });
-
-            var topController = UIApplication.SharedApplication.KeyWindow.RootViewController;
-            while (topController.PresentedViewController != null)
-            {
-                topController = topController.PresentedViewController;
-            }
-            topController.PresentViewController(picker, true, null);
         }
 
         //string Save(UIImage image, string name)

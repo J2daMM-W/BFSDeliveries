@@ -2,7 +2,7 @@
 
 namespace BFSDeliveries.Models
 {
-    public class DeliveryOrder
+    public class DeliveryOrder:BaseModel
     {
         public string PickTicketNumber { get; set; }
         public string LocationCode { get; set; }

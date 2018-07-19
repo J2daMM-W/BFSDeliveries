@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace BFSDeliveries.Models
 {
-    public class DeliveryForm
+    public class DeliveryForm:BaseModel
     {
         public List<DeliveryOrder> PickTicketNumbers = new List<DeliveryOrder>();
         public string Name { get; set; }

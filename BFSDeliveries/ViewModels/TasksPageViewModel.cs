@@ -1,7 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 
-namespace BFSDeliveries
+namespace BFSDeliveries.ViewModels
 {
     public class TasksPageViewModel: BaseViewModel
     {

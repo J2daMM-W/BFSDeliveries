@@ -144,12 +144,12 @@ namespace BFSDeliveries.ViewModels
             if (result == "Camera")
             {
                 //send to camera
-                await Xamarin.Forms.DependencyService.Get<IMediaService>().UseCamera();
+                await Xamarin.Forms.DependencyService.Get<IMediaService>().UseCameraAsync();
             }
             else if (result == "Photo Library")
             {
                 // send to photo lib
-                Xamarin.Forms.DependencyService.Get<IMediaService>().UsePhotoGalleryAsync();
+                await Xamarin.Forms.DependencyService.Get<IMediaService>().UsePhotoGalleryAsync();
             }
 
             //Debug.WriteLine(result);

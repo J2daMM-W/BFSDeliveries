@@ -9,7 +9,7 @@ namespace BFSDeliveries.Interfaces
     {
         //Task<Photo> GetPhotosUsingCamera();
         //Task PhotosUsingCamera();
-        Task UseCamera();
+        Task UseCameraAsync();
         Task UsePhotoGalleryAsync();
         //void ClearFiles(List<string> filePaths);
         //void OpenGallery();

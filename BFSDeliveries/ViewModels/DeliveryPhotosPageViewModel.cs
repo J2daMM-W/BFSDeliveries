@@ -15,11 +15,32 @@ namespace BFSDeliveries.ViewModels
 {
     public class DeliveryPhotosPageViewModel : BaseViewModel
     {
-        public Form form { get; set; }
-        public DeliveryForm delivery { get; set; }
         public ObservableCollection<DeliveryImage> SelectedImages { get; set; } // Selected Images 
         public ObservableCollection<DeliveryOrder> SelectedOrders { get; set; } // Orders to be submitted with a given form
 
+        #region Properties
+        /// <summary>
+        /// Gets or sets the DeliveryForm object.
+        /// </summary>
+        /// <value>deliveryForm</value>
+        private DeliveryForm deliveryForm;
+        public DeliveryForm DeliveryForm
+        {
+            get
+            {
+                return deliveryForm;
+            }
+            set
+            {
+                deliveryForm = value; 
+                OnPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets and sets the PickTicketNumbers string to be displayed.
+        /// </summary>
+        /// <value>text.</value>
         string text;
         public string PickTicketNumbers
         {
@@ -29,10 +50,12 @@ namespace BFSDeliveries.ViewModels
                 if (text != value)
                 {
                     text = value;
-                    OnPropertyChanged("PickTicketNumbers");
+                    OnPropertyChanged();
                 }
             }
         }
+        #endregion
+
 
         INavigationService _navigationService;
         IPageDialogService _pageDialogService;
@@ -41,25 +64,14 @@ namespace BFSDeliveries.ViewModels
         public DelegateCommand SubmitCommand { get; private set; }
         public ICommand GetSelectedOrdersCommand { get; private set; }
 
-        private bool _deletePhotosSelected;
-
-        public bool DeleteAttachedPhotos
-        {
-            get { return _deletePhotosSelected;  }
-            set 
-            {
-                _deletePhotosSelected = value;
-                OnPropertyChanged("DeleteAttachedPhotos");
-            }
-        }
-
-        protected ValidationHelper Validator { get; private set; }
+        //protected ValidationHelper Validator { get; private set; }
 
         public DeliveryPhotosPageViewModel(IPageDialogService pageDialogService, INavigationService navigationService)
         {
             Title = "Delivery Photos";
             SelectedImages = new ObservableCollection<DeliveryImage>();
             SelectedOrders = new ObservableCollection<DeliveryOrder>();
+            DeliveryForm = new DeliveryForm();
 
             _navigationService = navigationService;
             _pageDialogService = pageDialogService;
@@ -72,7 +84,7 @@ namespace BFSDeliveries.ViewModels
             async void executeMethod() => await SelectDeliveryOrders();
             GetSelectedOrdersCommand = new DelegateCommand(executeMethod);
 
-            Validator = new ValidationHelper();
+            //Validator = new ValidationHelper();
 
             //Subscribe notification for camera choice - remember to UnSubscribe
             MessagingCenter.Subscribe<App, byte[]>((App)Application.Current, "CameraImage", (s, imageAsBytes) =>
@@ -114,7 +126,7 @@ namespace BFSDeliveries.ViewModels
             if (result == "Camera")
             {
                 //send to camera
-                await Xamarin.Forms.DependencyService.Get<IMediaService>().UseCamera();
+                await Xamarin.Forms.DependencyService.Get<IMediaService>().UseCameraAsync();
             }
             else if (result == "Photo Library")
             {
@@ -135,15 +147,15 @@ namespace BFSDeliveries.ViewModels
             // Do form submit after verification - will show alert if verification failure
 
             //check if delete attched photos has been selected 
-            if(DeleteAttachedPhotos)
-            {
-                // get photos to delete
-                //var photosToDelete; 
+            //if(DeleteAttachedPhotos)
+            //{
+            //    // get photos to delete
+            //    //var photosToDelete; 
 
-                //call delete function
-                //Xamarin.Forms.DependencyService.Get<IFileManager>().DeleteFile();
+            //    //call delete function
+            //    //Xamarin.Forms.DependencyService.Get<IFileManager>().DeleteFile();
                 
-            }
+            //}
 
             _navigationService.GoBackAsync();
         }

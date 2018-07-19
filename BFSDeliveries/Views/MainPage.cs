@@ -47,12 +47,12 @@ namespace BFSDeliveries
                     break;
 
                 default:
-                    tasksPage = new TasksPage()
+                    tasksPage = new NavigationPage(new TasksPage())
                     {
                         Title = "Tasks"
                     };
 
-                    formsPage = new FormsPage()
+                    formsPage = new NavigationPage(new FormsPage())
                     {
                         Title = "Forms"
                     };
