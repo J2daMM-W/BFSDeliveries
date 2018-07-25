@@ -6,6 +6,7 @@ using Android.Content;
 using Android.Widget;
 using BFSDeliveries.Droid.DependencyServices;
 using BFSDeliveries.Interfaces;
+using Microsoft.AppCenter.Crashes;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
 using Plugin.Permissions;
@@ -75,7 +76,7 @@ namespace BFSDeliveries.Droid.DependencyServices
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.ToString());
+                Crashes.TrackError(ex);
                 Toast.MakeText(context, "Error , Camera Not Available", ToastLength.Long).Show();
             }
         }
@@ -121,7 +122,7 @@ namespace BFSDeliveries.Droid.DependencyServices
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine(ex.ToString());
+                    Crashes.TrackError(ex);
                     Toast.MakeText(context, "Error. Can not continue, try again.", ToastLength.Long).Show();
                 }
             }

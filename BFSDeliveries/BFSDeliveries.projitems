@@ -67,7 +67,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Controls\SelectableObservableCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\ExtendedEditor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\CustomEditor.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\DeliveryForm.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IFileManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\DeliveryPhotosPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\DeliveryPhotosPage.xaml.cs">

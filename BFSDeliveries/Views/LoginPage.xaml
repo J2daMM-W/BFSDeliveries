@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             x:Class="BFSDeliveries.Views.LoginPage" 
-             BackgroundColor="#191970">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="BFSDeliveries.Views.LoginPage" BackgroundColor="#191970">
     <ContentPage.Resources>
         <ResourceDictionary>
             <OnPlatform x:Key="LogoImage" x:TypeArguments="ImageSource">
@@ -11,29 +8,26 @@
             </OnPlatform>
         </ResourceDictionary>
     </ContentPage.Resources>
-    <StackLayout Spacing="15">
-        <StackLayout.Padding>
-            <OnPlatform x:TypeArguments="Thickness" iOS="20,200,20, 0" Android="20,125, 20, 0" WinPhone="20, 0, 0, 0" />
-        </StackLayout.Padding>
-        <StackLayout VerticalOptions="StartAndExpand" HeightRequest="370" >
-            <Image Margin="10" BackgroundColor="#191970" Source="{StaticResource LogoImage}" VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand" />
-
-            <Label Text="BFS Deliveries" TextColor="Silver" FontSize="40" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-
-            <Entry Margin="10" x:Name="userName"      Placeholder ="Username" />
-            <Entry Margin="10" x:Name="userPassword"  Placeholder ="Password" IsPassword="True"/>
-     
-            <Button Margin="10"  Text="Login" Clicked="OnLoginButtonClicked"
-              BackgroundColor="Green" TextColor="Black"
-              FontSize="30" BorderRadius="3"/>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Spacing="15">
+                <StackLayout.Padding>
+                    <OnPlatform x:TypeArguments="Thickness" iOS="20,150,20, 0" Android="20,125, 20, 0" WinPhone="20, 0, 0, 0" />
+                </StackLayout.Padding>
+                <StackLayout VerticalOptions="StartAndExpand" HeightRequest="370">
+                    <Image Margin="10" BackgroundColor="#191970" Source="{StaticResource LogoImage}" VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand" />
+                    <Label Text="BFS Deliveries" TextColor="Silver" FontSize="40" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                    <Entry Margin="10" x:Name="userName" Placeholder="Username" Text="{Binding Username}" />
+                    <Entry Margin="10" x:Name="userPassword" Placeholder="Password" IsPassword="True" Text="{Binding Password}" />
+                    <Button Margin="10" Text="Log In" Clicked="OnLoginButtonClicked" BackgroundColor="Green" TextColor="Black" FontSize="30" BorderRadius="3" />
+                    <!--  Command="{Binding LogInCommand}"/>
             
-            <!--<Label x:Name="messageLabel" TextColor="Red" />-->
-            
-        </StackLayout>
-<!--        <Grid ColumnSpacing="3" BackgroundColor="Silver">
+            <Label x:Name="messageLabel" TextColor="Red" />-->
+                </StackLayout>
+                <!--        <Grid ColumnSpacing="3" BackgroundColor="Silver">
             
         </Grid>-->
-
-    </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
 </ContentPage>
-

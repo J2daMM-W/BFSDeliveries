@@ -12,10 +12,11 @@ using Xamarin.Forms;
 using BFSDeliveries.Droid.Helpers;
 using Android.Provider;
 using Plugin.Permissions;
+using Microsoft.AppCenter.Crashes;
 
 namespace BFSDeliveries.Droid
 {
-    [Activity(Label = "BFSDeliveries.Droid", Icon = "@drawable/icon", Theme = "@style/MyTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Portrait)]
+    [Activity(Label = "BFSDeliveries", Icon = "@drawable/icon", Theme = "@style/MyTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Portrait)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         public static int OPENGALLERYCODE = 200;  //Used to determine which service is being called - photoselection
@@ -62,28 +63,19 @@ namespace BFSDeliveries.Droid
 
                         if (TryGetRealPathFromURI(item.Uri, out string path))
                         {
-                            images.Add(RotateImage(path));
+                            images.Add(ImageHelper.ImageToBinary(path));
                         }
                     }
                 }
                 else if (TryGetRealPathFromURI(data.Data, out string path))
                 {
-                    images.Add(RotateImage(path));
+                    images.Add(ImageHelper.ImageToBinary(path));
                 }
 
                 //MessagingCenter.Send<App, List<string>>((App)Xamarin.Forms.Application.Current, "ImagesSelected", images);
                 //Send images back
                 MessagingCenter.Send((App)Xamarin.Forms.Application.Current, "ImagesSelected", images);
             }
-        }
-
-        private byte[] RotateImage(string path)
-        {
-            //Rotate Image
-            var imageRotated = ImageHelpers.RotateImage(path);
-            var newPath = ImageHelpers.SaveFile("TmpPictures", imageRotated, System.DateTime.Now.ToString("yyyyMMddHHmmssfff"));
-            //images.Add(newPath);
-            return ImageHelpers.ImageToBinary(path);
         }
 
         public bool TryGetRealPathFromURI(Android.Net.Uri contentURI, out string path)
@@ -133,7 +125,7 @@ namespace BFSDeliveries.Droid
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine(ex.ToString());
+                    Crashes.TrackError(ex);
                     Toast.MakeText(context, "Unable to get path", ToastLength.Long).Show();
                 }
             }

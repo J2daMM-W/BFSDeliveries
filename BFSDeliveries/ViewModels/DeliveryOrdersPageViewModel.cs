@@ -55,7 +55,8 @@ namespace BFSDeliveries.ViewModels
             string PickTicketsNumbers = GetPickTicketsFromSelectedOrders();
 
             //Send selected PickTickets  back
-            MessagingCenter.Send((App)Application.Current,"SelectedOrders", PickTicketsNumbers);
+            //MessagingCenter.Send((App)Application.Current,"SelectedOrders", PickTicketsNumbers);
+            MessagingCenter.Send((App)Application.Current, "SelectedOrders", SelectedOrders);
 
             _navigationService.GoBackAsync();
         }

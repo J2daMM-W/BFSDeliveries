@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Runtime.CompilerServices;
 using BFSDeliveries.Interfaces;
@@ -10,9 +11,13 @@ namespace BFSDeliveries.iOS.DependencyServices
 {
     public class FileManager : IFileManager
     {
-        public void DeleteFile(string source)
+        public void DeleteFile(List<ImageSource> imagesSource)
         {
-            File.Delete(source);
+            foreach(var source in imagesSource)
+            {
+                //File.Delete(source);
+            }
+
         }
     }
 }

@@ -61,52 +61,52 @@ namespace BFSDeliveries.iOS.DependencyServices
 
         }
 
-        private void GotAccessToCamera()
-        {
-            //create image picker object
-            var imagePickerC = new UIImagePickerController { SourceType = UIImagePickerControllerSourceType.Camera };
+        //private void GotAccessToCamera()
+        //{
+        //    //create image picker object
+        //    var imagePickerC = new UIImagePickerController { SourceType = UIImagePickerControllerSourceType.Camera };
 
-            //Find the top most view controller to launch the camera
-            var window = UIApplication.SharedApplication.KeyWindow;
-            var vc = window.RootViewController;
-            while (vc.PresentedViewController != null)
-            {
-                vc = vc.PresentedViewController;
-            }
+        //    //Find the top most view controller to launch the camera
+        //    var window = UIApplication.SharedApplication.KeyWindow;
+        //    var vc = window.RootViewController;
+        //    while (vc.PresentedViewController != null)
+        //    {
+        //        vc = vc.PresentedViewController;
+        //    }
 
-            vc.PresentViewController(imagePickerC, true, null);
+        //    vc.PresentViewController(imagePickerC, true, null);
 
-            //Callback method for when picture user has finished
-            imagePickerC.FinishedPickingMedia += (sender, e) =>
-            {
-                //Grab the image
-                var image = (UIImage)e.Info.ObjectForKey(new NSString("UIImagePickerControllerOriginalImage"));
+        //    //Callback method for when picture user has finished
+        //    imagePickerC.FinishedPickingMedia += (sender, e) =>
+        //    {
+        //        //Grab the image
+        //        var image = (UIImage)e.Info.ObjectForKey(new NSString("UIImagePickerControllerOriginalImage"));
 
-                //we will need to rotate image based on it's orientation - pics are side ways
-                image = RotateImage(image, image.Orientation);
+        //        //we will need to rotate image based on it's orientation - pics are side ways
+        //        image = RotateImage(image, image.Orientation);
 
-                //adjust the amount of compression and convert to PNG
-                var jpegImage = image.Scale(image.Size, 0.5f).AsPNG();
+        //        //adjust the amount of compression and convert to PNG
+        //        var jpegImage = image.Scale(image.Size, 0.5f).AsPNG();
 
-                //convert image to a byte array to be able to send to server via API
-                //also use byte array to populate image view
-                var myByteArray = new byte[jpegImage.Length];
-                Marshal.Copy(jpegImage.Bytes, myByteArray, 0, Convert.ToInt32(jpegImage.Length));
+        //        //convert image to a byte array to be able to send to server via API
+        //        //also use byte array to populate image view
+        //        var myByteArray = new byte[jpegImage.Length];
+        //        Marshal.Copy(jpegImage.Bytes, myByteArray, 0, Convert.ToInt32(jpegImage.Length));
 
-                //Using messaging center to send byte array back up to the UI
-                MessagingCenter.Send<byte[]>(myByteArray, "ImageSelected");
+        //        //Using messaging center to send byte array back up to the UI
+        //        MessagingCenter.Send<byte[]>(myByteArray, "ImageSelected");
 
-                //Dismiss the camera view controller on UI thread
-                Device.BeginInvokeOnMainThread(() =>
-                {
-                    vc.DismissViewController(true, null);
-                });
-            };
+        //        //Dismiss the camera view controller on UI thread
+        //        Device.BeginInvokeOnMainThread(() =>
+        //        {
+        //            vc.DismissViewController(true, null);
+        //        });
+        //    };
 
-            //Callback method for when user cancels taking picture action
-            imagePickerC.Canceled += (sender, e) => vc.DismissViewController(true, null);
+        //    //Callback method for when user cancels taking picture action
+        //    imagePickerC.Canceled += (sender, e) => vc.DismissViewController(true, null);
 
-        }
+        //}
 
         //Get photos from album/gallery
         public async Task UsePhotoGalleryAsync()

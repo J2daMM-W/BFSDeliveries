@@ -10,6 +10,8 @@ using System.IO;
 using System.Windows.Input;
 using System.Threading.Tasks;
 using MvvmValidation;
+using Microsoft.AppCenter.Crashes;
+using System;
 
 namespace BFSDeliveries.ViewModels
 {
@@ -23,16 +25,16 @@ namespace BFSDeliveries.ViewModels
         /// Gets or sets the DeliveryForm object.
         /// </summary>
         /// <value>deliveryForm</value>
-        private DeliveryForm deliveryForm;
-        public DeliveryForm DeliveryForm
+        private DeliveryForm form;
+        public DeliveryForm Form 
         {
             get
             {
-                return deliveryForm;
+                return form;
             }
             set
             {
-                deliveryForm = value; 
+                form = value; 
                 OnPropertyChanged();
             }
         }
@@ -56,7 +58,6 @@ namespace BFSDeliveries.ViewModels
         }
         #endregion
 
-
         INavigationService _navigationService;
         IPageDialogService _pageDialogService;
         public DelegateCommand GetPhotoCommand { get; private set; }
@@ -71,7 +72,7 @@ namespace BFSDeliveries.ViewModels
             Title = "Delivery Photos";
             SelectedImages = new ObservableCollection<DeliveryImage>();
             SelectedOrders = new ObservableCollection<DeliveryOrder>();
-            DeliveryForm = new DeliveryForm();
+            //Form = new DeliveryForm();
 
             _navigationService = navigationService;
             _pageDialogService = pageDialogService;
@@ -95,7 +96,7 @@ namespace BFSDeliveries.ViewModels
             });
 
             //Subscribe notification for photo library choice - remember to UnSubscribe
-            MessagingCenter.Subscribe<App, List<byte[]>>((App)Application.Current, "ImagesSelected", (s, images) =>
+            MessagingCenter.Subscribe<App,List<byte[]>>((App)Application.Current, "ImagesSelected", (s, images) =>
             {
                 foreach (byte[] selectedImage in images)
                 {
@@ -106,10 +107,26 @@ namespace BFSDeliveries.ViewModels
             });
 
             //Subscribe notification for Selected Orders Pickticket Numbers - remember to UnSubscribe
-            MessagingCenter.Subscribe<App, string>((App)Application.Current, "SelectedOrders", (s, pickTicketNumbers) =>
+            //MessagingCenter.Subscribe<App, string>((App)Application.Current, "SelectedOrders", (s, pickTicketNumbers) =>
+            //{
+            //    PickTicketNumbers = pickTicketNumbers;
+            //});
+
+            MessagingCenter.Subscribe<App, ObservableCollection<DeliveryOrder>>((App)Application.Current, "SelectedOrders", (s, SelectedOrders) =>
             {
-                PickTicketNumbers = pickTicketNumbers;
+                List<string> _selectedOrders = new List<string>();
+
+                //update the Editor with selected orders
+                foreach(var selectedOrder in SelectedOrders)
+                {
+                    _selectedOrders.Add(selectedOrder.PickTicketNumber);
+                }
+
+                this.SelectedOrders = SelectedOrders;
+                PickTicketNumbers = string.Join(",", _selectedOrders);
             });
+
+            this.Form = new DeliveryForm();
         }
 
         async Task SelectDeliveryOrders()
@@ -144,18 +161,46 @@ namespace BFSDeliveries.ViewModels
 
         void ExecuteFormSubmission()
         {
-            // Do form submit after verification - will show alert if verification failure
+            var deliveryData = Form;
+
+            //update form with PickTicket List and SelectedImages List
+            foreach (var selectedOrder in SelectedOrders)
+            {
+                deliveryData.PickTicketNumbers.Add(selectedOrder);
+            }
+
+            foreach(var selectedImage in SelectedImages)
+            {
+                deliveryData.SelectedImages.Add(selectedImage);
+            }
+
+            // Do form submit after verification PickTickeNumber field can't be empty 
+            //will show alert if verification failure
+
+
+            //check if there is network if not send for to outbox.
+
 
             //check if delete attched photos has been selected 
-            //if(DeleteAttachedPhotos)
-            //{
-            //    // get photos to delete
-            //    //var photosToDelete; 
+            if(deliveryData.DeleteAttachedPhotos)
+            {
+                var imageSource = new List<ImageSource>();
+                // get photos to delete
+                foreach(var photosToDelete in deliveryData.SelectedImages)
+                {
+                    imageSource.Add(photosToDelete.Source);
+                }
+                //call delete function
+                try
+                {
+                    Xamarin.Forms.DependencyService.Get<IFileManager>().DeleteFile(imageSource);
+                }
+                catch (Exception ex)
+                {
+                    Crashes.TrackError(ex);   
+                }
 
-            //    //call delete function
-            //    //Xamarin.Forms.DependencyService.Get<IFileManager>().DeleteFile();
-                
-            //}
+            }
 
             _navigationService.GoBackAsync();
         }
