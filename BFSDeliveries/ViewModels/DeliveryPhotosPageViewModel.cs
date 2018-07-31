@@ -17,7 +17,8 @@ namespace BFSDeliveries.ViewModels
 {
     public class DeliveryPhotosPageViewModel : BaseViewModel
     {
-        public ObservableCollection<DeliveryImage> SelectedImages { get; set; } // Selected Images 
+        //public ObservableCollection<DeliveryImage> SelectedImages { get; set; } // Selected Images 
+        public ObservableCollection<DeliveryImage> DeliveryImages { get; set; } // Selected Images to attach to delivery form
         public ObservableCollection<DeliveryOrder> SelectedOrders { get; set; } // Orders to be submitted with a given form
 
         #region Properties
@@ -25,16 +26,16 @@ namespace BFSDeliveries.ViewModels
         /// Gets or sets the DeliveryForm object.
         /// </summary>
         /// <value>deliveryForm</value>
-        private DeliveryForm form;
-        public DeliveryForm Form 
+        private DeliveryForm deliveryForm;
+        public DeliveryForm DeliveryForm
         {
             get
             {
-                return form;
+                return deliveryForm;
             }
             set
             {
-                form = value; 
+                deliveryForm = value;
                 OnPropertyChanged();
             }
         }
@@ -70,7 +71,8 @@ namespace BFSDeliveries.ViewModels
         public DeliveryPhotosPageViewModel(IPageDialogService pageDialogService, INavigationService navigationService)
         {
             Title = "Delivery Photos";
-            SelectedImages = new ObservableCollection<DeliveryImage>();
+            //SelectedImages = new ObservableCollection<DeliveryImage>();
+            DeliveryImages = new ObservableCollection<DeliveryImage>();
             SelectedOrders = new ObservableCollection<DeliveryOrder>();
             //Form = new DeliveryForm();
 
@@ -87,37 +89,27 @@ namespace BFSDeliveries.ViewModels
 
             //Validator = new ValidationHelper();
 
-            //Subscribe notification for camera choice - remember to UnSubscribe
-            MessagingCenter.Subscribe<App, byte[]>((App)Application.Current, "CameraImage", (s, imageAsBytes) =>
-            {
-                var imageSource = ImageSource.FromStream(() => new MemoryStream(imageAsBytes));
-
-                SelectedImages.Add(new DeliveryImage { Source = imageSource, OrgImage = imageAsBytes });
-            });
-
-            //Subscribe notification for photo library choice - remember to UnSubscribe
-            MessagingCenter.Subscribe<App,List<byte[]>>((App)Application.Current, "ImagesSelected", (s, images) =>
-            {
-                foreach (byte[] selectedImage in images)
-                {
-                    var newImage = ImageSource.FromStream(() => new MemoryStream(selectedImage));
-
-                    SelectedImages.Add(new DeliveryImage { Source = newImage, OrgImage = selectedImage });
-                }
-            });
+            //Subscribe notification for both camera choice and  photo library choice - remember to UnSubscribe
+            MessagingCenter.Subscribe<App, ObservableCollection<DeliveryImage>>((App)Application.Current, "SelectedImages", (s, SelectedImages) =>
+             {
+                 foreach (var selectedImage in SelectedImages)
+                 {
+                     DeliveryImages.Add(new DeliveryImage
+                     {
+                         ImagePath = selectedImage.ImagePath,
+                         Source = selectedImage.Source,
+                         OrgImage = selectedImage.OrgImage
+                     });
+                 }
+             });
 
             //Subscribe notification for Selected Orders Pickticket Numbers - remember to UnSubscribe
-            //MessagingCenter.Subscribe<App, string>((App)Application.Current, "SelectedOrders", (s, pickTicketNumbers) =>
-            //{
-            //    PickTicketNumbers = pickTicketNumbers;
-            //});
-
             MessagingCenter.Subscribe<App, ObservableCollection<DeliveryOrder>>((App)Application.Current, "SelectedOrders", (s, SelectedOrders) =>
             {
                 List<string> _selectedOrders = new List<string>();
 
                 //update the Editor with selected orders
-                foreach(var selectedOrder in SelectedOrders)
+                foreach (var selectedOrder in SelectedOrders)
                 {
                     _selectedOrders.Add(selectedOrder.PickTicketNumber);
                 }
@@ -126,7 +118,7 @@ namespace BFSDeliveries.ViewModels
                 PickTicketNumbers = string.Join(",", _selectedOrders);
             });
 
-            this.Form = new DeliveryForm();
+            this.DeliveryForm = new DeliveryForm();
         }
 
         async Task SelectDeliveryOrders()
@@ -161,45 +153,63 @@ namespace BFSDeliveries.ViewModels
 
         void ExecuteFormSubmission()
         {
-            var deliveryData = Form;
+            var deliveryFormData = DeliveryForm;
 
             //update form with PickTicket List and SelectedImages List
             foreach (var selectedOrder in SelectedOrders)
             {
-                deliveryData.PickTicketNumbers.Add(selectedOrder);
+                deliveryFormData.PickTicketNumbers.Add(selectedOrder);
             }
 
-            foreach(var selectedImage in SelectedImages)
+            foreach (var selectedImage in DeliveryImages)
             {
-                deliveryData.SelectedImages.Add(selectedImage);
+                deliveryFormData.DeliveryImages.Add(selectedImage);
             }
 
-            // Do form submit after verification PickTickeNumber field can't be empty 
+            // To submit form there needs to be a verification since  PickTickeNumber field can't be empty 
             //will show alert if verification failure
 
 
-            //check if there is network if not send for to outbox.
-
-
-            //check if delete attched photos has been selected 
-            if(deliveryData.DeleteAttachedPhotos)
+            //check if there is network if not send form to outbox.Will keep it there and when network is back active sent it.
+            //Check whether the device is connected, and if so, whether the connection
+            //is wifi or mobile (it could be something else).
+            try
             {
-                var imageSource = new List<ImageSource>();
-                // get photos to delete
-                foreach(var photosToDelete in deliveryData.SelectedImages)
+                bool internetActive = Xamarin.Forms.DependencyService.Get<IDeviceState>().isNetworkReachable();
+
+
+                if (internetActive)
                 {
-                    imageSource.Add(photosToDelete.Source);
+
+                }
+                else
+                {
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Crashes.TrackError(ex);
+            }
+            //check if delete attched photos has been selected 
+            if (deliveryFormData.DeleteAttachedPhotos)
+            {
+                var imagePaths = new List<string>();
+                // get photos to delete
+                foreach (var photosToDelete in deliveryFormData.DeliveryImages)
+                {
+                    imagePaths.Add(photosToDelete.ImagePath);
                 }
                 //call delete function
                 try
                 {
-                    Xamarin.Forms.DependencyService.Get<IFileManager>().DeleteFile(imageSource);
+                    Xamarin.Forms.DependencyService.Get<IFileManager>().DeleteFile(imagePaths);
                 }
                 catch (Exception ex)
                 {
-                    Crashes.TrackError(ex);   
+                    Crashes.TrackError(ex);
                 }
-
             }
 
             _navigationService.GoBackAsync();

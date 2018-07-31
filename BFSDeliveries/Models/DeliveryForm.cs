@@ -14,6 +14,6 @@ namespace BFSDeliveries.Models
         public bool NoReturnsAvailable { get; set; }
         public bool DamagedProductsNoted { get; set; }
         public bool DeleteAttachedPhotos { get; set; }
-		public List<DeliveryImage> SelectedImages = new List<DeliveryImage>();
+        public List<DeliveryImage> DeliveryImages = new List<DeliveryImage>();
     }
 }

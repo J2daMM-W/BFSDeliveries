@@ -6,6 +6,6 @@ namespace BFSDeliveries.Interfaces
 {
     public interface IFileManager
     {
-        void DeleteFile(List<ImageSource> source);
+        void DeleteFile(List<string> imagePaths);
     }
 }

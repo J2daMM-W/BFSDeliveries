@@ -8,7 +8,7 @@ namespace BFSDeliveries
     {
         public MainPage()
         {
-            Page formsPage, tasksPage, settingsPage = null;
+            Page formsPage, tasksPage, outBoxPage, settingsPage = null;
 
             switch (Device.RuntimePlatform)
             {
@@ -21,6 +21,11 @@ namespace BFSDeliveries
                     formsPage = new NavigationPage(new FormsPage())
                     {
                         Title = "Forms"
+                    };
+
+                    outBoxPage = new NavigationPage(new OutBoxPage())
+                    {
+                        Title = "OutBox"
                     };
 
                     settingsPage = new NavigationPage(new SettingsPage())
@@ -40,6 +45,7 @@ namespace BFSDeliveries
 
                     tasksPage.Icon = "tab_about.png";
                     formsPage.Icon = "tab_feed.png";
+                    outBoxPage.Icon = "tab_feed.png";
                     settingsPage.Icon = "tab_settings.png";
 
                     //itemsPage.Icon = "tab_feed.png";
@@ -55,6 +61,11 @@ namespace BFSDeliveries
                     formsPage = new NavigationPage(new FormsPage())
                     {
                         Title = "Forms"
+                    };
+
+                    outBoxPage = new NavigationPage(new OutBoxPage())
+                    {
+                        Title = "OutBox"
                     };
 
                     settingsPage = new NavigationPage(new SettingsPage())
@@ -77,6 +88,7 @@ namespace BFSDeliveries
 
             Children.Add(tasksPage);
             Children.Add(formsPage);
+            Children.Add(outBoxPage);
             Children.Add(settingsPage);
             //Children.Add(itemsPage);
 

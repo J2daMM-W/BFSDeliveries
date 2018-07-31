@@ -653,6 +653,7 @@
     <Compile Include="CustomRenderers\ImagesScrollViewRenderer.cs" />
     <Compile Include="CustomRenderers\FormEditorRenderer.cs" />
     <Compile Include="DependencyServices\FileManager.cs" />
+    <Compile Include="DependencyServices\DeviceState.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Entitlements.plist" />

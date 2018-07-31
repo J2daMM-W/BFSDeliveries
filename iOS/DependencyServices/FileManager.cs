@@ -1,21 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Runtime.CompilerServices;
 using BFSDeliveries.Interfaces;
 using BFSDeliveries.iOS.DependencyServices;
-using Xamarin.Forms;
 
 [assembly: Xamarin.Forms.Dependency(typeof(FileManager))]
 namespace BFSDeliveries.iOS.DependencyServices
 {
     public class FileManager : IFileManager
     {
-        public void DeleteFile(List<ImageSource> imagesSource)
+        public void DeleteFile(List<string> imagePaths)
         {
-            foreach(var source in imagesSource)
+            foreach(var imagePath in imagePaths)
             {
-                //File.Delete(source);
+                File.Delete(imagePath);
             }
 
         }

@@ -52,7 +52,7 @@ namespace BFSDeliveries.ViewModels
                 SelectedOrders.Add(item);
             }
                 
-            string PickTicketsNumbers = GetPickTicketsFromSelectedOrders();
+            //string PickTicketsNumbers = GetPickTicketsFromSelectedOrders();
 
             //Send selected PickTickets  back
             //MessagingCenter.Send((App)Application.Current,"SelectedOrders", PickTicketsNumbers);
@@ -61,18 +61,18 @@ namespace BFSDeliveries.ViewModels
             _navigationService.GoBackAsync();
         }
 
-        private string GetPickTicketsFromSelectedOrders()
-        {
-            List<string> _selectedOrders = new List<string>();
-            string _selectedResult;
+        //private string GetPickTicketsFromSelectedOrders()
+        //{
+        //    List<string> _selectedOrders = new List<string>();
+        //    string _selectedResult;
 
-            //update the Editor with selected orders
-            foreach (var selectedOrder in SelectedOrders)
-            {
-                _selectedOrders.Add(selectedOrder.PickTicketNumber);
-            }
+        //    //update the Editor with selected orders
+        //    foreach (var selectedOrder in SelectedOrders)
+        //    {
+        //        _selectedOrders.Add(selectedOrder.PickTicketNumber);
+        //    }
 
-            return _selectedResult = string.Join(",", _selectedOrders);
-        }
+        //    return _selectedResult = string.Join(",", _selectedOrders);
+        //}
     }
 }

@@ -16,6 +16,12 @@ namespace BFSDeliveries.Models
             set;
         }
 
+        public string ImagePath
+        {
+            get;
+            set;
+        }
+
         public ImageSource Source
         {
             get;

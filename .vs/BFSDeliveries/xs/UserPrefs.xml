@@ -1,26 +1,26 @@
 ﻿<Properties StartupConfiguration="{C035F152-F9BB-41A2-806F-48963DCA952A}|Default">
   <MonoDevelop.Ide.ItemProperties.BFSDeliveries.MobileAppService PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.ItemProperties.BFSDeliveries.Droid AndroidDesignerPreferredDevice="Nexus 4" PreferredExecutionTarget="Android.Nexus 7 (Marshmallow)" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="BFSDeliveries/Models/DeliveryImage.cs">
+  <MonoDevelop.Ide.ItemProperties.BFSDeliveries.Droid AndroidDesignerPreferredDevice="Nexus 4" PreferredExecutionTarget="Android.45332808" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="BFSDeliveries/Views/MainPage.cs">
     <Files>
-      <File FileName="BFSDeliveries/Views/DeliveryPhotosPage.xaml" Line="70" Column="120" />
-      <File FileName="BFSDeliveries/ViewModels/DeliveryPhotosPageViewModel.cs" Line="174" Column="46" />
-      <File FileName="iOS/DependencyServices/MediaService.cs" Line="109" Column="12" />
-      <File FileName="iOS/DependencyServices/FileManager.cs" Line="15" Column="10" />
+      <File FileName="BFSDeliveries/Views/DeliveryPhotosPage.xaml" Line="102" Column="15" />
+      <File FileName="BFSDeliveries/ViewModels/DeliveryPhotosPageViewModel.cs" Line="212" Column="18" />
+      <File FileName="iOS/DependencyServices/MediaService.cs" Line="11" Column="20" />
+      <File FileName="Droid/DependencyServices/MediaService.cs" Line="14" Column="21" />
+      <File FileName="iOS/DependencyServices/FileManager.cs" Line="18" Column="1" />
       <File FileName="BFSDeliveries/Views/DeliveryOrdersPage.xaml" Line="36" Column="1" />
-      <File FileName="BFSDeliveries/ViewModels/DeliveryOrdersPageViewModel.cs" Line="61" Column="1" />
-      <File FileName="Droid/MainActivity.cs" Line="128" Column="20" />
-      <File FileName="Droid/Helpers/ImageHelper.cs" Line="28" Column="10" />
-      <File FileName="Droid/DependencyServices/MediaService.cs" Line="18" Column="2" />
-      <File FileName="Droid/MainApplication.cs" Line="10" Column="67" />
+      <File FileName="BFSDeliveries/ViewModels/DeliveryOrdersPageViewModel.cs" Line="77" Column="6" />
+      <File FileName="Droid/MainActivity.cs" Line="25" Column="6" />
+      <File FileName="Droid/Helpers/ImageHelper.cs" Line="130" Column="10" />
+      <File FileName="Droid/MainApplication.cs" Line="10" Column="89" />
       <File FileName="BFSDeliveries/Controls/ImagesScrollView.cs" Line="18" Column="65" />
-      <File FileName="BFSDeliveries/Interfaces/IMediaService.cs" Line="13" Column="37" />
-      <File FileName="BFSDeliveries/App.xaml.cs" Line="14" Column="52" />
-      <File FileName="BFSDeliveries/Interfaces/IFileManager.cs" Line="10" Column="6" />
-      <File FileName="BFSDeliveries/App.xaml" Line="22" Column="1" />
-      <File FileName="Droid/CustomRenderers/ImagesScrollViewRenderer.cs" Line="14" Column="1" />
-      <File FileName="BFSDeliveries/Models/DeliveryImage.cs" Line="19" Column="27" />
+      <File FileName="BFSDeliveries/Interfaces/IMediaService.cs" Line="12" Column="51" />
+      <File FileName="BFSDeliveries/Interfaces/IFileManager.cs" Line="7" Column="34" />
       <File FileName="iOS/Helpers/ImageHelper.cs" Line="18" Column="1" />
+      <File FileName="BFSDeliveries/Views/LoginPage.xaml" Line="33" Column="15" />
+      <File FileName="BFSDeliveries/Views/LoginPage.xaml.cs" Line="9" Column="6" />
+      <File FileName="BFSDeliveries/Views/MainPage.cs" Line="31" Column="58" />
+      <File FileName="iOS/DependencyServices/DeviceState.cs" Line="22" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
@@ -34,8 +34,15 @@
       <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Behaviors/EventToCommandBehavior.cs" relfile="BFSDeliveries/Behaviors/EventToCommandBehavior.cs" line="91" column="1" />
       <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/Behaviors/EventToCommandBehavior.cs" relfile="BFSDeliveries/Behaviors/EventToCommandBehavior.cs" line="118" column="1" />
       <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/Droid/DependencyServices/MediaService.cs" relfile="Droid/DependencyServices/MediaService.cs" line="27" column="1" />
-      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/ViewModels/DeliveryPhotosPageViewModel.cs" relfile="BFSDeliveries/ViewModels/DeliveryPhotosPageViewModel.cs" line="205" column="1" />
-      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/iOS/DependencyServices/FileManager.cs" relfile="iOS/DependencyServices/FileManager.cs" line="17" column="1" />
+      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/ViewModels/DeliveryPhotosPageViewModel.cs" relfile="BFSDeliveries/ViewModels/DeliveryPhotosPageViewModel.cs" line="214" column="1" />
+      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/ViewModels/DeliveryPhotosPageViewModel.cs" relfile="BFSDeliveries/ViewModels/DeliveryPhotosPageViewModel.cs" line="200" column="1" />
+      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/Droid/MainActivity.cs" relfile="Droid/MainActivity.cs" line="71" column="1" />
+      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/Droid/MainActivity.cs" relfile="Droid/MainActivity.cs" line="65" column="1" />
+      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/iOS/DependencyServices/FileManager.cs" relfile="iOS/DependencyServices/FileManager.cs" line="14" column="1" />
+      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/ViewModels/DeliveryPhotosPageViewModel.cs" relfile="BFSDeliveries/ViewModels/DeliveryPhotosPageViewModel.cs" line="155" column="1" />
+      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/ViewModels/DeliveryPhotosPageViewModel.cs" relfile="BFSDeliveries/ViewModels/DeliveryPhotosPageViewModel.cs" line="206" column="1" />
+      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/ViewModels/DeliveryPhotosPageViewModel.cs" relfile="BFSDeliveries/ViewModels/DeliveryPhotosPageViewModel.cs" line="192" column="1" />
+      <Breakpoint file="/Users/jorammwasaga/Desktop/VSProjects/BFSDeliveries/BFSDeliveries/ViewModels/DeliveryPhotosPageViewModel.cs" relfile="BFSDeliveries/ViewModels/DeliveryPhotosPageViewModel.cs" line="177" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

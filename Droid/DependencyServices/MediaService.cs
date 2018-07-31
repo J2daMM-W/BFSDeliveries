@@ -13,7 +13,7 @@ using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 using Xamarin.Forms;
 
-[assembly: Xamarin.Forms.Dependency(typeof(MediaService))]
+[assembly: Dependency(typeof(MediaService))]
 namespace BFSDeliveries.Droid.DependencyServices
 {
     public class MediaService: Java.Lang.Object, IMediaService
