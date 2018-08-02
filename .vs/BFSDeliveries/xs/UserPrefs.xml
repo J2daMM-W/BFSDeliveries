@@ -1,9 +1,9 @@
 ﻿<Properties StartupConfiguration="{C035F152-F9BB-41A2-806F-48963DCA952A}|Default">
   <MonoDevelop.Ide.ItemProperties.BFSDeliveries.MobileAppService PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.ItemProperties.BFSDeliveries.Droid AndroidDesignerPreferredDevice="Nexus 4" PreferredExecutionTarget="Android.45332808" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="BFSDeliveries/Views/MainPage.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="BFSDeliveries/ViewModels/DeliveryPhotosPageViewModel.cs">
     <Files>
-      <File FileName="BFSDeliveries/Views/DeliveryPhotosPage.xaml" Line="102" Column="15" />
+      <File FileName="BFSDeliveries/Views/DeliveryPhotosPage.xaml" Line="10" Column="38" />
       <File FileName="BFSDeliveries/ViewModels/DeliveryPhotosPageViewModel.cs" Line="212" Column="18" />
       <File FileName="iOS/DependencyServices/MediaService.cs" Line="11" Column="20" />
       <File FileName="Droid/DependencyServices/MediaService.cs" Line="14" Column="21" />
@@ -19,7 +19,7 @@
       <File FileName="iOS/Helpers/ImageHelper.cs" Line="18" Column="1" />
       <File FileName="BFSDeliveries/Views/LoginPage.xaml" Line="33" Column="15" />
       <File FileName="BFSDeliveries/Views/LoginPage.xaml.cs" Line="9" Column="6" />
-      <File FileName="BFSDeliveries/Views/MainPage.cs" Line="31" Column="58" />
+      <File FileName="BFSDeliveries/Views/MainPage.cs" Line="41" Column="45" />
       <File FileName="iOS/DependencyServices/DeviceState.cs" Line="22" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>

@@ -201,6 +201,7 @@ namespace BFSDeliveries.ViewModels
                 {
                     imagePaths.Add(photosToDelete.ImagePath);
                 }
+
                 //call delete function
                 try
                 {

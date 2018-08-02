@@ -85,6 +85,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\OutBoxPage.xaml.cs">
       <DependentUpon>OutBoxPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\OutBoxPageViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\AboutPage.xaml" />
