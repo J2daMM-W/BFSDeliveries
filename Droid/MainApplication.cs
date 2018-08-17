@@ -3,15 +3,20 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
+using Plugin.CurrentActivity;
 
 namespace BFSDeliveries.Droid
 {
-    [Application]
-    public class MainApplication : Application , Application.IActivityLifecycleCallbacks
+#if DEBUG
+    [Application(Debuggable = true)]
+#else
+    [Application(Debuggable = false)]
+#endif
+    public class MainApplication : Application, Application.IActivityLifecycleCallbacks
     {
-        internal static Context CurrentContext{ get; private set;}
+        //internal static Context CurrentContext { get; private set; }
 
-        public MainApplication(IntPtr handle, JniHandleOwnership transfer): base(handle,transfer)
+        public MainApplication(IntPtr handle, JniHandleOwnership transfer) : base(handle, transfer)
         {
         }
 
@@ -19,6 +24,7 @@ namespace BFSDeliveries.Droid
         {
             base.OnCreate();
             RegisterActivityLifecycleCallbacks(this);
+            CrossCurrentActivity.Current.Init(this);
         }
 
         public override void OnTerminate()
@@ -27,39 +33,41 @@ namespace BFSDeliveries.Droid
             UnregisterActivityLifecycleCallbacks(this);
         }
 
-        public void OnActivityCreated(Activity activity, Bundle savedInstanceState)
+        public void OnActivityCreated(Activity activity, Bundle bundle)
         {
-            CurrentContext = activity;
+            //CurrentContext = activity;
+            CrossCurrentActivity.Current.Activity = activity;
         }
 
         public void OnActivityDestroyed(Activity activity)
         {
-           
+
         }
 
         public void OnActivityPaused(Activity activity)
         {
-            
+
         }
 
         public void OnActivityResumed(Activity activity)
         {
-            CurrentContext = activity;
+            //CurrentContext = activity;
+            CrossCurrentActivity.Current.Activity = activity;
         }
 
         public void OnActivitySaveInstanceState(Activity activity, Bundle outState)
         {
-            
+
         }
 
         public void OnActivityStarted(Activity activity)
         {
-           
+            CrossCurrentActivity.Current.Activity = activity;
         }
 
         public void OnActivityStopped(Activity activity)
         {
-           
+
         }
     }
 }

@@ -22,16 +22,16 @@ namespace BFSDeliveries.iOS.DependencyServices
         private List<AssetResult> mResults = new List<AssetResult>();
         #endregion
 
-        //public MediaService()
-        //{
-        //    IsCameraAvailable = UIImagePickerController.IsSourceTypeAvailable(UIImagePickerControllerSourceType.Camera);
-        //}
+        public MediaService()
+        {
+            IsCameraAvailable = UIImagePickerController.IsSourceTypeAvailable(UIImagePickerControllerSourceType.Camera);
+        }
 
-        //public bool IsCameraAvailable
-        //{
-        //    get;
-        //    private set;
-        //}
+        public bool IsCameraAvailable
+        {
+            get;
+            private set;
+        }
 
         //TaskCompletionSource<Stream> taskCompletionSource;
         //UIImagePickerController imagePicker;

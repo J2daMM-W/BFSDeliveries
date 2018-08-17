@@ -6,5 +6,34 @@
              prism:ViewModelLocator.AutowireViewModel="True" 
              Title="{Binding Title}">
     <ContentPage.Content>
+        <StackLayout>
+            <ListView x:Name="SettingsListView"  VerticalOptions="FillAndExpand" HasUnevenRows="true" IsPullToRefreshEnabled="false">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="10">
+                                <Label Text="Settings" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="16" />
+                                <Label Text="Default Settings" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13" />
+                                <!--<Button Text="Click" Clicked="AddItem_Clicked" />-->
+                            </StackLayout>
+                        </ViewCell>
+                        <!--<ViewCell>
+                            <StackLayout Padding="10">
+                                <Label Text="Account" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="16" />
+                                <Label Text="User Info" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13" />
+                               <Button Text="Click" Clicked="AddItem_Clicked" />
+                            </StackLayout>
+                        </ViewCell>
+                        <ViewCell>
+                            <StackLayout Padding="10">
+                                <Label Text="Help" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="16" />
+                                <Label Text="FAQs" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13" />
+                               <Button Text="Click" Clicked="AddItem_Clicked" />
+                            </StackLayout>
+                        </ViewCell>-->
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

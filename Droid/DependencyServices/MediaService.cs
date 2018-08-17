@@ -4,9 +4,11 @@ using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
 using Android.Widget;
+using BFSDeliveries.Droid.Activities;
 using BFSDeliveries.Droid.DependencyServices;
 using BFSDeliveries.Interfaces;
 using Microsoft.AppCenter.Crashes;
+using Plugin.CurrentActivity;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
 using Plugin.Permissions;
@@ -20,8 +22,11 @@ namespace BFSDeliveries.Droid.DependencyServices
     {
         public async Task UseCameraAsync()
         {
-            Context context;
-            context = MainApplication.CurrentContext;
+            //Context context;
+            //context = Android.App.Application.Context; 
+
+            //try to use current activity else application context
+            var permissionContext = CrossCurrentActivity.Current.Activity ?? Android.App.Application.Context;
 
             try
             {
@@ -30,7 +35,7 @@ namespace BFSDeliveries.Droid.DependencyServices
                 {
                     if (await CrossPermissions.Current.ShouldShowRequestPermissionRationaleAsync(Permission.Camera))
                     {
-                        Toast.MakeText(context,"Need Camera permission to access your camera", ToastLength.Long).Show();
+                        Toast.MakeText(permissionContext,"Need Camera permission to access your camera", ToastLength.Long).Show();
                     }
 
                     var results = await CrossPermissions.Current.RequestPermissionsAsync(new[] { Permission.Camera });
@@ -44,10 +49,10 @@ namespace BFSDeliveries.Droid.DependencyServices
 
                     if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
                     {
-                        Toast.MakeText(context,"No Camera Available", ToastLength.Long).Show();
+                        Toast.MakeText(permissionContext,"No Camera Available", ToastLength.Long).Show();
                     }
 
-                    var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
+                    var file = await CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions
                     {
                         PhotoSize = PhotoSize.Medium,
 
@@ -71,23 +76,27 @@ namespace BFSDeliveries.Droid.DependencyServices
                 }
                 else if (status != PermissionStatus.Unknown)
                 {
-                    Toast.MakeText(context,"Camera Denied, Can not continue, try again.", ToastLength.Long).Show();
+                    Toast.MakeText(permissionContext,"Camera Denied, Can not continue, try again.", ToastLength.Long).Show();
                 }
             }
             catch (Exception ex)
             {
                 Crashes.TrackError(ex);
-                Toast.MakeText(context, "Error , Camera Not Available", ToastLength.Long).Show();
+                Toast.MakeText(permissionContext, "Error , Camera Not Available", ToastLength.Long).Show();
             }
         }
 
         public async Task UsePhotoGalleryAsync()
         {
-            Context context;
+            //Context context;
+            //context = Android.App.Application.Context;
 
-            if (MainApplication.CurrentContext != null)
+            //try to use current activity else application context
+            var permissionContext = CrossCurrentActivity.Current.Activity ?? Android.App.Application.Context;
+
+            if (permissionContext != null)
             {
-                context = MainApplication.CurrentContext;
+                //context = MainApplication.CurrentContext;
 
                 try
                 {
@@ -96,7 +105,7 @@ namespace BFSDeliveries.Droid.DependencyServices
                     {
                         if (await CrossPermissions.Current.ShouldShowRequestPermissionRationaleAsync(Permission.Storage))
                         {
-                            Toast.MakeText(context, "Need Storage permission to access to your photos.", ToastLength.Long).Show();
+                            Toast.MakeText(permissionContext, "Need Storage permission to access to your photos.", ToastLength.Long).Show();
                         }
 
                         var results = await CrossPermissions.Current.RequestPermissionsAsync(new[] { Permission.Storage });
@@ -105,25 +114,24 @@ namespace BFSDeliveries.Droid.DependencyServices
 
                     if (status == PermissionStatus.Granted)
                     {
-                        Toast.MakeText(context, "Select max 15 images", ToastLength.Long).Show();
+                        Toast.MakeText(permissionContext, "Select max 15 images", ToastLength.Long).Show();
                         var imageIntent = new Intent(
                             Intent.ActionPick);
                         imageIntent.SetType("image/*");
                         imageIntent.PutExtra(Intent.ExtraAllowMultiple, true);
                         imageIntent.SetAction(Intent.ActionGetContent);
-                        ((Activity)context).StartActivityForResult(
+                        ((Activity)permissionContext).StartActivityForResult(
                             Intent.CreateChooser(imageIntent, "Select photo"), MainActivity.OPENGALLERYCODE);
-
                     }
                     else if (status != PermissionStatus.Unknown)
                     {
-                        Toast.MakeText(context, "Permission Denied. Can not continue, try again.", ToastLength.Long).Show();
+                        Toast.MakeText(permissionContext, "Permission Denied. Can not continue, try again.", ToastLength.Long).Show();
                     }
                 }
                 catch (Exception ex)
                 {
                     Crashes.TrackError(ex);
-                    Toast.MakeText(context, "Error. Can not continue, try again.", ToastLength.Long).Show();
+                    Toast.MakeText(permissionContext, "Error. Can not continue, try again.", ToastLength.Long).Show();
                 }
             }
         }

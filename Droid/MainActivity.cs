@@ -13,23 +13,31 @@ using BFSDeliveries.Droid.Helpers;
 using Android.Provider;
 using Plugin.Permissions;
 using Microsoft.AppCenter.Crashes;
+using Plugin.CurrentActivity;
+using Xamarin.Forms.Platform.Android;
+using System.Collections.ObjectModel;
+using BFSDeliveries.Models;
+using System.IO;
 
 namespace BFSDeliveries.Droid
 {
-    [Activity(Label = "BFSDeliveries", Icon = "@drawable/icon", Theme = "@style/MyTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Portrait)]
-    public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
+    [Activity(Label = "BFSDeliveries", Icon = "@drawable/icon", Theme = "@style/MyTheme", MainLauncher = true,
+              ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Portrait)]
+    public class MainActivity : FormsAppCompatActivity
     {
+        public ObservableCollection<DeliveryImage> SelectedImages { get; set; } // Selected Images 
         public static int OPENGALLERYCODE = 200;  //Used to determine which service is being called - photoselection
-        protected override void OnCreate(Bundle bundle)
+
+        protected override void OnCreate(Bundle savedInstanceState)
         {
-            TabLayoutResource = Resource.Layout.Tabbar;
-            ToolbarResource = Resource.Layout.Toolbar;
+            //TabLayoutResource = Resource.Layout.Tabbar;
+            //ToolbarResource = Resource.Layout.Toolbar;
 
-            base.OnCreate(bundle);
-
-            global::Xamarin.Forms.Forms.Init(this, bundle);
-
+            base.OnCreate(savedInstanceState);
+            Forms.Init(this, savedInstanceState);
             LoadApplication(new App(new AndroidInitializer()));
+
+            CrossCurrentActivity.Current.Init(this, savedInstanceState);
         }
 
         public class AndroidInitializer : IPlatformInitializer
@@ -39,7 +47,7 @@ namespace BFSDeliveries.Droid
             }
         }
 
-        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Android.Content.PM.Permission[] grantResults)
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
         {
             PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
@@ -52,7 +60,8 @@ namespace BFSDeliveries.Droid
             //also it specifies status of the called message as Intent.ACTIVITY_OK and so on
             if (requestCode == OPENGALLERYCODE && resultCode == Result.Ok && data != null)
             {
-                var images = new List<byte[]>();
+                //var images = new List<byte[]>();
+                SelectedImages = new ObservableCollection<DeliveryImage>();
 
                 var clipData = data.ClipData;
                 if (clipData != null) //
@@ -61,30 +70,39 @@ namespace BFSDeliveries.Droid
                     {
                         var item = clipData.GetItemAt(i);
 
-                        if (TryGetRealPathFromURI(item.Uri, out string path))
+                        if (TryGetRealPathFromURI(this, item.Uri, out string path))
                         {
-                            images.Add(ImageHelper.ImageToBinary(path));
+                            //TODO: make this it's own function since camera action also needs to do this
+                            var imageBytes = ImageHelper.ImageToBinary(path);
+                            var newImage = ImageSource.FromStream(() => new MemoryStream(imageBytes));
+                            SelectedImages.Add(new DeliveryImage { ImagePath = path, Source = newImage, OrgImage = imageBytes });
+                            CleanPath(path);
                         }
                     }
                 }
-                else if (TryGetRealPathFromURI(data.Data, out string path))
+                else if (TryGetRealPathFromURI(this, data.Data, out string path))
                 {
-                    images.Add(ImageHelper.ImageToBinary(path));
+                    //images.Add(ImageHelper.ImageToBinary(path));
+                    //TODO: make this it's own function since camera action also needs to do this
+                    var imageBytes = ImageHelper.ImageToBinary(path);
+                    var newImage = ImageSource.FromStream(() => new MemoryStream(imageBytes));
+                    SelectedImages.Add(new DeliveryImage { ImagePath = path, Source = newImage, OrgImage = imageBytes });
+                    CleanPath(path);
                 }
 
                 //MessagingCenter.Send<App, List<string>>((App)Xamarin.Forms.Application.Current, "ImagesSelected", images);
                 //Send images back
-                MessagingCenter.Send((App)Xamarin.Forms.Application.Current, "ImagesSelected", images);
+                MessagingCenter.Send((App)Xamarin.Forms.Application.Current, "SelectedImages", SelectedImages);
             }
         }
 
-        public bool TryGetRealPathFromURI(Android.Net.Uri contentURI, out string path)
+        public bool TryGetRealPathFromURI(Context context, Android.Net.Uri contentURI, out string path)
         {
-            Context context;
+            //Context context;
 
-            if (MainApplication.CurrentContext != null)
+            if (context != null)
             {
-                context = MainApplication.CurrentContext;
+                //context = MainApplication.CurrentContext;
 
                 try
                 {
@@ -131,6 +149,15 @@ namespace BFSDeliveries.Droid
             }
             path = null;
             return false;
+        }
+
+        private void CleanPath(string file)
+        {
+            var documentsDirectory = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
+            if (Directory.Exists(documentsDirectory))
+            {
+                File.Delete(file);
+            }
         }
     }
 }
