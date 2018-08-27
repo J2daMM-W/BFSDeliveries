@@ -80,9 +80,9 @@ namespace BFSDeliveries.ViewModels
             _pageDialogService = pageDialogService;
 
             CancelCommand = new DelegateCommand(CancelFormSubmission);
-            SubmitCommand = new DelegateCommand(ExecuteFormSubmission);
+            SubmitCommand = new DelegateCommand(async () => await ExecuteFormSubmission());
 
-            GetPhotoCommand = new DelegateCommand(DisplayActionSheetButtons);
+            GetPhotoCommand = new DelegateCommand(async () => await DisplayActionSheetButtons());
 
             async void executeMethod() => await SelectDeliveryOrders();
             GetSelectedOrdersCommand = new DelegateCommand(executeMethod);
@@ -91,7 +91,7 @@ namespace BFSDeliveries.ViewModels
 
             //Subscribe notification for both camera choice and  photo library choice - remember to UnSubscribe
             MessagingCenter.Subscribe<App, ObservableCollection<DeliveryImage>>((App)Application.Current, "SelectedImages", (s, SelectedImages) =>
-             {
+            {
                  foreach (var selectedImage in SelectedImages)
                  {
                      DeliveryImages.Add(new DeliveryImage
@@ -128,7 +128,7 @@ namespace BFSDeliveries.ViewModels
             await _navigationService.NavigateAsync(path);
         }
 
-        async void DisplayActionSheetButtons()
+        async Task DisplayActionSheetButtons()
         {
             var result = await _pageDialogService.DisplayActionSheetAsync("Get Photo From:", "Cancel", "Camera", "Photo Library");
 
@@ -151,7 +151,7 @@ namespace BFSDeliveries.ViewModels
             _navigationService.GoBackAsync();
         }
 
-        void ExecuteFormSubmission()
+        async Task ExecuteFormSubmission()
         {
             var deliveryFormData = DeliveryForm;
 
@@ -166,7 +166,7 @@ namespace BFSDeliveries.ViewModels
                 deliveryFormData.DeliveryImages.Add(selectedImage);
             }
 
-            // To submit form there needs to be a verification since  PickTickeNumber field can't be empty 
+            // To submit form there needs to be a verification since PickTickeNumber field can't be empty 
             //will show alert if verification failure
 
 
@@ -186,13 +186,12 @@ namespace BFSDeliveries.ViewModels
                 {
 
                 }
-
             }
             catch (Exception ex)
             {
                 Crashes.TrackError(ex);
             }
-            //check if delete attched photos has been selected 
+            //check if delete attached photos has been selected 
             if (deliveryFormData.DeleteAttachedPhotos)
             {
                 var imagePaths = new List<string>();
@@ -213,7 +212,11 @@ namespace BFSDeliveries.ViewModels
                 }
             }
 
-            _navigationService.GoBackAsync();
+            //call submit photos
+            //var submitResult =
+
+
+            await _navigationService.GoBackAsync();
         }
 
     }

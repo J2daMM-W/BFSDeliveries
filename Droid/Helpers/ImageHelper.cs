@@ -15,29 +15,33 @@ namespace BFSDeliveries.Droid.Helpers
         {
             byte[] imageBytes;
 
-            var originalImage = DecodeFile(imagePath);
-            var rotation = GetRotation(imagePath);
-            var width = (originalImage.Width * 0.25);
-            var height = (originalImage.Height * 0.25);
-            var scaledImage = Bitmap.CreateScaledBitmap(originalImage, (int)width, (int)height, true);
+            using (var originalImage = DecodeFile(imagePath)){
+                var rotation = GetRotation(imagePath);
+                var width = (originalImage.Width * 0.25);
+                var height = (originalImage.Height * 0.25);
+                Bitmap scaledImage = null;
+                try {
+                    scaledImage = Bitmap.CreateScaledBitmap(originalImage, (int)width, (int)height, true);
 
-            if (rotation != 0)
-            {
-                var matrix = new Matrix();
-                matrix.PostRotate(rotation);
-                scaledImage = Bitmap.CreateBitmap(scaledImage, 0, 0, scaledImage.Width, scaledImage.Height, matrix, true);
+                    if (rotation != 0)
+                    {
+                        var matrix = new Matrix();
+                        matrix.PostRotate(rotation);
+                        scaledImage = Bitmap.CreateBitmap(scaledImage, 0, 0, scaledImage.Width, scaledImage.Height, matrix, true);
+                    }
+
+                    using (var ms = new MemoryStream())
+                    {
+                        scaledImage.Compress(Bitmap.CompressFormat.Jpeg, 90, ms);
+                        imageBytes = ms.ToArray();
+                    }
+                }
+                finally
+                {
+                    scaledImage.Dispose();
+                }
             }
 
-            using (var ms = new MemoryStream())
-            {
-                scaledImage.Compress(Bitmap.CompressFormat.Jpeg, 90, ms);
-                imageBytes = ms.ToArray();
-            }
-
-            originalImage.Recycle();
-            scaledImage.Recycle();
-            originalImage.Dispose();
-            scaledImage.Dispose();
             // Dispose of the Java side bitmap.
             GC.Collect();
 

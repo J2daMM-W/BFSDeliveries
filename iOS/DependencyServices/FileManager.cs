@@ -14,7 +14,6 @@ namespace BFSDeliveries.iOS.DependencyServices
             {
                 File.Delete(imagePath);
             }
-
         }
     }
 }

@@ -25,7 +25,6 @@ namespace BFSDeliveries.Droid
               ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Portrait)]
     public class MainActivity : FormsAppCompatActivity
     {
-        public ObservableCollection<DeliveryImage> SelectedImages { get; set; } // Selected Images 
         public static int OPENGALLERYCODE = 200;  //Used to determine which service is being called - photoselection
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -50,10 +49,12 @@ namespace BFSDeliveries.Droid
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
         {
             PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
         protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
         {
+            ObservableCollection<DeliveryImage> SelectedImages; // Selected Images 
             base.OnActivityResult(requestCode, resultCode, data);
 
             //request_code is the calling function identity, from where it is requested, result_code is the called function identifier, 
@@ -76,7 +77,7 @@ namespace BFSDeliveries.Droid
                             var imageBytes = ImageHelper.ImageToBinary(path);
                             var newImage = ImageSource.FromStream(() => new MemoryStream(imageBytes));
                             SelectedImages.Add(new DeliveryImage { ImagePath = path, Source = newImage, OrgImage = imageBytes });
-                            CleanPath(path);
+                            //CleanPath(path);
                         }
                     }
                 }
@@ -87,7 +88,7 @@ namespace BFSDeliveries.Droid
                     var imageBytes = ImageHelper.ImageToBinary(path);
                     var newImage = ImageSource.FromStream(() => new MemoryStream(imageBytes));
                     SelectedImages.Add(new DeliveryImage { ImagePath = path, Source = newImage, OrgImage = imageBytes });
-                    CleanPath(path);
+                    //CleanPath(path);
                 }
 
                 //MessagingCenter.Send<App, List<string>>((App)Xamarin.Forms.Application.Current, "ImagesSelected", images);
