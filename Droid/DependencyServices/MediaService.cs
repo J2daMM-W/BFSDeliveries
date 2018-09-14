@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Threading.Tasks;
 using Android.App;
@@ -6,7 +7,9 @@ using Android.Content;
 using Android.Widget;
 using BFSDeliveries.Droid.Activities;
 using BFSDeliveries.Droid.DependencyServices;
+using BFSDeliveries.Droid.Helpers;
 using BFSDeliveries.Interfaces;
+using BFSDeliveries.Models;
 using Microsoft.AppCenter.Crashes;
 using Plugin.CurrentActivity;
 using Plugin.Media;
@@ -18,12 +21,11 @@ using Xamarin.Forms;
 [assembly: Dependency(typeof(MediaService))]
 namespace BFSDeliveries.Droid.DependencyServices
 {
-    public class MediaService: Java.Lang.Object, IMediaService
+    public class MediaService : Java.Lang.Object, IMediaService
     {
         public async Task UseCameraAsync()
         {
-            //Context context;
-            //context = Android.App.Application.Context; 
+            ObservableCollection<DeliveryImage> SelectedImages = new ObservableCollection<DeliveryImage>();// Selected Images
 
             //try to use current activity else application context
             var permissionContext = CrossCurrentActivity.Current.Activity ?? Android.App.Application.Context;
@@ -35,7 +37,7 @@ namespace BFSDeliveries.Droid.DependencyServices
                 {
                     if (await CrossPermissions.Current.ShouldShowRequestPermissionRationaleAsync(Permission.Camera))
                     {
-                        Toast.MakeText(permissionContext,"Need Camera permission to access your camera", ToastLength.Long).Show();
+                        Toast.MakeText(permissionContext, "Need Camera permission to access your camera", ToastLength.Long).Show();
                     }
 
                     var results = await CrossPermissions.Current.RequestPermissionsAsync(new[] { Permission.Camera });
@@ -49,7 +51,7 @@ namespace BFSDeliveries.Droid.DependencyServices
 
                     if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
                     {
-                        Toast.MakeText(permissionContext,"No Camera Available", ToastLength.Long).Show();
+                        Toast.MakeText(permissionContext, "No Camera Available", ToastLength.Long).Show();
                     }
 
                     var file = await CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions
@@ -61,22 +63,29 @@ namespace BFSDeliveries.Droid.DependencyServices
                     if (file == null)
                         return;
 
-                    byte[] imageAsBytes = null;
+                    //byte[] imageAsBytes = null;
 
                     using (var memoryStream = new MemoryStream())
                     {
                         file.GetStream().CopyTo(memoryStream);
+                        var path = file.Path;
+
+                        //TODO: make this it's own function ImageHelper - gallery action will also needs to do this
+                        var imageBytes = ImageHelper.ImageToBinary(path);
+                        var newImage = ImageSource.FromStream(() => new MemoryStream(imageBytes));
+                        SelectedImages.Add(new DeliveryImage { ImagePath = path, Source = newImage, OrgImage = imageBytes });
+
                         file.Dispose();
-                        imageAsBytes = memoryStream.ToArray();
+                        //imageAsBytes = memoryStream.ToArray();
                     }
 
                     //PhotoIDImage.Source = ImageSource.FromFile(file.Path);
                     //Send images back
-                    MessagingCenter.Send<byte[]>(imageAsBytes, "CameraImage");
+                    MessagingCenter.Send((App)Xamarin.Forms.Application.Current, "SelectedImages", SelectedImages);
                 }
                 else if (status != PermissionStatus.Unknown)
                 {
-                    Toast.MakeText(permissionContext,"Camera Denied, Can not continue, try again.", ToastLength.Long).Show();
+                    Toast.MakeText(permissionContext, "Camera Denied, Can not continue, try again.", ToastLength.Long).Show();
                 }
             }
             catch (Exception ex)

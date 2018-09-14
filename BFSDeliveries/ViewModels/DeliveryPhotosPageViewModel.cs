@@ -191,6 +191,7 @@ namespace BFSDeliveries.ViewModels
             {
                 Crashes.TrackError(ex);
             }
+
             //check if delete attached photos has been selected 
             if (deliveryFormData.DeleteAttachedPhotos)
             {
@@ -214,7 +215,6 @@ namespace BFSDeliveries.ViewModels
 
             //call submit photos
             //var submitResult =
-
 
             await _navigationService.GoBackAsync();
         }

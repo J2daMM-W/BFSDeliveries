@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using BFSDeliveries.Interfaces;
 using BFSDeliveries.iOS.DependencyServices;
@@ -10,9 +11,14 @@ namespace BFSDeliveries.iOS.DependencyServices
     {
         public void DeleteFile(List<string> imagePaths)
         {
-            foreach(var imagePath in imagePaths)
+            var docsDir = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+
+            if(Directory.Exists(docsDir))
             {
-                File.Delete(imagePath);
+                foreach (var imagePath in imagePaths)
+                {
+                    File.Delete(imagePath);
+                }
             }
         }
     }
